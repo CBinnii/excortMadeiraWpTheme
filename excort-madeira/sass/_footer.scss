@@ -1,0 +1,107 @@
+.footer {
+    padding: 24px 0;
+    background-color: #f9f4de;
+
+    .container {
+        a {
+            color: #1c1410;
+            text-decoration: none;
+
+            &:hover {
+                color: #a52a2a;
+            }
+        }
+
+        h3 {
+            font: normal normal normal 24px/1 'Rufina';
+            color: #1c1410;
+            margin-bottom: 24px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .footer-menu, .footer-terms, .footer-contact {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center ;
+
+            @media screen and (max-width: 767px) {
+                margin-bottom: 24px;
+            }
+
+            h4 {
+                font: normal normal normal 18px 'Rufina';
+                color: #1c1410;
+                margin-bottom: 16px;
+            }
+        }
+
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            @media screen and (max-width: 767px) {
+                margin-bottom: 24px;
+            }
+
+            li {
+                a {
+                    display: block;
+                    margin-bottom: 8px;
+                }
+
+                &:last-of-type {
+                    a {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: #a52a2a 1px solid;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+
+            img {
+                width: 210px;
+            }
+        }
+
+        .partner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            border-top: #a52a2a 1px solid;
+            padding-top: 24px;
+            margin-top: 24px;
+
+            ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+
+            p {
+                font: normal normal normal 14px 'Rufina';
+                margin-right: 8px;
+                color: #1c1410;
+                text-align: center;
+                margin-bottom: 16px;
+                
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

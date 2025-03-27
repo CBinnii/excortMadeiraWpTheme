@@ -1,0 +1,24 @@
+.nav {
+    &.nav-pills {
+        gap: 16px;
+        
+        .nav-item {
+            .nav-link {
+                padding: 16px 24px;
+                background-color: transparent;
+                color: #d2261a;
+                border: 1px solid #d2261a;
+
+                &.active {
+                    background: #d2261a;
+                    color: var(--color-white-pure);
+                }
+    
+                &:hover {
+                    background: #d2261a;
+                    color: var(--color-white-pure);
+                }
+            }
+        }
+    }
+}

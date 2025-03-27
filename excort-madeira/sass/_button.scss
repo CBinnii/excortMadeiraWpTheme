@@ -1,0 +1,125 @@
+%button {
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--border-radius-lg) !important;
+    padding: var(--spacing-16) var(--spacing-24);
+    border: none;
+    line-height: 24px;
+    justify-content: center;
+    text-transform: uppercase;
+
+    @media (max-width: 767px) {
+        border-radius: var(--border-radius-md) !important;
+        line-height: 20px;
+        font-size: 14px;
+        height: 44px;
+        padding: var(--spacing-12) var(--spacing-16);
+    }
+
+    &.block {
+        display: block;
+    }
+
+    // Remoção da borda em volta dos componentes quando feito o foco
+    &:focus {
+        outline: none;
+    }
+
+    &.medium {
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: var(--border-radius-md) !important;
+        height: 44px;
+        padding: var(--spacing-12) var(--spacing-16) !important;
+    }
+
+    &.small {
+        font-size: 12px;
+        line-height: 16px;
+        height: 32px;
+        border-radius: var(--border-radius-s) !important;
+        padding: var(--spacing-8) var(--spacing-12) !important;
+    }
+}
+
+a {
+    &.button {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.button {
+    @extend %button;
+    background: #d2261a;
+    display: flex;
+    align-items: center;
+    color: #f9f4de;
+
+    i {
+        font-size: 14px;
+        margin-right: var(--space-sm);
+        display: inline-block;
+    }
+
+    &.bold {
+        font-weight: 700;
+    }
+
+    &.small {
+        font-size: 12px;
+        line-height: 16px;
+        height: 32px;
+        padding: var(--spacing-8) var(--spacing-12);
+    }
+
+    &.white {
+        color: #f9f4de;
+    }
+
+    &.border-white {
+        border: solid 1px #f9f4de;
+    }
+
+    &.dark {
+        color: #1c1410;
+    }
+
+    &:hover {
+        &:not([disabled]) {
+            background-color: #b51e14;
+            color: #f9f4de;
+        }
+    }
+
+    &[disabled] {
+        background: var(--color-neutral-1);
+        color: var(--color-neutral-4);
+        border: solid 1px var(--color-neutral-3);
+    }
+
+    &.outline {
+        color: #1c1410;
+        background: #f9f4de;
+        border: solid 1px #b51e14;
+
+        &:hover {
+            border: solid 1px #b51e14 ;
+        }
+
+        &[disabled] {
+            color: var(--color-neutral-4);
+            border: solid 1px var(--color-neutral-4);
+
+            img {
+                filter: invert(94%) sepia(6%) saturate(6655%) hue-rotate(182deg) brightness(82%) contrast(76%);
+            }
+        }
+    }
+}

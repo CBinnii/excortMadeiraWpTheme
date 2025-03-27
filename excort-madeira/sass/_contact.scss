@@ -1,0 +1,107 @@
+.section {
+    .section-contact {
+        padding: 56px 0;
+
+        .video-contact {
+            height: 500px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+
+            .background-video {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+    
+                @media screen and (max-width: 991px) {
+                    height: 120%;
+                    top: -50px;
+                }
+            }
+        }
+
+        .contact {
+            h3 {
+                font-size: 24px;
+                color: var(--text-color);
+                margin-bottom: 24px;
+            }
+
+            p {
+                font-size: 16px;
+                color: var(--text-color);
+                margin-bottom: 16px;
+            }
+
+            a {
+                font-size: 16px;
+                color: var(--text-color);
+                line-height: 1.4;
+                transition: 0.3s;
+                text-decoration: none;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
+            }
+
+            ul {
+                li {
+                    display: flex;
+                    justify-content: center;
+                    gap: 16px;
+                }
+            }
+        }
+    }
+
+    .booking {
+        padding: 56px 0;
+    }
+
+    .text-left {
+        p {
+            text-align: left;
+        }
+    }
+
+    .section-booking {
+        padding: 0;
+
+        .image-booking {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        }
+
+        .form-booking {
+            background-color: #313131;
+            height: 100%;
+            padding: 24px;
+
+            label {
+                font-size: 16px;
+                color: #FFFFFF;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

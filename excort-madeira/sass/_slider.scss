@@ -1,0 +1,112 @@
+.swiper-button-next-slider-home, .swiper-button-prev-slider-home, .swiper-button-next-slider-general, .swiper-button-prev-slider-general {
+    width: 50px;
+    height: 50px;
+    background-size: 50px;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+        
+    }
+
+    &:after {
+        font-size: 0px;
+    }
+}
+
+.swiper-button-next-slider-home, .swiper-button-next-slider-general {
+    background-image: url('../images/icons/next.svg');
+}
+
+.swiper-button-prev-slider-home, .swiper-button-prev-slider-general {
+    background-image: url('../images/icons/prev.svg');
+}
+
+.swiper-button-next-top-escorts, .swiper-button-prev-top-escorts {
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+        
+    }
+
+    &:after {
+        font-size: 0px;
+    }
+}
+
+.swiper-button-next-top-escorts {
+    background-image: url('../images/icons/next.svg');
+}
+
+.swiper-button-prev-top-escorts {
+    background-image: url('../images/icons/prev.svg');
+}
+
+.swiper-button-next-profile, .swiper-button-prev-profile {
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+
+    &:after {
+        font-size: 0px;
+    }
+}
+
+.swiper-button-next-profile {
+    background-image: url('../images/icons/next.svg');
+}
+
+.swiper-button-prev-profile {
+    background-image: url('../images/icons/prev.svg');
+}
+
+.swiper-button-next-blog, .swiper-button-prev-blog {
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+        
+    }
+
+    &:after {
+        font-size: 0px;
+    }
+}
+
+.swiper-button-next-blog {
+    background-image: url('../images/icons/next.svg');
+}
+
+.swiper-button-prev-blog {
+    background-image: url('../images/icons/prev.svg');
+}
+
+.slider-why {
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } 
+}
+
+.swiper-pagination-why {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 0 0;
+    
+    @media screen and (min-width: 992px) {
+        display: none;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: var(--button-color);
+
+        &.swiper-pagination-bullet-active {
+            background-color: var(--button-color-hover);
+        }
+    }
+}

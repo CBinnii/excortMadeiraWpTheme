@@ -1,0 +1,23 @@
+//** Número de colunas base do grid.
+$colunas:  12;
+//** Padding entre as colunas.
+$padding: 15px;
+//** Padding tamanho total do grid
+$grid-padding : 30px;
+$screen-md-min: 991px;
+
+
+@mixin linha($padding: $grid-padding) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$padding / 2;
+  margin-left: -$padding / 2;
+}
+
+@mixin colunas($total-colunas) {
+    flex: 0 0 100% / $total-colunas;
+    max-width: 100% / $total-colunas;
+    
+	padding-right: $padding / 2;
+	padding-left: $padding / 2;
+}
