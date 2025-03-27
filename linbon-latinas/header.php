@@ -5,27 +5,35 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Escort Madeira - <?php echo get_the_title(); ?></title>
+        <title>Lisbon Latinas - <?php echo get_the_title(); ?></title>
         <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png">
         <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
     <body>
-        <div class="follow-floted">
-            <label>SUBSCRIBE TO OUR CHANNEL!</label>
-            <ul>
-                <li>
-                    <a target="_blank" title="Telegram" href="#">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" alt="Telegram icon">
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <a target="_blank" title="Whatsapp" href="#" class="icon-telegram">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" alt="Telegram icon">
-        </a>
+        <?php 
+            $whatsapp = get_field('whatsapp_url', 'option');
+            $telegram = get_field('telegram_url', 'option');
+        ?>
+        <?php if($telegram): ?>
+            <div class="follow-floted">
+                <label>SUBSCRIBE TO OUR CHANNEL!</label>
+                <ul>
+                    <li>
+                        <a target="_blank" title="Telegram" href="<?php echo $telegram; ?>">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" alt="Telegram icon">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <?php endif; ?>
+        
+        <?php if($whatsapp): ?>
+            <a target="_blank" title="Whatsapp" href="<?php echo $whatsapp; ?>" class="icon-telegram">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" alt="Whatsapp icon">
+            </a>
+        <?php endif; ?>
 
         <header id="header" class="header">
             <nav class="navbar">

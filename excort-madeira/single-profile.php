@@ -251,33 +251,24 @@
                                 </div>
                             </div>
 
-                            <div class="profile-personal-services mb-30">
-                                <span class="txt-heading block uppercase md mb-16">My services</span>
+                            <?php 
+                                $services = get_field('services'); 
 
-                                <div class="tags">
-                                    <a href="single.html" class="tag">
-                                        Couple
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        CIM
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        Luxury
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        Duplex
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        Lorem
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        Ipsum
-                                    </a>
-                                    <a href="single.html" class="tag">
-                                        Dolor
-                                    </a>
+                                if( $services ) :
+                            ?>
+                                <div class="profile-personal-services mb-30">
+                                    <span class="txt-heading block uppercase md mb-16">My services</span>
+                                    
+                                    <div class="tags">
+                                        <?php foreach( $services as $service ): ?>
+                                            <a href="<?php echo get_permalink($service->ID); ?>" class="tag">
+                                                <?php echo get_the_title($service->ID); ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
-                            </div>
+                                <?php wp_reset_postdata(); ?>
+                            <?php endif; ?>
                             
                             <?php if( have_rows('languages') ): ?>
                                 <div class="profile-languages">
