@@ -1,0 +1,76 @@
+:root {
+  --background-color: #f9f4de;
+  --button-color: #d2261a;
+  --button-color-hover: #b51e14;
+  --border-color: #d2261a;
+  --text-color: #1c1410;
+  --link-hover-color: #a52a2a;
+  --font-family: "Rufina", serif, Verdana, sans-serif;
+
+  // Colors
+  --color-neutral-10: #18262E;
+  --color-neutral-9: #233848;
+  --color-neutral-8: #324858;
+  --color-neutral-7: #405965;
+  --color-neutral-6: #546E7A;
+  --color-neutral-5: #78909E;
+  --color-neutral-4: #97ADBC;
+  --color-neutral-3: #CFD8DE;
+  --color-neutral-2: #DDE4E8;
+  --color-neutral-1: #F1F5F5;
+
+  --color-dark-5: #000000;
+  --color-dark-4: #161616;
+  --color-dark-3: #222222;
+  --color-dark-2: #343434;
+  --color-dark-1: #737373;
+
+  --color-white-pure: #FFFFFF;
+
+  --shadow-light-default: 0 2px 6px 0 rgba(0, 0, 0, 0.04);
+  --shadow-light-large: 0 0 24px 0 rgba(0, 0, 0, 0.16);
+
+  // Border Radius
+  --border-radius-none:0;
+  --border-radius-xs: 2px;
+  --border-radius-s: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 24px;
+  --border-radius-circular: 100%;
+
+  // Font weight
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 800;
+  --font-weight-black: 900;
+
+  // Opacity
+  --opacity-level-80: 0.8;
+  --opacity-level-72: 0.72;
+  --opacity-level-56: 0.56;
+  --opacity-level-40: 0.40;
+  --opacity-level-24: 0.24;
+  --opacity-level-16: 0.16;
+
+  // Spacing
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px; 
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+}
