@@ -8,65 +8,51 @@
                     </div>
                     <div class="col-sm-4">
                         <h3>Quick Menu</h3>
-
-                        <ul class="footer-menu">
-                            <li class="nav-item">
-                                <a href="#">How do I book a high class escort?</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Location of your escort booking</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Escortservice in Madeira</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
+                        <?php if (have_rows('quick_menu', 'option')) : ?>
+                            <ul class="footer-menu">
+                                <?php while (have_rows('quick_menu', 'option')) : the_row(); ?>
+                                    <li class="nav-item">
+                                        <a href="<?php the_sub_field('link_menu', 'option'); ?>"><?php the_sub_field('text_menu', 'option'); ?></a>
+                                    </li>
+                                <?php endwhile; ?>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                     <div class="col-sm-4">
                         <h3>Terms & Conditions</h3>
 
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">Terms & Conditions</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy Statement</a>
-                            </li>
-                            <li>
-                                <a href="#">Consent Policy</a>
-                            </li>
-                            <li>
-                                <a href="#">Cookie Policy</a>
-                            </li>
-                        </ul>
+                        <?php if (have_rows('terms_conditions', 'option')) : ?>
+                            <ul class="footer-menu">
+                                <?php while (have_rows('terms_conditions', 'option')) : the_row(); ?>
+                                    <li>
+                                    <a href="<?php the_sub_field('link_terms', 'option'); ?>"><?php the_sub_field('text_terms', 'option'); ?></a>
+                                    </li>
+                                <?php endwhile; ?>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                     <div class="col-sm-4">
                         <h3>Contact</h3>
 
                         <div class="footer-contact">
-                            <p>
-                                <a href="mailto:aaa@aaa.com">aaa@aaa.com</a>
-                            </p>
-                            <p class="mb-24">
-                                <a href="tel:+31612345678">+31 6 12345678</a>
-                            </p>
+                            <?php echo the_field('contact', 'option'); ?>
 
+                            <?php 
+                                $whatsapp = get_field('whatsapp_url', 'option');
+                                $telegram = get_field('telegram_url', 'option');
+                            ?>
                             <ul class="d-flex justify-content-center align-items-center">
                                 <li>
-                                    <a href="#" target="_blank">
-                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" width="24" alt="Whatsapp icon">
-                                    </a>
-                                    <a href="#" target="_blank">
-                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" width="24" alt="Telegram icon">
-                                    </a>
+                                    <?php if($whatsapp): ?>
+                                        <a href="<?php echo $whatsapp; ?>" target="_blank">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" width="24" alt="Whatsapp icon">
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if($telegram): ?>
+                                        <a href="<?php echo $telegram; ?>" target="_blank">
+                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" width="24" alt="Telegram icon">
+                                        </a>
+                                    <?php endif; ?>
                                 </li>
                             </ul>
                         </div>

@@ -59,23 +59,31 @@
                                 
                                 <div class="col-md-6">
                                     <h3 class="text-uppercase">Contact</h3>
-                                    <p><a target="_blank" href="tel:+351999888555">(+351) 999 888 555</a></p>
-                                    <p><a target="_blank" href="mailto:office@escort-madeira.com?subject=Contact via website&body=Hello">office@escort-madeira.com</a></p>
+                                    <?php echo the_field('contact', 'option'); ?>
+
+                                    <?php 
+                                        $whatsapp = get_field('whatsapp_url', 'option');
+                                        $telegram = get_field('telegram_url', 'option');
+                                    ?>
                                     <ul class="d-flex align-items-center">
                                         <li>
-                                            <a href="#" target="_blank">
-                                                <img src="<?php echo get_template_directory_uri(); ?>/images/icons/whatsapp.svg" width="24" alt="Whatsapp icon">
-                                            </a>
-                                            <a href="#" target="_blank">
-                                                <img src="<?php echo get_template_directory_uri(); ?>/images/icons/telegram.svg" width="24" alt="Telegram icon">
-                                            </a>
+                                            <?php if($whatsapp): ?>
+                                                <a href="<?php echo $whatsapp; ?>" target="_blank">
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" width="24" alt="Whatsapp icon">
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if($telegram): ?>
+                                                <a href="<?php echo $telegram; ?>" target="_blank">
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" width="24" alt="Telegram icon">
+                                                </a>
+                                            <?php endif; ?>
                                         </li>
                                     </ul>
                                 </div>
         
                                 <div class="col-md-6">
                                     <h3 class="text-uppercase">Opening hours</h3>
-                                    <p>Monday to friday 10h to 20h</p>
+                                    <?php echo the_field('opening_hours', 'option'); ?>
                                 </div>
                             </div>
                         </div>
@@ -116,6 +124,24 @@
                     </div>
                 </div>
             </div>
+
+            <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
+                <div class="section-about">
+                    <div class="title">
+                        <div class="container">
+                            <h3><?php echo $title_text_field_2_page; ?></h3>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><?php echo $text_field_2_page; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
