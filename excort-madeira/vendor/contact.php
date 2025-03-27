@@ -37,7 +37,7 @@ try {
 
     // Email content
     $mail->isHTML(true);
-    $mail->Subject = 'Contact from Escort Madeira';
+    $mail->Subject = 'Contact from Contact page on Escort Madeira website';
     $mail->Body = "
         <h3>Contact</h3>
         <p><strong>Name:</strong> $firstName $lastName</p>
