@@ -31,13 +31,13 @@ try {
     $mail->Port = 465;
 
     // Set sender and recipient
-    $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
-    $mail->addAddress('milla.binni@gmail.com'); 
-    $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
+    $mail->setFrom('office@escort-madeira.com', 'Website Lisbon Latinas');
+    $mail->addAddress('office@escort-madeira.com'); 
+    $mail->addReplyTo('office@escort-madeira.com', 'Information Lisbon Latinas');
 
     // Email content
     $mail->isHTML(true);
-    $mail->Subject = 'Contact from Contact page on Escort Madeira website';
+    $mail->Subject = 'Contact from Contact page on Lisbon Latinas website';
     $mail->Body = "
         <h3>Contact</h3>
         <p><strong>Name:</strong> $firstName $lastName</p>

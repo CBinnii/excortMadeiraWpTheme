@@ -14,20 +14,20 @@ $response = [];
 
 try {
     // Capture form data
-    $name =  = $_POST['name'] ?? '';
-    $email =  = $_POST['email'] ?? '';
-    $phone =  = $_POST['phone'] ?? '';
-    $city =  = $_POST['city'] ?? '';
-    $nacionality =  = $_POST['nacionality'] ?? '';
-    $country =  = $_POST['country'] ?? '';
-    $instagram =  = $_POST['instagram'] ?? '';
-    $age =  = $_POST['age'] ?? '';
-    $chest =  = $_POST['chest'] ?? '';
-    $hip =  = $_POST['hip'] ?? '';
-    $waist =  = $_POST['waist'] ?? '';
-    $languages =  = $_POST['languages'] ?? '';
-    $experience =  = $_POST['experience'] ?? '';
-    $description =  = $_POST['description'] ?? '';
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $city = $_POST['city'] ?? '';
+    $nacionality = $_POST['nacionality'] ?? '';
+    $country = $_POST['country'] ?? '';
+    $instagram = $_POST['instagram'] ?? '';
+    $age = $_POST['age'] ?? '';
+    $chest = $_POST['chest'] ?? '';
+    $hip = $_POST['hip'] ?? '';
+    $waist = $_POST['waist'] ?? '';
+    $languages = $_POST['languages'] ?? '';
+    $experience = $_POST['experience'] ?? '';
+    $description = $_POST['description'] ?? '';
 
     // PHPMailer configuration
     $mail = new PHPMailer(true);
@@ -40,21 +40,21 @@ try {
     $mail->Port = 465;
 
     // Set sender and recipient
-    $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
+    $mail->setFrom('office@escort-madeira.com', 'Website Lisbon Latinas');
     $mail->addAddress('office@escort-madeira.com'); 
-    $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
+    // $mail->addAddress('milla.binni@gmail.com'); 
+    $mail->addReplyTo('office@escort-madeira.com', 'Information Lisbon Latinas');
 
     // Email content
     $mail->isHTML(true);
-    $mail->Subject = 'Contact from Casting page on Escort Madeira website';
+    $mail->Subject = 'Contact from Casting page on Lisbon Latinas website';
     $mail->Body = "
         <h3>Casting</h3>
         <p><strong>Name:</strong> $name</p>
         <p><strong>E-mail:</strong> $email</p>
         <p><strong>Phone number:</strong> $phone</p>
         <p><strong>City:</strong> $city</p>
-        <p><strong>Nationality:</strong> $nationality</p>
-        <p><strong>Birth Year:</strong> $birthYear</p>
+        <p><strong>Nacionality:</strong> $nacionality</p>
         <p><strong>Country:</strong> $country</p>
         <p><strong>Instagram:</strong> $instagram</p>
         <p><strong>Age:</strong> $age</p>

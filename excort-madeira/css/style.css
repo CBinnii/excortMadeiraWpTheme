@@ -22428,6 +22428,10 @@ a.button {
   background-color: var(--button-color-hover);
 }
 
+.slider-blog {
+  height: 570px;
+}
+
 .header {
   width: 100%;
   height: 100px;
@@ -22550,12 +22554,6 @@ a.button {
     top: 15px;
   }
 }
-.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav {
-  height: 50px;
-  margin: 0 !important;
-  display: block;
-  height: auto;
-}
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item,
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item,
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .menu-item {
@@ -22635,8 +22633,6 @@ a.button {
 }
 .header .navbar .container .navbar-menu .navbar-collapse ul {
   margin: 0 !important;
-  display: block;
-  height: auto;
 }
 .header .navbar .container .navbar-menu .navbar-collapse ul .nav-item,
 .header .navbar .container .navbar-menu .navbar-collapse ul .page_item,
@@ -23076,14 +23072,14 @@ a.button {
 .section .section-banner {
   position: relative;
 }
-.section .section-banner .banner-image {
+.section .section-banner .banner-image, .section .section-banner .slider-home {
   height: calc(100vh - 90px);
   background-position: top center;
   background-size: cover;
   position: relative;
 }
 @media screen and (max-width: 991px) {
-  .section .section-banner .banner-image {
+  .section .section-banner .banner-image, .section .section-banner .slider-home {
     background-position: center;
     height: calc(70vh - 90px);
   }
@@ -23326,6 +23322,9 @@ a.button {
   min-height: 500px;
   background: var(--color-white-pure);
   padding-bottom: 56px;
+}
+.section .section-topexcorts .slider-top-escorts {
+  height: 760px;
 }
 .section .escort-box {
   display: flex;
@@ -23803,6 +23802,22 @@ a.button {
 .section-general-banner {
   position: relative;
 }
+.section-general-banner .slider-general {
+  height: calc(70vh - 90px);
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general {
+    height: calc(50vh - 90px);
+  }
+}
+.section-general-banner .slider-general-profile {
+  height: calc(100vh - 90px);
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general-profile {
+    height: calc(70vh - 90px);
+  }
+}
 .section-general-banner .banner-image {
   height: calc(70vh - 90px);
   background-position: center;
@@ -23914,14 +23929,46 @@ a.button {
     top: -50px;
   }
 }
+.section .section-contact .contact h1, .section .section-contact .contact .h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: var(--text-color);
+  margin-bottom: 24px;
+}
+.section .section-contact .contact h2, .section .section-contact .contact .h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
 .section .section-contact .contact h3, .section .section-contact .contact .h3 {
   font-size: 24px;
   color: var(--text-color);
+  line-height: 1.2;
   margin-bottom: 24px;
+}
+.section .section-contact .contact h4, .section .section-contact .contact .h4 {
+  font-size: 20px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section .section-contact .contact h5, .section .section-contact .contact .h5 {
+  font-size: 18px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section .section-contact .contact h6, .section .section-contact .contact .h6 {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
 }
 .section .section-contact .contact p {
   font-size: 16px;
   color: var(--text-color);
+  line-height: 24px;
   margin-bottom: 16px;
 }
 .section .section-contact .contact a {
@@ -24263,6 +24310,80 @@ a.button {
   width: 48%;
 }
 
+.section .section-single-page {
+  min-height: 500px;
+  background: #FFFFFF;
+  padding: 56px 0;
+}
+.section .section-single-page h1, .section .section-single-page .h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: var(--text-color);
+  margin-bottom: 24px;
+}
+.section .section-single-page h2, .section .section-single-page .h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+.section .section-single-page h3, .section .section-single-page .h3 {
+  font-size: 24px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.section .section-single-page h4, .section .section-single-page .h4 {
+  font-size: 20px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section .section-single-page h5, .section .section-single-page .h5 {
+  font-size: 18px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section .section-single-page h6, .section .section-single-page .h6 {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section .section-single-page p {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+.section .section-single-page a {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.4;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.section .section-single-page a:hover {
+  color: var(--link-hover-color);
+}
+.section .section-single-page ul {
+  margin-bottom: 16px;
+  list-style: disc;
+  list-style-position: inside;
+  padding-left: 40px;
+}
+.section .section-single-page ul li {
+  line-height: 1.4;
+}
+.section .section-single-page .two-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.section .section-single-page .two-columns p {
+  width: 48%;
+}
+
 .txt-heading {
   color: #1c1410;
 }
@@ -24453,14 +24574,12 @@ body {
 
 .follow-floted {
   position: fixed;
-  top: 230px;
+  top: 270px;
   right: -100px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   z-index: 12;
+  display: flex;
+  align-items: center;
+  transform: rotate(90deg);
 }
 .follow-floted label {
   font-size: 14px;
@@ -24469,31 +24588,9 @@ body {
   -webkit-text-shadow: 0 1px 1px rgba(249, 244, 222, 0.4);
   -moz-text-shadow: 0 1px 1px rgba(249, 244, 222, 0.4);
   -ms-text-shadow: 0 1px 1px rgba(249, 244, 222, 0.4);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-.follow-floted ul {
-  padding-top: 100px;
-  position: relative;
-  margin-top: 45px;
-  list-style: none;
-  padding-left: 0;
-}
-.follow-floted ul::before {
-  content: "";
-  background-color: #313131;
-  width: 1px;
-  height: 25px;
-  position: absolute;
-  top: 77px;
-  left: 12px;
 }
 .follow-floted ul li {
   text-align: center;
-  margin-top: 14px;
 }
 .follow-floted ul li a {
   font-size: 18px;

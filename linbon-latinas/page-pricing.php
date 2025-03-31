@@ -1,3 +1,6 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
 <?php 
 	get_header();
 ?>

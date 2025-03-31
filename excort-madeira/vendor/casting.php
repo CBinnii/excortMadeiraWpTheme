@@ -14,20 +14,23 @@ $response = [];
 
 try {
     // Capture form data
-    $name =  = $_POST['name'] ?? '';
-    $email =  = $_POST['email'] ?? '';
-    $phone =  = $_POST['phone'] ?? '';
-    $city =  = $_POST['city'] ?? '';
-    $nacionality =  = $_POST['nacionality'] ?? '';
-    $country =  = $_POST['country'] ?? '';
-    $instagram =  = $_POST['instagram'] ?? '';
-    $age =  = $_POST['age'] ?? '';
-    $chest =  = $_POST['chest'] ?? '';
-    $hip =  = $_POST['hip'] ?? '';
-    $waist =  = $_POST['waist'] ?? '';
-    $languages =  = $_POST['languages'] ?? '';
-    $experience =  = $_POST['experience'] ?? '';
-    $description =  = $_POST['description'] ?? '';
+    $name        = $_POST['name'] ?? '';
+    $email       = $_POST['email'] ?? '';
+    $phone       = $_POST['phone'] ?? '';
+    $city        = $_POST['city'] ?? '';
+    $nacionality = $_POST['nacionality'] ?? '';
+    $country     = $_POST['country'] ?? '';
+    $instagram   = $_POST['instagram'] ?? '';
+    $age         = $_POST['age'] ?? '';
+    $chest       = $_POST['chest'] ?? '';
+    $hip         = $_POST['hip'] ?? '';
+    $waist       = $_POST['waist'] ?? '';
+    $languages   = $_POST['languages'] ?? '';
+    $experience  = $_POST['experience'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $profile     = $_FILES['profile'] ?? '';
+    $wholeBody   = $_FILES['wholeBody'] ?? '';
+    $selfie      = $_FILES['selfie'] ?? '';
 
     // PHPMailer configuration
     $mail = new PHPMailer(true);
@@ -42,6 +45,7 @@ try {
     // Set sender and recipient
     $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
     $mail->addAddress('office@escort-madeira.com'); 
+    // $mail->addAddress('milla.binni@gmail.com'); 
     $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
 
     // Email content
@@ -53,8 +57,7 @@ try {
         <p><strong>E-mail:</strong> $email</p>
         <p><strong>Phone number:</strong> $phone</p>
         <p><strong>City:</strong> $city</p>
-        <p><strong>Nationality:</strong> $nationality</p>
-        <p><strong>Birth Year:</strong> $birthYear</p>
+        <p><strong>Nacionality:</strong> $nacionality</p>
         <p><strong>Country:</strong> $country</p>
         <p><strong>Instagram:</strong> $instagram</p>
         <p><strong>Age:</strong> $age</p>

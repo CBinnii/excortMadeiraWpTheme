@@ -42,14 +42,12 @@ body {
 
 .follow-floted {
     position: fixed;
-    top: 230px;
+    top: 270px;
     right: -100px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 12;
+    display: flex;
+    align-items: center;
+    transform: rotate(90deg);
 
     label {
         font-size: 14px;
@@ -58,33 +56,11 @@ body {
         -webkit-text-shadow: 0 1px 1px rgba(249, 244, 222, .4);
         -moz-text-shadow: 0 1px 1px rgba(249, 244, 222, .4);
         -ms-text-shadow: 0 1px 1px rgba(249, 244, 222, .4);
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        transform: rotate(90deg);
     }
 
     ul {
-        padding-top: 100px;
-        position: relative;
-        margin-top: 45px;
-        list-style: none;
-        padding-left: 0;
-
-        &::before {
-            content: "";
-            background-color: #313131;
-            width: 1px;
-            height: 25px;
-            position: absolute;
-            top: 77px;
-            left: 12px;
-        }
-        
         li {
             text-align: center;
-            margin-top: 14px;
 
             a {
                 font-size: 18px;

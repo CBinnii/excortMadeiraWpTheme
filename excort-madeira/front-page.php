@@ -1,3 +1,6 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
 <?php 
 	get_header();
 ?>
@@ -6,35 +9,62 @@
 
             <!-- Banner Video Section -->
             <?php 
-                $video = get_field('video');
+                $video = get_field('video_url');
+                $upload_video = get_field('upload_video');
                 $title = get_field('title');
                 $subtitle = get_field('subtitle');
                 $text_button = get_field('text_button');
                 $link_button = get_field('link_button');
             ?>
-            <?php if ($video) : ?>
+            <?php if ($video || $upload_video) : ?>
                 <div class="section-banner slider">
                     <div class="swiper slider-home">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="banner-video">
-                                    <div class="overlay">
-                                        <iframe loading="lazy" class="sproutvideo-player" src="<?php echo $video ?>" allowfullscreen="" style="border: none;"></iframe>
-                                    </div>
-                                    <div class="container">
-                                        <div class="banner-text">
-                                            <h1><?php echo $title ?></h1>
-                                            <p><?php echo $subtitle ?></p>
+                            <?php if(!empty($video)) : ?>
+                                <div class="swiper-slide">
+                                    <div class="banner-video">
+                                        <div class="overlay">
+                                            <iframe loading="lazy" class="sproutvideo-player" src="<?php echo $video ?>" allowfullscreen="" style="border: none;"></iframe>
+                                        </div>
+                                        <div class="container">
+                                            <div class="banner-text">
+                                                <h1><?php echo $title ?></h1>
+                                                <p><?php echo $subtitle ?></p>
 
-                                            <div class="d-flex justify-content-center">
-                                                <a href="<?php echo $link_button ?>" class="button bold white">
-                                                    <?php echo $text_button ?>
-                                                </a>
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="<?php echo $link_button ?>" class="button bold white">
+                                                        <?php echo $text_button ?>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
+
+                            <?php if(!empty($upload_video)) : ?>
+                                <div class="swiper-slide">
+                                    <div class="banner-video">
+                                        <div class="overlay white">
+                                            <video class="background-video" autoplay loop muted>
+                                                <source src="<?php echo $upload_video ?>" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="container">
+                                            <div class="banner-text">
+                                                <h1><?php echo $title ?></h1>
+                                                <p><?php echo $subtitle ?></p>
+
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="<?php echo $link_button ?>" class="button bold white">
+                                                        <?php echo $text_button ?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -174,7 +204,7 @@
                                                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                     <?php } ?>
                                                 </div>
-                                                <h3><?php echo get_the_title($post->ID); ?></h3>
+                                                <h3 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h3>
                                                 <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
                                             </a>
                                         </div>

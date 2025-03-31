@@ -1,3 +1,22 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
+<!-- Adicionando o script do Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>
+    // Função de callback chamada quando o reCAPTCHA é carregado
+    // Você pode usar essa função para inicializar o reCAPTCHA ou executar outras ações
+    // Exemplo: exibir um alerta quando o reCAPTCHA estiver pronto
+    // Você pode remover ou modificar essa função conforme necessário
+    // Se você não precisar dela, pode removê-la
+    var onloadCallback = function() {
+        // Aqui você pode inicializar o reCAPTCHA, se necessário
+        grecaptcha.render('html_element', {
+            'sitekey' : '6Lf8zgQrAAAAADm4g0KXA_y0G0-9cx4-SwL-5-ES'
+        });
+    };
+</script>
+
 <?php 
 	get_header();
 
@@ -30,7 +49,7 @@
             </div>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
-                <div class="section-about">
+                <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
                             <h3><?php echo $title_text_field_1_page; ?></h3>
@@ -72,7 +91,7 @@
                                         <div class="row mb-24">
                                             <div class="col-6">
                                                 <label for="phone" class="form-label">Phone</label>
-                                                <input type="email" class="form-control" id="phone" name="phone" placeholder="Phone number">
+                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">
                                             </div>
                                             <div class="col-6">
                                                 <label for="city" class="form-label">City</label>
@@ -120,35 +139,6 @@
                                         <div class="mb-3">
                                             <label for="languages" class="form-label">Languages</label>
                                             <input type="text" class="form-control" id="languages" name="languages" placeholder="Languages">
-
-                                            <!-- <select name="languages" id="languages" class="form-select" multiple>
-                                                <option value="Portuguese">Portuguese</option>
-                                                <option value="English">English</option>
-                                                <option value="Spanish">Spanish</option>
-                                                <option value="French">French</option>
-                                                <option value="Italian">Italian</option>
-                                                <option value="German">German</option>
-                                                <option value="Dutch">Dutch</option>
-                                                <option value="Russian">Russian</option>
-                                                <option value="Chinese">Chinese</option>
-                                                <option value="Mandarin">Mandarin</option>
-                                                <option value="Cantonese">Cantonese</option>
-                                                <option value="Japanese">Japanese</option>
-                                                <option value="Korean">Korean</option>
-                                                <option value="Hindi">Hindi</option>
-                                                <option value="Arabic">Arabic</option>
-                                                <option value="Turkish">Turkish</option>
-                                                <option value="Greek">Greek</option>
-                                                <option value="Hebrew">Hebrew</option>
-                                                <option value="Swedish">Swedish</option>
-                                                <option value="Norwegian">Norwegian</option>
-                                                <option value="Danish">Danish</option>
-                                                <option value="Finnish">Finnish</option>
-                                                <option value="Polish">Polish</option>
-                                                <option value="Ukrainian">Ukrainian</option>
-                                                <option value="Thai">Thai</option>
-                                                <option value="Vietnamese">Vietnamese</option>
-                                            </select> -->
                                         </div>
 
                                         <div class="mb-3">
@@ -174,6 +164,11 @@
                                         <div class="mb-3">
                                             <label for="selfie" class="form-label">Selfie</label>
                                             <input type="file" class="form-control" id="selfie" name="selfie" placeholder="Selfie">
+                                        </div>
+
+                                        <div>
+                                            <!-- Google reCAPTCHA -->
+                                            <div id="html_element" class="mb-3"></div>
                                         </div>
                 
                                         <div class="d-flex justify-content-start mb-3">
@@ -222,7 +217,7 @@
                                                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                     <?php } ?>
                                                 </div>
-                                                <h3><?php echo get_the_title($post->ID); ?></h3>
+                                                <h3 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h3>
                                                 <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
                                             </a>
                                         </div>

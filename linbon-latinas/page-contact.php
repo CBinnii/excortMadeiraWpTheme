@@ -1,3 +1,21 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
+<!-- Adicionando o script do Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>
+    // Função de callback chamada quando o reCAPTCHA é carregado
+    // Você pode usar essa função para inicializar o reCAPTCHA ou executar outras ações
+    // Exemplo: exibir um alerta quando o reCAPTCHA estiver pronto
+    // Você pode remover ou modificar essa função conforme necessário
+    // Se você não precisar dela, pode removê-la
+    var onloadCallback = function() {
+        // Aqui você pode inicializar o reCAPTCHA, se necessário
+        grecaptcha.render('html_element', {
+            'sitekey' : '6Lf8zgQrAAAAADm4g0KXA_y0G0-9cx4-SwL-5-ES'
+        });
+    };
+</script>
 <?php 
 	get_header();
 
@@ -30,7 +48,7 @@
             </div>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
-                <div class="section-about border-bottom">
+                <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
                             <h3><?php echo $title_text_field_1_page; ?></h3>
@@ -53,8 +71,7 @@
                         <div class="col-md-6">
                             <div class="row contact">
                                 <div class="col-12">
-                                    <span class="txt-heading block md mb-16">Contact Details</span>
-                                    <span class="txt-paragraph block lg mb-24">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque asperiores maiores inventore praesentium veniam molestias saepe, odio enim qui? Eveniet perspiciatis nihil velit dolorem provident nisi voluptatum labore in vero?</span>
+                                    <?php echo apply_filters('the_content', $post->post_content); ?>
                                 </div>
                                 
                                 <div class="col-md-6">
@@ -111,6 +128,11 @@
                                     <label for="message" class="form-label">Message</label>
                                     <textarea class="form-control" id="message" name="message" rows="4" placeholder="How can we help you?"></textarea>
                                 </div>
+
+                                <div>
+                                    <!-- Google reCAPTCHA -->
+                                    <div id="html_element" class="mb-3"></div>
+                                </div>
         
                                 <div class="d-flex justify-content-start mb-3">
                                     <button type="submit" id="submit" class="button white bold">Submit</button>
@@ -149,7 +171,7 @@
 	get_footer();
 ?>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         $("#contactForm").submit(function (event) {
             event.preventDefault(); // Evita o reload da página

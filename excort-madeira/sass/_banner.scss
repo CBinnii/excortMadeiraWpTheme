@@ -1,6 +1,22 @@
 .section-general-banner {
     position: relative;
 
+    .slider-general {
+        height: calc(70vh - 90px);
+
+        @media screen and (max-width: 991px) {
+            height: calc(50vh - 90px);
+        }
+    }
+
+    .slider-general-profile {
+        height: calc(100vh - 90px);
+
+        @media screen and (max-width: 991px) {
+            height: calc(70vh - 90px);
+        }
+    }
+
     .banner-image {
         height: calc(70vh - 90px);
         background-position: center;

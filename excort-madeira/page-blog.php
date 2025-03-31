@@ -1,3 +1,6 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
 <?php 
 	get_header();
 
@@ -70,8 +73,8 @@
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
                                             </div>
-                                            <h3><?php echo get_the_title($post->ID); ?></h3>
-                                            <p class="ellipsis three-lines"><?php echo get_the_excerpt($post->ID); ?></p>
+                                            <h3 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h3>
+                                            <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
                                         </a>
                                     </div>
                                 <?php endforeach; ?>

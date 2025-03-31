@@ -2,7 +2,7 @@
     .section-banner {
         position: relative;
 
-        .banner-image {
+        .banner-image, .slider-home {
             height: calc(100vh - 90px);
             background-position: top center;
             background-size: cover;
@@ -270,6 +270,10 @@
         min-height: 500px;
         background: var(--color-white-pure);
         padding-bottom: 56px;
+
+        .slider-top-escorts {
+            height: 760px;
+        }
     }
 
     .escort-box {

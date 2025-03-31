@@ -18,7 +18,7 @@
         ?>
         <?php if($telegram): ?>
             <div class="follow-floted">
-                <label>SUBSCRIBE TO OUR CHANNEL!</label>
+                <label>SUBSCRIBE TO OUR CHANNEL! | </label>
                 <ul>
                     <li>
                         <a target="_blank" title="Telegram" href="<?php echo $telegram; ?>">
@@ -40,7 +40,7 @@
                 <div class="container">
                     <div class="row w-100">
                         <div class="col-sm-7 logo-header">
-                            <a class="navbar-brand" href="index.html"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" alt="Logo"></a>
+                            <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" alt="Logo"></a>
                         </div>
 
                         <div class="col-sm-5 menu-header">

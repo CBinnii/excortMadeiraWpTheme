@@ -44,13 +44,14 @@ try {
     $mail->Port = 465;
 
     // Set sender and recipient
-    $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
+    $mail->setFrom('office@escort-madeira.com', 'Website Lisbon Latinas');
     $mail->addAddress('office@escort-madeira.com'); 
-    $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
+    // $mail->addAddress('milla.binni@gmail.com'); 
+    $mail->addReplyTo('office@escort-madeira.com', 'Information Lisbon Latinas');
 
     // Email content
     $mail->isHTML(true);
-    $mail->Subject = 'Contact from Booking page on Escort Madeira website';
+    $mail->Subject = 'Contact from Booking page on Lisbon Latinas website';
     $mail->Body = "
         <h3>Booking</h3>
         <h4 style='font-weight: 700'>Choose your escort</h4>

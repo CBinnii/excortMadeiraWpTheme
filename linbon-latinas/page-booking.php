@@ -1,3 +1,21 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+
+<!-- Adicionando o script do Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>
+    // Função de callback chamada quando o reCAPTCHA é carregado
+    // Você pode usar essa função para inicializar o reCAPTCHA ou executar outras ações
+    // Exemplo: exibir um alerta quando o reCAPTCHA estiver pronto
+    // Você pode remover ou modificar essa função conforme necessário
+    // Se você não precisar dela, pode removê-la
+    var onloadCallback = function() {
+        // Aqui você pode inicializar o reCAPTCHA, se necessário
+        grecaptcha.render('html_element', {
+            'sitekey' : '6Lf8zgQrAAAAADm4g0KXA_y0G0-9cx4-SwL-5-ES'
+        });
+    };
+</script>
 <?php 
 	get_header();
 
@@ -30,7 +48,7 @@
             </div>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
-                <div class="section-about">
+                <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
                             <h3><?php echo $title_text_field_1_page; ?></h3>
@@ -217,6 +235,11 @@
                                                     Contact me by e-mail
                                                 </label>
                                             </div>
+                                        </div>
+
+                                        <div>
+                                            <!-- Google reCAPTCHA -->
+                                            <div id="html_element" class="mb-3"></div>
                                         </div>
 
                                         <div class="d-flex justify-content-start mb-3">

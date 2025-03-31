@@ -46,6 +46,7 @@ try {
     // Set sender and recipient
     $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
     $mail->addAddress('office@escort-madeira.com'); 
+    // $mail->addAddress('milla.binni@gmail.com'); 
     $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
 
     // Email content
