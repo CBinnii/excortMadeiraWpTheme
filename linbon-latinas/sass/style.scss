@@ -49,6 +49,10 @@ body {
     align-items: center;
     transform: rotate(90deg);
 
+    @media screen and (max-width: 767px) {
+        right: -120px;
+    }
+
     label {
         font-size: 14px;
         letter-spacing: 1.4px;

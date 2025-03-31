@@ -37,8 +37,8 @@
                         </div>
                     </div>
 
-                    <div class="swiper-button-next swiper-button-next-slider-general"></div>
-                    <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
+                    <!-- <div class="swiper-button-next swiper-button-next-slider-general"></div>
+                    <div class="swiper-button-prev swiper-button-prev-slider-general"></div> -->
                 </div>
             <?php endif; ?>
 

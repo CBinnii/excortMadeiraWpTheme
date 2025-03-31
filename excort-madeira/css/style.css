@@ -23081,17 +23081,12 @@ a.button {
 @media screen and (max-width: 991px) {
   .section .section-banner .banner-image, .section .section-banner .slider-home {
     background-position: center;
-    height: calc(70vh - 90px);
+    height: 250px;
   }
 }
 .section .section-banner .banner-video {
-  height: calc(100vh - 90px);
+  height: 100%;
   position: relative;
-}
-@media screen and (max-width: 991px) {
-  .section .section-banner .banner-video {
-    height: calc(70vh - 90px);
-  }
 }
 .section .section-banner .banner-video iframe {
   width: 100%;
@@ -23134,6 +23129,11 @@ a.button {
   margin-top: 30px;
 }
 @media screen and (max-width: 991px) {
+  .section .section-banner .container .banner-text .button {
+    margin-top: 16px;
+  }
+}
+@media screen and (max-width: 991px) {
   .section .section-banner .container .banner-text {
     padding: 0 15px;
   }
@@ -23150,7 +23150,9 @@ a.button {
 }
 @media screen and (max-width: 991px) {
   .section .section-banner .container .banner-text h1, .section .section-banner .container .banner-text .h1 {
-    font-size: 32px;
+    font-size: 28px;
+    line-height: 1;
+    padding-bottom: 16px;
   }
 }
 .section .section-banner .container .banner-text p {
@@ -23162,6 +23164,7 @@ a.button {
 @media screen and (max-width: 991px) {
   .section .section-banner .container .banner-text p {
     font-size: 14px;
+    line-height: 1;
     text-shadow: 0px 0px 20px rgb(0, 0, 0);
   }
 }
@@ -23810,14 +23813,6 @@ a.button {
     height: calc(50vh - 90px);
   }
 }
-.section-general-banner .slider-general-profile {
-  height: calc(100vh - 90px);
-}
-@media screen and (max-width: 991px) {
-  .section-general-banner .slider-general-profile {
-    height: calc(70vh - 90px);
-  }
-}
 .section-general-banner .banner-image {
   height: calc(70vh - 90px);
   background-position: center;
@@ -23847,15 +23842,8 @@ a.button {
   }
 }
 .section-general-banner .container .banner-text h1, .section-general-banner .container .banner-text .h1 {
-  font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0;
   font-size: 72px;
   line-height: 1.3;
-  padding-bottom: 30px;
-  text-align: center;
-  text-shadow: 0 3px 3px rgba(255, 255, 255, 0.2);
-  text-transform: uppercase;
 }
 @media screen and (max-width: 991px) {
   .section-general-banner .container .banner-text h1, .section-general-banner .container .banner-text .h1 {
@@ -23872,6 +23860,54 @@ a.button {
   .section-general-banner .container .banner-text p {
     font-size: 14px;
     text-shadow: 0px 0px 20px rgb(0, 0, 0);
+  }
+}
+.section-general-banner .slider-general-profile {
+  height: calc(100vh - 90px);
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general-profile {
+    height: calc(70vh - 90px);
+  }
+}
+.section-general-banner .slider-general-profile .container {
+  max-width: 100%;
+  padding: 0 70px;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general-profile .container {
+    padding: 0 16px;
+    justify-content: center;
+  }
+}
+.section-general-banner .slider-general-profile .banner-image {
+  height: 100%;
+}
+.section-general-banner .slider-general-profile .banner-text {
+  color: var(--text-color);
+  text-align: center;
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general-profile .banner-text {
+    padding: 0 15px;
+  }
+}
+.section-general-banner .slider-general-profile .banner-text h1, .section-general-banner .slider-general-profile .banner-text .h1 {
+  font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: 130px;
+  line-height: 1;
+  padding-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 3px 3px rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+}
+@media screen and (max-width: 991px) {
+  .section-general-banner .slider-general-profile .banner-text h1, .section-general-banner .slider-general-profile .banner-text .h1 {
+    font-size: 72px;
   }
 }
 
@@ -24063,7 +24099,7 @@ a.button {
 }
 @media screen and (max-width: 767px) {
   .section .section-profile .escort-box .image {
-    height: 600px;
+    height: 700px;
   }
 }
 .section .section-profile .escort-box .image img {
@@ -24212,7 +24248,7 @@ a.button {
 }
 @media screen and (max-width: 767px) {
   .section .profile-slider {
-    height: auto;
+    height: 700px;
   }
 }
 .section .profile-thumb {
@@ -24580,6 +24616,11 @@ body {
   display: flex;
   align-items: center;
   transform: rotate(90deg);
+}
+@media screen and (max-width: 767px) {
+  .follow-floted {
+    right: -120px;
+  }
 }
 .follow-floted label {
   font-size: 14px;

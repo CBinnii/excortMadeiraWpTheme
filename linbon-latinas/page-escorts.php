@@ -32,7 +32,7 @@
             </div>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
-                <div class="section-about">
+                <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
                             <h3><?php echo $title_text_field_1_page; ?></h3>
