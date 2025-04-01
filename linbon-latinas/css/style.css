@@ -23105,8 +23105,8 @@ a.button {
 }
 @media screen and (max-width: 991px) {
   .section .section-banner .background-video {
-    height: 120%;
-    top: -50px;
+    height: 100%;
+    top: 0;
   }
 }
 .section .section-banner .container {

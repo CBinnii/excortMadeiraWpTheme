@@ -23105,8 +23105,8 @@ a.button {
 }
 @media screen and (max-width: 991px) {
   .section .section-banner .background-video {
-    height: 120%;
-    top: -50px;
+    height: 100%;
+    top: 0;
   }
 }
 .section .section-banner .container {
@@ -23907,7 +23907,7 @@ a.button {
 }
 @media screen and (max-width: 991px) {
   .section-general-banner .slider-general-profile .banner-text h1, .section-general-banner .slider-general-profile .banner-text .h1 {
-    font-size: 72px;
+    font-size: 52px;
   }
 }
 
