@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="text-box">
                                                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                                                <p><?php echo get_the_excerpt($post->ID); ?></p>
+                                                <p class="ellipsis three-lines"><?php echo get_the_excerpt($post->ID); ?></p>
                                             </div>
                                         </a>
                                     </div>

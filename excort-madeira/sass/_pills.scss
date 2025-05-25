@@ -1,6 +1,7 @@
 .nav {
     &.nav-pills {
         gap: 16px;
+        justify-content: center;
         
         .nav-item {
             .nav-link {

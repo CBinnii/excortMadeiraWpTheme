@@ -69,12 +69,7 @@
                 <div class="container">
                     <div class="booking">
                         <div class="row m-0">
-                            <div class="col-md-5 p-0">
-                                <div class="image-booking">
-                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bg-3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-7 p-0">
+                            <div class="col-12 p-0">
                                 <div class="form-booking">
                                     <form id="bookingForm">
                                         <div class="mb-24">
@@ -105,7 +100,7 @@
 
                                         <span class="txt-paragraph lg uppercase block mb-16 white">Your details</span>
                                         <div class="row mb-3">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="exampleFormControlInput3" class="form-label mb-3">Have you booked with us before? </label>
                                                 <div class="row mb-3">
                                                     <div class="col-4">
@@ -122,7 +117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="exampleFormControlInput3" class="form-label mb-3">You are: </label>
                                                 <div class="row">
                                                     <div class="col-3">
@@ -147,36 +142,36 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="col-6">
+                                            <div class="col-md-6 mob-mb-8">
                                                 <label for="firstName" class="form-label">First name</label>
                                                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name">
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="lastName" class="form-label">Last name</label>
                                                 <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name">
                                             </div>
                                         </div>
                                         <div class="row mb-24">
-                                            <div class="col-6">
+                                            <div class="col-md-6 mob-mb-8">
                                                 <label for="email" class="form-label">E-mail</label>
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="phone" class="form-label">Phone</label>
                                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone">
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <div class="col-4">
+                                            <div class="col-md-4 mob-mb-8">
                                                 <label for="telegram" class="form-label">Telegram</label>
                                                 <input type="text" class="form-control" id="telegram" name="telegram" placeholder="Telegram username">
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-md-4 mob-mb-8">
                                                 <label for="nationality" class="form-label">Nationality</label>
                                                 <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Your nacionality"> 
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-md-4">
                                                 <label for="birthYear" class="form-label">Birth year</label>
                                                 <input type="text" class="form-control" id="birthYear" name="birthYear" placeholder="Birth year">
                                             </div>
@@ -189,21 +184,21 @@
                                         
                                         <span class="txt-paragraph lg uppercase block mb-16 white">Booking details</span>
                                         <div class="row mb-3">
-                                            <div class="col-6">
+                                            <div class="col-md-6 mob-mb-8">
                                                 <label for="date" class="form-label">Date</label>
                                                 <input type="date" class="form-control" id="date" name="date" placeholder="Date">
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="time" class="form-label">Time</label>
                                                 <input type="time" class="form-control" id="time" name="time" placeholder="Time">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="col-6">
+                                            <div class="col-md-6 mob-mb-8">
                                                 <label for="duration" class="form-label">Booking duration</label>
                                                 <input type="text" class="form-control" id="duration" name="duration" placeholder="Duration">
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="country" class="form-label">Country</label>
                                                 <input type="text" class="form-control" id="country" name="country" placeholder="Country">
                                             </div>
@@ -217,19 +212,19 @@
                                             <textarea class="form-control" id="specialRequirement" name="specialRequirement" rows="3" placeholder="Do you have any requirement?"></textarea>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="col-4">
+                                            <div class="col-md-4 mob-mb-8">
                                                 <input class="form-check-input m-0" type="radio" name="contactMeBy" id="contactMeBy1" value="Contact me by whatsapp">
                                                 <label class="form-check-label m-0" for="contactMeBy1">
                                                     Contact me by whatsapp
                                                 </label>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-md-4 mob-mb-8">
                                                 <input class="form-check-input m-0" type="radio" name="contactMeBy" id="contactMeBy2" value="Contact me by telegram">
                                                 <label class="form-check-label m-0" for="contactMeBy2">
                                                     Contact me by telegram
                                                 </label>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-md-4 mob-mb-8">
                                                 <input class="form-check-input m-0" type="radio" name="contactMeBy" id="contactMeBy3" value="Contact me by e-mail">
                                                 <label class="form-check-label m-0" for="contactMeBy3">
                                                     Contact me by e-mail
@@ -262,13 +257,13 @@
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
-                    'showposts' => 3,
+                    'showposts' => 6,
                 );
 
                 $more = new WP_Query( $args );
 
-                if (!empty($more->posts)): ?>
-                    <div class="section-blog bg-white">
+			    if (!empty($more->posts)): ?>
+                    <div class="section-blog">
                         <div class="title">
                             <div class="container">
                                 <h3>Blog</h3>
@@ -276,30 +271,23 @@
                         </div>
 
                         <div class="container">
-                            <div class="swiper slider-blog">
-                                <div class="swiper-wrapper">
-                                    <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
-                                        <div class="swiper-slide">
-                                            <a href="<?php echo $post->post_name; ?>" class="post-box">
-                                                <div class="image">
-                                                    <?php if (has_post_thumbnail( $post->ID ) ) { ?>
-                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    <?php } else { ?>
-                                                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    <?php } ?>
-                                                </div>
-                                                <h3><?php echo get_the_title($post->ID); ?></h3>
-                                                <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
-                                            </a>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-
-                                <div class="swiper-button-next swiper-button-next-blog"></div>
-                                <div class="swiper-button-prev swiper-button-prev-blog"></div>
+                            <div class="row row-adjustment">
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                    <div class="col-md-6 col-adjustment">
+                                        <a href="<?php echo $post->post_name; ?>" class="post-box">
+                                            <div class="image">
+                                                <?php if (has_post_thumbnail( $post->ID ) ) { ?>
+                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } else { ?>
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } ?>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
 
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center mt-30">
                                 <a href="blog" class="button bold white">
                                     Read more
                                 </a>

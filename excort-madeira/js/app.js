@@ -16,6 +16,27 @@ function menuMobile() {
     }
 }
 
+// MENU WITH SUBMENU
+const hasChildren = document.querySelector('.menu-item-has-children');
+if (hasChildren) {
+    hasChildren.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.classList.toggle('active');
+    });
+}
+
+// Função para fechar o submenu quando clicar fora
+document.addEventListener('click', function (e) {
+    const target = e.target;
+    // Verifica se o clique ocorreu fora do menu ou do submenu
+    if (!hasChildren.contains(target)) {
+        if (hasChildren.classList.contains('active')) {
+            hasChildren.classList.remove('active');
+        }
+    }
+});
+
+// SEARCH 
 const siteSearch = document.querySelector('.header-site-search');
 const siteSearchInput = document.querySelector('.header-site-search-input');
 const nav = document.querySelector('.js-nav');
@@ -45,6 +66,17 @@ var swiperHome = new Swiper(".slider-home", {
         nextEl: ".swiper-button-next-slider-home",
         prevEl: ".swiper-button-prev-slider-home",
     },
+    loop: true,
+    breakpoints: {
+        640: {
+            slidesPerView: 1,
+            spaceBetween: 16,
+        },
+        1024: {
+            slidesPerView: 2,
+            spaceBetween: 1,
+        },
+    },
 });
 
 var swiperGeneral = new Swiper(".slider-general", {
@@ -59,14 +91,16 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
         nextEl: ".swiper-button-next-top-escorts",
         prevEl: ".swiper-button-prev-top-escorts",
     },
+    freeMode: true,
+    loop: true,
     breakpoints: {
         640: {
-            slidesPerView: 1,
-            spaceBetween: 30,
+            slidesPerView: 2,
+            spaceBetween: 2,
         },
         768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
+            slidesPerView: 4,
+            spaceBetween: 2,
         },
     },
 });
@@ -83,15 +117,10 @@ var swiperBlog = new Swiper(".slider-blog", {
         nextEl: ".swiper-button-next-blog",
         prevEl: ".swiper-button-prev-blog",
     },
-    breakpoints: {
-        640: {
-            slidesPerView: 1,
-            spaceBetween: 30,
-        },
-        768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
+    slidesPerView: 2,
+    spaceBetween: 0,
+    grid: {
+      rows: 3,
     },
 });
 
@@ -118,21 +147,11 @@ var swiperWhy = new Swiper(".slider-why", {
     },
 });
 
-var swiperProfileThumb = new Swiper(".profile-thumb", {
-    loop: true,
-    spaceBetween: 10,
-    slidesPerView: 4,
-    freeMode: true,
-    watchSlidesProgress: true,
-});
 var swiperProfileSlider = new Swiper(".profile-slider", {
     loop: true,
     spaceBetween: 10,
     navigation: {
         nextEl: ".swiper-button-next-profile",
         prevEl: ".swiper-button-prev-profile",
-    },
-    thumbs: {
-        swiper: swiperProfileThumb,
     },
 });

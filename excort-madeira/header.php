@@ -39,11 +39,29 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="row w-100">
-                        <div class="col-sm-7 logo-header">
-                            <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" alt="Logo"></a>
+                        <div class="col-sm-8 logo-header">
+                            <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></a>
+
+                            <div class="desktop d-flex align-items-center">
+                                <?php
+                                    $menu_padrao = get_term_by('name', 'Menu', 'nav_menu');
+
+                                    if ($menu_padrao) {
+                                        wp_nav_menu(array(
+                                            'menu'        => $menu_padrao->term_id, // Usar 'menu' em vez de 'menu_id'
+                                            'container'   => false,
+                                            'menu_class'  => 'navbar-nav navbar-nav-desktop me-auto mb-2 mb-lg-0',
+                                            'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                            'depth'       => 2,
+                                        ));
+                                    } else {
+                                        echo '<p>Menu padrão não encontrado.</p>';
+                                    }
+                                ?>
+                            </div>
                         </div>
 
-                        <div class="col-sm-5 menu-header">
+                        <div class="col-sm-4 menu-header">
                             <div class="navbar-menu">
                                 <div class="collapse navbar-collapse" id="navbar-collapse">
                                     <div class="col-sm-7 logo-header">
@@ -71,9 +89,6 @@
                                     </a>
                                 </div>
                                 <div class="navbar-action">
-                                    <a href="booking" class="button bold outline medium">
-                                        BOOK NOW
-                                    </a>
                                     <span class="social">
                                         <div class="header-site-search">
                                             <span class="header-site-search-icon"></span>
@@ -83,6 +98,12 @@
                                                 <button type="submit">Search</button>
                                             </form>
                                         </div>
+                                        <a href="membership-login" class="button bold outline medium">
+                                            Member
+                                        </a>
+                                        <a href="booking" class="button bold outline medium">
+                                            Book Now
+                                        </a>
 
                                         <button class="navbar-toggler">
                                             <div class="menu-button" id="menu-button" onclick="menuMobile()">
@@ -94,24 +115,6 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-12 desktop mt-2">
-                            <?php
-                                $menu_padrao = get_term_by('name', 'Menu', 'nav_menu');
-
-                                if ($menu_padrao) {
-                                    wp_nav_menu(array(
-                                        'menu'        => $menu_padrao->term_id, // Usar 'menu' em vez de 'menu_id'
-                                        'container'   => false,
-                                        'menu_class'  => 'navbar-nav navbar-nav-desktop me-auto mb-2 mb-lg-0',
-                                        'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                        'depth'       => 2,
-                                    ));
-                                } else {
-                                    echo '<p>Menu padrão não encontrado.</p>';
-                                }
-                            ?>
                         </div>
                     </div>
                 </div>

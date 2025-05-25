@@ -11,14 +11,24 @@
     &:after {
         font-size: 0px;
     }
+
+    width: 55px;
+    height: 55px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
 }
 
 .swiper-button-next-slider-home, .swiper-button-next-slider-general {
-    background-image: url('../images/icons/next.svg');
+    background-image: none;
+    right: 0;
+    left: auto;
 }
 
 .swiper-button-prev-slider-home, .swiper-button-prev-slider-general {
-    background-image: url('../images/icons/prev.svg');
+    background-image: none;
+    left: 0;
+    right: auto;
 }
 
 .swiper-button-next-top-escorts, .swiper-button-prev-top-escorts {
@@ -55,11 +65,23 @@
 }
 
 .swiper-button-next-profile {
-    background-image: url('../images/icons/next.svg');
+    background: url('../images/icons/next.svg') #f9f4de no-repeat center;
+    bottom: 10px !important;
+    top: inherit !important;
+    background-size: 42px;
+    border-radius: 100%;
+    border: 1px solid #d2261a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .swiper-button-prev-profile {
-    background-image: url('../images/icons/prev.svg');
+    background: url('../images/icons/prev.svg') #f9f4de no-repeat center;
+    bottom: 10px !important;
+    top: inherit !important;
+    background-size: 42px;
+    border-radius: 100%;
+    border: 1px solid #d2261a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .swiper-button-next-blog, .swiper-button-prev-blog {

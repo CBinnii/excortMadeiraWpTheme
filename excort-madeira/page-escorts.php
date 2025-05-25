@@ -11,25 +11,27 @@
 ?>
     <section class="main">
         <div class="section">
-            <div class="section-general-banner slider">
-                <div class="swiper slider-general">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="banner-image" style="background-image: url('<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>');">
-                                <div class="overlay white"></div>
-                                <div class="container">
-                                    <div class="banner-text">
-                                        <h1><?php echo get_the_title(); ?></h1>
+            <?php if (has_post_thumbnail( $post->ID ) ) { ?>
+                <div class="section-general-banner slider">
+                    <div class="swiper slider-general">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="banner-image" style="background-image: url('<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>');">
+                                    <div class="overlay white"></div>
+                                    <div class="container">
+                                        <div class="banner-text">
+                                            <h1><?php echo get_the_title(); ?></h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="swiper-button-next swiper-button-next-slider-general"></div>
-                <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
-            </div>
+                    <div class="swiper-button-next swiper-button-next-slider-general"></div>
+                    <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
+                </div>
+            <?php } ?>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
                 <div class="section-about bg-white pb-0">
@@ -71,6 +73,10 @@
                             'key' => 'location',
                             'compare' => 'EXISTS',
                         ),
+                        array(
+                            'key' => 'only_member',
+                            'compare' => 'EXISTS',
+                        ),
                     ),
                 );
 
@@ -79,17 +85,31 @@
 			    if (!empty($more->posts)): ?>
                     <div class="section-escorts">
                         <div class="container">
-                            <div class="row">
+                            <div class="row row-adjust-escorts">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
                                     $age = get_field( 'age' );
                                     $nationality = get_field( 'nationality' );
                                     $photos = get_field( 'photos' );
                                     $location = get_field( 'location' );
+                                    $member = get_field( 'only_member' );
                                     ?>
-                                    <div class="col-md-4">
+                                    <div class="col-6 col-md-3 col-adjust-escorts">
                                         <a href="<?php echo $post->post_name; ?>" class="escort-box">
-                                            <div class="image">
-                                                <img src="<?php echo $photos[0];?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                            <div class="image-container">
+                                                <?php if (is_user_logged_in() ) : ?>
+                                                    <div class="image">
+                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    </div>
+                                                <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
+                                                    <div class="image">
+                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="blur-container"></div>
+                                                    <div class="image">
+                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                             <h3><?php echo get_the_title($post->ID); ?></h3>
                                             <p><?php echo $location ?></p>

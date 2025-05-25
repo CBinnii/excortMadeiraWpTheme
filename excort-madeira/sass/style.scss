@@ -138,7 +138,7 @@ body {
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow: hidden !important;
     text-overflow: ellipsis;
 
     &.two-lines {
@@ -152,13 +152,45 @@ body {
     }
 }
 
+.swiper-wrapper {
+    height: auto !important;
+}
+
+.swiper-slide {
+    height: auto !important;
+}
+
 @media screen and (max-width: 767px) {
+    .mob-mb-8 {
+        margin-bottom: 8px !important;
+    }
+
+    .mob-mt-8 {
+        margin-top: 8px !important;
+    }
+
+    .mob-mb-16 {
+        margin-bottom: 16px !important;
+    }
+
+    .mob-mt-16 {
+        margin-top: 16px !important;
+    }
+
     .mob-mb-24 {
         margin-bottom: 24px !important;
     }
 
     .mob-mt-24 {
         margin-top: 24px !important;
+    }
+
+    .mob-mb-32 {
+        margin-bottom: 32px !important;
+    }
+
+    .mob-mt-32 {
+        margin-top: 32px !important;
     }
 }
 
@@ -167,6 +199,14 @@ body {
 
     @media screen and (max-width: 767px) {
         margin-top: 24px !important;
+    }
+}
+
+.mb-56 {
+    margin-bottom: 56px !important;
+
+    @media screen and (max-width: 767px) {
+        margin-bottom: 32px !important;
     }
 }
 
@@ -220,5 +260,59 @@ body {
 
     @media screen and (max-width: 767px) {
         display: block;
+    }
+}
+
+#wpadminbar {
+    display: none !important;
+}
+
+.swpm-login-form-inner {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    
+    label {
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-color: #d2261a;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #d2261a;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-bottom: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #b51e14;
     }
 }
