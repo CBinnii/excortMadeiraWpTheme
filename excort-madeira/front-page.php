@@ -75,7 +75,10 @@
                             </div>
                         </div>
 
-                        <div class="container">
+                        <div class="container position-relative">
+                            <div class="swiper-button-next swiper-button-next-top-escorts"></div>
+                            <div class="swiper-button-prev swiper-button-prev-top-escorts"></div>
+
                             <div class="swiper slider-top-escorts">
                                 <div class="swiper-wrapper">
                                     <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
@@ -111,9 +114,6 @@
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
-
-                                <div class="swiper-button-next swiper-button-next-top-escorts"></div>
-                                <div class="swiper-button-prev swiper-button-prev-top-escorts"></div>
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">

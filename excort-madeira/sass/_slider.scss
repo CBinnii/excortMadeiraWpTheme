@@ -36,22 +36,44 @@
     height: 40px;
     background-size: 40px;
 
-    @media screen and (min-width: 768px) {
-        display: none;
-        
-    }
-
     &:after {
         font-size: 0px;
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 20px;
+        height: 20px;
+        background-size: 20px;
     }
 }
 
 .swiper-button-next-top-escorts {
     background-image: url('../images/icons/next.svg');
+
+    @media screen and (min-width: 768px) {
+        top: -30px;
+    }
+
+    @media screen and (max-width: 767px) {
+        top: -10px;
+        left: 40px;
+        right: inherit;
+    }
 }
 
 .swiper-button-prev-top-escorts {
     background-image: url('../images/icons/prev.svg');
+
+    @media screen and (min-width: 768px) {
+        top: -30px;
+        right: 60px;
+        left: inherit;
+    }
+
+    @media screen and (max-width: 767px) {
+        top: -10px;
+        left: 15px;
+    }
 }
 
 .swiper-button-next-profile, .swiper-button-prev-profile {

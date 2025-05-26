@@ -81,7 +81,7 @@ body {
 
 .icon-telegram {
     display: none;
-    
+
     @media screen and (max-width: 767px) {
         display: block;
         position: fixed;
@@ -98,7 +98,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
         a {
             display: flex;
             justify-content: center;
@@ -142,13 +142,15 @@ body {
     text-overflow: ellipsis;
 
     &.two-lines {
-      -webkit-line-clamp: 2;  /* Limita a 2 linhas */
-      line-clamp: 2;
+        -webkit-line-clamp: 2;
+        /* Limita a 2 linhas */
+        line-clamp: 2;
     }
 
     &.three-lines {
-      -webkit-line-clamp: 3;  /* Limita a 2 linhas */
-      line-clamp: 3;
+        -webkit-line-clamp: 3;
+        /* Limita a 2 linhas */
+        line-clamp: 3;
     }
 }
 
@@ -255,6 +257,13 @@ body {
     }
 }
 
+.container-absolute {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
 .mobile {
     display: none;
 
@@ -275,7 +284,7 @@ body {
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    
+
     label {
         margin-bottom: 6px;
         font-weight: 500;
@@ -314,5 +323,56 @@ body {
 
     input[type="submit"]:hover {
         background-color: #b51e14;
+    }
+}
+
+.swpm-registration-form-section, .swpm-pw-reset-widget-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 1rem;
+        background-color: #fff;
+        color: #212529;
+        transition: border-color 0.2s ease-in-out;
+    }
+
+    input[type="submit"], button {
+        width: 100%;
+        padding: 10px;
+        background-color: #d2261a;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin: 16px 0;
+    }
+
+    input[type="submit"], button {
+        &:hover {
+            background-color: #b51e14;
+        }
     }
 }

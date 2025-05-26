@@ -1,4 +1,36 @@
 // MENU
+function menuDesktop() {
+    var menu = document.getElementById("menu-button-desktop");
+    var collapse = document.getElementById("navbar-collapse-desktop");
+    var menuPattern = document.getElementById("navbar-menu-desktop-pattern");
+    var socialHeader = document.getElementById("social-header");
+
+    if (collapse.classList.contains("show")) {
+        collapse.classList.remove("show");
+    } else {
+        collapse.classList.add("show");
+    }
+
+    if (menuPattern.classList.contains("d-none")) {
+        menuPattern.classList.remove("d-none");
+    } else {
+        menuPattern.classList.add("d-none");
+    }
+
+    if (socialHeader.classList.contains("d-none")) {
+        socialHeader.classList.remove("d-none");
+    } else {
+        socialHeader.classList.add("d-none");
+    }
+
+    if (menu.classList.contains("cross")) {
+        menu.classList.remove("cross");
+    } else {
+        menu.classList.add("cross");
+    }
+}
+
+// MENU
 function menuMobile() {
     var menu = document.getElementById("menu-button");
     var collapse = document.getElementById("navbar-collapse");
@@ -17,28 +49,38 @@ function menuMobile() {
 }
 
 // MENU WITH SUBMENU
-const hasChildren = document.querySelector('.menu-item-has-children');
-if (hasChildren) {
-    hasChildren.addEventListener('click', function (e) {
+const menuItemsWithChildren = document.querySelectorAll('.menu-item-has-children');
+
+menuItemsWithChildren.forEach(function (menuItem) {
+    // Adiciona o evento de clique apenas nos itens com submenu
+    menuItem.addEventListener('click', function (e) {
+        const link = e.target.closest('a');
+
+        // Verifica se o link possui um href válido (não #)
+        if (link && link.getAttribute('href') !== '#') {
+            return; // Permite a navegação
+        }
+
+        // Caso contrário, previne o comportamento padrão e alterna o submenu
         e.preventDefault();
         this.classList.toggle('active');
     });
-}
+});
 
 // Função para fechar o submenu quando clicar fora
 document.addEventListener('click', function (e) {
     const target = e.target;
+    const hasChildren = document.querySelector('.menu-item-has-children.active');
+
     // Verifica se o clique ocorreu fora do menu ou do submenu
-    if (!hasChildren.contains(target)) {
-        if (hasChildren.classList.contains('active')) {
-            hasChildren.classList.remove('active');
-        }
+    if (hasChildren && !hasChildren.contains(target)) {
+        hasChildren.classList.remove('active');
     }
 });
 
 // SEARCH 
-const siteSearch = document.querySelector('.header-site-search');
-const siteSearchInput = document.querySelector('.header-site-search-input');
+const siteSearch = document.querySelector('.header-site-search.visible-desktop');
+const siteSearchInput = document.querySelector('.header-site-search-input.visible-desktop');
 const nav = document.querySelector('.js-nav');
 
 if (siteSearch) {
@@ -56,6 +98,31 @@ if (siteSearch) {
         } else {
             if (!event.composedPath().includes(nav)) {
                 siteSearch.classList.remove('active');
+            }
+        }
+    })
+}
+
+// SEARCH 
+const siteSearchMobile = document.querySelector('.header-site-search.visible-mobile');
+const siteSearchInputMobile = document.querySelector('.header-site-search-input.visible-mobile');
+const navMobile = document.querySelector('.js-nav');
+
+if (siteSearchMobile) {
+    document.addEventListener('click', (event) => {
+        const withinBoundaries = event.composedPath().includes(siteSearchMobile)
+
+        if (withinBoundaries) {
+            siteSearchMobile.classList.add('active');
+
+            setTimeout(function () {
+                if (siteSearchInputMobile) {
+                    siteSearchInputMobile.focus();
+                }
+            }, 100);
+        } else {
+            if (!event.composedPath().includes(navMobile)) {
+                siteSearchMobile.classList.remove('active');
             }
         }
     })
@@ -94,7 +161,7 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
     freeMode: true,
     loop: true,
     breakpoints: {
-        640: {
+        240: {
             slidesPerView: 2,
             spaceBetween: 2,
         },
