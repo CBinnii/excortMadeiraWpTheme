@@ -103,6 +103,13 @@ if (siteSearch) {
     })
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const link = document.getElementById('register');
+    if (link) {
+        link.textContent = 'Be a member'; // Substitua pelo texto desejado
+    }
+});
+
 // SEARCH 
 const siteSearchMobile = document.querySelector('.header-site-search.visible-mobile');
 const siteSearchInputMobile = document.querySelector('.header-site-search-input.visible-mobile');
@@ -143,6 +150,10 @@ var swiperHome = new Swiper(".slider-home", {
             slidesPerView: 2,
             spaceBetween: 1,
         },
+    },
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: true,
     },
 });
 
@@ -187,7 +198,7 @@ var swiperBlog = new Swiper(".slider-blog", {
     slidesPerView: 2,
     spaceBetween: 0,
     grid: {
-      rows: 3,
+        rows: 3,
     },
 });
 

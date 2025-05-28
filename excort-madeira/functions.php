@@ -47,3 +47,15 @@ function cf7_popular_dropdown_profiles($tag) {
 }
 
 add_filter('wpcf7_form_tag', 'cf7_popular_dropdown_profiles', 10, 1);
+
+// Alterar o texto "Join Us" para "Be a Member"
+function custom_swpm_join_us_text($text) {
+    if (strpos($text, 'Join Us') !== false) {
+        return str_replace('Join Us', 'Be a Member', $text);
+    }
+    if (strpos($text, 'Junte-se a nós') !== false) {
+        return str_replace('Junte-se a nós', 'Seja membro', $text);
+    }
+    return $text;
+}
+add_filter('swpm_registration_button_text', 'custom_swpm_join_us_text');

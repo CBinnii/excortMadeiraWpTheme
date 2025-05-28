@@ -6,20 +6,56 @@
 ?>
     <section class="main">
         <div class="section">
-
             <!-- Banner Video Section -->
-            <?php 
-                $photos = get_field( 'home_images' );
-                
-                if ($photos) : ?>
+            <?php if( have_rows('home_images') ): ?>
                 <div class="section-banner slider">
                     <div class="swiper slider-home">
                         <div class="swiper-wrapper">
-                            <?php foreach( $photos as $photo ) : ?>
+                            <?php while( have_rows('home_images') ) : the_row(); 
+                                $image = get_sub_field('image');
+                                $link = get_sub_field('link'); ?>
+                                <?php 
+                                    $extension = pathinfo($image, PATHINFO_EXTENSION);
+                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                ?>
                                 <div class="swiper-slide">
-                                    <img src="<?php echo $photo ?>" alt="Image">
+                                    <?php if ($is_video): ?>
+                                        <?php if ($link) : ?>
+                                            <video 
+                                                autoplay 
+                                                loop
+                                                muted 
+                                                playsinline 
+                                                preload="metadata" 
+                                                style="width: 100%; height: auto; object-fit: cover;" 
+                                            >
+                                                <source src="<?php echo esc_url($image); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                Seu navegador não suporta vídeo.
+                                            </video>
+                                        <?php else : ?>
+                                            <video 
+                                                autoplay 
+                                                loop
+                                                muted 
+                                                playsinline 
+                                                preload="metadata" 
+                                                style="width: 100%; height: auto; object-fit: cover;" 
+                                            >
+                                                <source src="<?php echo esc_url($image); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                Seu navegador não suporta vídeo.
+                                            </video>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <?php if ($link) : ?>
+                                            <a href="<?php echo esc_url($link); ?>">
+                                                <img src="<?php echo esc_url($image); ?>" alt="Banner Image">
+                                            </a>
+                                        <?php else : ?>
+                                            <img src="<?php echo esc_url($image); ?>" alt="Banner Image">
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php endwhile; ?>
                         </div>
                     </div>
 
@@ -34,9 +70,6 @@
                         </svg>
                     </div>
                 </div>
-                <div class="slider">
-                    <div class="banner" style="background-image: url(<?php echo $banner; ?>);"></div>
-                </div>
             <?php endif; ?>
             
             <!-- Top Escort Section -->
@@ -47,19 +80,11 @@
                     'showposts' => 8,
                     'meta_query' => array(
                         array(
-                            'key' => 'age',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'nationality',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
                             'key' => 'photos',
                             'compare' => 'EXISTS',
                         ),
                         array(
-                            'key' => 'location',
+                            'key' => 'more_fields',
                             'compare' => 'EXISTS',
                         ),
                     ),
@@ -81,16 +106,45 @@
 
                             <div class="swiper slider-top-escorts">
                                 <div class="swiper-wrapper">
-                                    <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
-                                        $field_value = get_field( 'age' );
-                                        $nationality = get_field( 'nationality' );
+                                    <?php foreach ( $more->posts as $post ) :  
                                         $photos = get_field( 'photos' );
-                                        $location = get_field( 'location' );
                                         $member = get_field( 'only_member' );
+                                        
+                                        // Obtém o valor do campo 'more_fields'
+                                        $more_fields_posts = get_field('more_fields'); // Use ACF ou get_post_meta(), se necessário
+
+                                        // Inicializa as variáveis para armazenar os valores de 'location', 'nationality' e 'age'
+                                        $location_more = '';
+                                        $nationality_more = '';
+                                        $age_more = '';
+
+                                        if ($more_fields_posts) :
+                                            // Loop pelos campos dentro de 'more_fields'
+                                            foreach ($more_fields_posts as $field) :
+                                                $label_more = $field['label'];
+                                                $value_more = $field['value'];
+                                                
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
+                                                if (strtolower($label_more) == 'age') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "Age"
+                                                    $age_more = $value_more;
+                                                }
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
+                                                if (strtolower($label_more) == 'location') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "location"
+                                                    $location_more = $value_more;
+                                                }
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
+                                                if (strtolower($label_more) == 'nationality') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
+                                                    $nationality_more = $value_more;
+                                                }
+                                            endforeach;
+                                        endif;
                                         ?>
 
                                         <div class="swiper-slide">
-                                            <a href="<?php echo $post->post_name; ?>" class="escort-box">
+                                            <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                                 <div class="image-container">
                                                     <?php if (is_user_logged_in() ) : ?>
                                                         <div class="image">
@@ -108,8 +162,27 @@
                                                     <?php endif; ?>
                                                 </div>
                                                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                                                <p><?php echo $location ?></p>
-                                                <p class="small"><strong>Age: </strong> <?php echo $field_value ?>, <?php echo $nationality ?></p>
+                                                <p>
+                                                    <?php if (!empty($location_more)) : ?>
+                                                        <?php echo $location_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                </p>
+                                                <p class="small"><strong>Age: </strong> 
+                                                    <?php if (!empty($age_more)) : ?>
+                                                        <?php echo $age_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                    , 
+                                                    
+                                                    <?php if (!empty($nationality_more)) : ?>
+                                                        <?php echo $nationality_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                </p>
                                             </a>
                                         </div>
                                     <?php endforeach; ?>

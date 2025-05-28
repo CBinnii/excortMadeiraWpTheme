@@ -6,7 +6,7 @@
 ?>
     <section class="main">
         <div class="section">
-            <?php if (has_post_thumbnail($post)) : ?>
+            <?php if (has_post_thumbnail( $post->ID ) ) { ?>
                 <div class="section-general-banner slider">
                     <div class="swiper slider-general">
                         <div class="swiper-wrapper">
@@ -26,7 +26,7 @@
                     <div class="swiper-button-next swiper-button-next-slider-general"></div>
                     <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
                 </div>
-            <?php endif; ?>
+            <?php } ?>
 
             <div class="section-pricing">
                 <div class="title pt-0">

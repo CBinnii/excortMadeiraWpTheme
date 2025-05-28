@@ -3,7 +3,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="footer-logo">
-                            <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" alt="Logo"></a>
+                            <a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="col-sm-4">

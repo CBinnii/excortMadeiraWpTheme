@@ -3,29 +3,47 @@
 
 <?php 
 	get_header();
-
+    
+    $age = '';
+    $location = '';
+    $nationality = '';
     $bio = get_field('bio');
-    $age = get_field('age');
-    $height = get_field('height');
-    $eyes = get_field('eyes');
-    $bust = get_field('bust');
-    $weight = get_field('weight');
-    $hair = get_field('hair');
-    $shoes = get_field('shoes');
-    $nationality = get_field('nationality');
-    $location = get_field('location');
     $video = get_field('my_video');
     $photos = get_field( 'photos' );
     $member = get_field( 'only_member' );
+    $more_fields = get_field( 'more_fields' );
 
-    $terms = get_the_terms( $post->ID, 'personal-detail' );
+    if( have_rows('more_fields') ): 
+        // Loop para percorrer as linhas dos campos repetíveis
+        while( have_rows('more_fields') ): the_row();
+            // Obtém os valores dos subcampos
+            $label = get_sub_field('label');
+            $value = get_sub_field('value');
+            
+            // Verifica se o valor de $label é o que você está buscando (exemplo "Age")
+            if (strtolower($label) === 'age') {
+                // Aqui você tem o $label e o $value quando o label é "Age"
+                $age = $value;
+            }
+            // Verifica se o valor de $label é o que você está buscando (exemplo "location")
+            if (strtolower($label) === 'location') {
+                // Aqui você tem o $label e o $value quando o label é "location"
+                $location = $value;
+            }
+            // Verifica se o valor de $label é o que você está buscando (exemplo "nationality")
+            if (strtolower($label) === 'nationality")') {
+                // Aqui você tem o $label e o $value quando o label é "nationality")
+                $nationality = $value;
+            }
+        endwhile;
+    endif;
 ?>
     <section class="profile">
         <div class="section">
-            <div class="section-profile">
+            <div class="section-profile mob-pt-0">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 mob-p-0">
                             <div class="desktop">
                                 <div class="row profile-photos">
                                     <?php foreach( $photos as $photo ): ?>
@@ -203,13 +221,16 @@
                                     <div class="profile-title mb-24">
                                         <div class="text-center mb-24">
                                             <h3><?php echo get_the_title(); ?></h3>
-                                            <span class="txt-paragraph xl">Age: <?php echo $age ?> years</span>
+                                            <span class="txt-paragraph xl">
+                                                Age: 
+                                                <?php if (!empty($age)) : ?>
+                                                    <?php echo $age; ?>
+                                                <?php else : ?>
+                                                    <?php echo '-'; ?>
+                                                <?php endif; ?>
+                                                years
+                                            </span>
                                         </div>
-                                        <!-- <div class="d-flex justify-content-center">
-                                            <a href="booking" class="button bold medium">
-                                                Watch my video
-                                            </a>
-                                        </div> -->
 
                                         <div class="profile-book">
                                             <a href="booking" class="button bold medium">
@@ -220,148 +241,35 @@
 
                                     <div class="profile-stat">
                                         <div class="stats">
-                                            <span class="txt-heading block md mb-16 text-center">BODY & SHAPE</span>
+                                            <span class="txt-heading block md mb-24 text-center">BODY & SHAPE</span>
 
-                                            <div class="row d-flex align-items-center mb-16">
-
-                                                <?php if( have_rows('more_fields') ): ?>
-                                                    <?php
-                                                        while( have_rows('more_fields') ) : the_row();
-                                                            $label = get_sub_field('label');
-                                                            $value = get_sub_field('value');
-                                                    ?>
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                            <div class="row">
+                                                <div class="table-style">
+                                                    <?php if( have_rows('more_fields') ): ?>
+                                                        <?php
+                                                            while( have_rows('more_fields') ) : the_row();
+                                                                $label = get_sub_field('label');
+                                                                $value = get_sub_field('value');
+                                                        ?>
+                                                            <div class="row m-0 table-row">
+                                                                <div class="col-6 p-0">
+                                                                    <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                                                </div>
+                                                                <div class="col-6 p-0">
+                                                                    <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-6">
-                                                                <span class="txt-paragraph block lg"><?php echo $value ?></span>
-                                                            </div>
-                                                        </div>
-                                                    <?php endwhile; ?>
-                                                <?php endif; ?>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Location</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $location ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Height</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $height ?>m</span>
-                                                    </div>
-                                                </div>
-
-                                                <?php if( have_rows('languages') ): 
-                                                    $total_rows = count(get_field('languages'))
-                                                    ?>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <span class="txt-paragraph block lg"><strong>Languages</strong></span>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <span class="txt-paragraph block lg">
-                                                                <?php while( have_rows('languages') ) : the_row();
-                                                                    $language = get_sub_field('language');
-                                                                    $language_rate = get_sub_field('language_rate'); 
-
-                                                                    $is_first = get_row_index() == 1;
-                                                                    $is_last = get_row_index() == $total_rows;
-                                                                    ?>
-                                                                    <?php if ($is_first): ?>
-                                                                        <span class="txt-paragraph lg"> <?php if ($language_rate == 5): ?> Fluent <?php endif; ?><?php echo preg_replace('/\s+/', '', $language); ?></span>
-                                                                    <?php else: ?>
-                                                                        <span class="txt-paragraph lg">, <?php if ($language_rate == 5): ?> Fluent <?php endif; ?><?php echo preg_replace('/\s+/', '', $language); ?></span>
-                                                                    <?php endif; ?> 
-                                                                <?php endwhile; ?>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Eyes</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $eyes ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Bust</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $bust ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Weight</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $weight ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Age</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $age ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Hair</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $hair ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Shoes</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $shoes ?></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><strong>Nationality</strong></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                       <span class="txt-paragraph block lg"><?php echo $nationality ?></span>
-                                                    </div>
+                                                        <?php endwhile; ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="profile-bio">
-                                        <span class="txt-heading block md text-center mb-16">MY BIO</span>
-                                        
-                                        <?php echo apply_filters('the_content', $bio); ?>
                                     </div>
                                     
                                     <?php if( have_rows('rate') ): 
                                         $rates = get_field('rate');?>
                                         <div class="profile-rate">
-                                            <span class="txt-heading block uppercase md mb-16 text-center">My Rates</span>
+                                            <span class="txt-heading block uppercase md mb-16 text-center">Rates</span>
 
                                             <div class="box-rate">
                                                 <?php if ($rates && count($rates) != 1) : ?>
@@ -391,29 +299,35 @@
                                                             <?php else: ?>
                                                                 <div class="tab-pane fade" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
                                                             <?php endif; ?>
-                                                                <div class="rate row">
-                                                                    <div class="col-6">
+                                                                <div class="rate row m-0">
+                                                                    <div class="col-6 p-0">
                                                                         <div class="duration">
-                                                                            <span class="txt-heading sm block bold uppercase mb-16 red">Duration</span>
-                                                                            <?php
-                                                                                while( have_rows('values') ) : the_row();
-                                                                                    $duration = get_sub_field('duration');
-                                                                                    $value = get_sub_field('value');
-                                                                                ?>
-                                                                                    <span class="txt-paragraph lg block bold uppercase mb-8"><?php echo $duration ?></span>
-                                                                            <?php endwhile; ?>
+                                                                            <div class="table-style">
+                                                                                <?php
+                                                                                    while( have_rows('values') ) : the_row();
+                                                                                        $duration = get_sub_field('duration');
+                                                                                        $value = get_sub_field('value');
+                                                                                    ?>
+                                                                                        <div class="table-row pr-0">
+                                                                                            <span class="txt-paragraph lg block bold uppercase"><?php echo $duration ?></span>
+                                                                                        </div>
+                                                                                <?php endwhile; ?>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-6">
+                                                                    <div class="col-6 p-0">
                                                                         <div class="value">
-                                                                            <span class="txt-heading sm block bold uppercase mb-16 red">Outcall</span>
-                                                                            <?php
-                                                                                while( have_rows('values') ) : the_row();
-                                                                                    $duration = get_sub_field('duration');
-                                                                                    $value = get_sub_field('value');
-                                                                                ?>
-                                                                                    <span class="txt-paragraph lg block bold uppercase mb-8"><?php echo $value ?></span>
-                                                                            <?php endwhile; ?>
+                                                                            <div class="table-style">
+                                                                                <?php
+                                                                                    while( have_rows('values') ) : the_row();
+                                                                                        $duration = get_sub_field('duration');
+                                                                                        $value = get_sub_field('value');
+                                                                                    ?>
+                                                                                        <div class="table-row pl-0">
+                                                                                            <span class="txt-paragraph lg block bold uppercase"><?php echo $value ?></span>
+                                                                                        </div>
+                                                                                <?php endwhile; ?>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -423,6 +337,12 @@
                                             </div>
                                         </div>
                                     <?php endif; ?>
+
+                                    <div class="profile-bio">
+                                        <span class="txt-heading block md text-center mb-16">ABOUT</span>
+                                        
+                                        <?php echo apply_filters('the_content', $bio); ?>
+                                    </div>
 
                                     <?php $services = get_field('services'); 
 
@@ -460,19 +380,11 @@
                     'post__not_in' => array($post->ID),
                     'meta_query' => array(
                         array(
-                            'key' => 'age',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'nationality',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
                             'key' => 'photos',
                             'compare' => 'EXISTS',
                         ),
                         array(
-                            'key' => 'location',
+                            'key' => 'more_fields',
                             'compare' => 'EXISTS',
                         ),
                         array(
@@ -482,9 +394,9 @@
                     ),
                 );
 
-                $more = new WP_Query( $args );
+                $more = new WP_Query($args);
 
-			    if (!empty($more->posts)): ?>
+                if (!empty($more->posts)): ?>
                     <div class="related">
                         <div class="title">
                             <div class="container">
@@ -496,15 +408,44 @@
                             <div class="swiper slider-top-escorts">
                                 <div class="swiper-wrapper">
                                     <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
-                                        $field_value = get_field( 'age' );
-                                        $nationality = get_field( 'nationality' );
                                         $photos = get_field( 'photos' );
-                                        $location = get_field( 'location' );
                                         $member = get_field( 'only_member' );
+
+                                        // Obtém o valor do campo 'more_fields'
+                                        $more_fields_posts = get_field('more_fields'); // Use ACF ou get_post_meta(), se necessário
+
+                                        // Inicializa as variáveis para armazenar os valores de 'location', 'nationality' e 'age'
+                                        $location_more = '';
+                                        $nationality_more = '';
+                                        $age_more = '';
+
+                                        if ($more_fields_posts) :
+                                            // Loop pelos campos dentro de 'more_fields'
+                                            foreach ($more_fields_posts as $field) :
+                                                $label_more = $field['label'];
+                                                $value_more = $field['value'];
+                                                
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
+                                                if (strtolower($label_more) == 'age') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "Age"
+                                                    $age_more = $value_more;
+                                                }
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
+                                                if (strtolower($label_more) == 'location') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "location"
+                                                    $location_more = $value_more;
+                                                }
+                                                // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
+                                                if (strtolower($label_more) == 'nationality') {
+                                                    // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
+                                                    $nationality_more = $value_more;
+                                                }
+                                            endforeach;
+                                        endif;
                                         ?>
 
                                         <div class="swiper-slide">
-                                            <a href="<?php echo $post->post_name; ?>" class="escort-box">
+                                            <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                                 <div class="image-container">
                                                     <?php if (is_user_logged_in() ) : ?>
                                                         <div class="image">
@@ -522,8 +463,27 @@
                                                     <?php endif; ?>
                                                 </div>
                                                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                                                <p><?php echo $location ?></p>
-                                                <p class="small"><strong>Age: </strong> <?php echo $field_value ?>, <?php echo $nationality ?></p>
+                                                <p>
+                                                    <?php if (!empty($location_more)) : ?>
+                                                        <?php echo $location_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                </p>
+                                                <p class="small"><strong>Age: </strong> 
+                                                    <?php if (!empty($age_more)) : ?>
+                                                        <?php echo $age_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                    , 
+                                                    
+                                                    <?php if (!empty($nationality_more)) : ?>
+                                                        <?php echo $nationality_more; ?>
+                                                    <?php else : ?>
+                                                        <?php echo '-'; ?>
+                                                    <?php endif; ?>
+                                                </p>
                                             </a>
                                         </div>
                                     <?php endforeach; ?>

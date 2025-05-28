@@ -31,6 +31,7 @@
 
             .swiper-slide {
                 height: auto;
+                aspect-ratio: 1.5 / 1;
             }
         }
     }
@@ -152,6 +153,16 @@
 
                 .swiper-slide {
                     height: auto;
+
+                    img {
+                        @media screen and (max-width: 1100px) {
+                            aspect-ratio: 0.67 / 1;
+                        }
+
+                        @media screen and (max-width: 767px) {
+                            aspect-ratio: 2 / 3;                
+                        }
+                    }
                 }
             }
         }
@@ -253,6 +264,14 @@
             height: 100%;
             overflow: hidden;
             margin-bottom: 16px;
+
+            @media screen and (max-width: 1100px) {
+                aspect-ratio: 0.67 / 1;
+            }
+
+            @media screen and (max-width: 767px) {
+                aspect-ratio: 2 / 3;                
+            }
         }
 
         .blur-container {
@@ -278,6 +297,14 @@
                 object-fit: cover;
                 object-position: center;
                 transition: transform 0.3s ease;
+
+                @media screen and (max-width: 1100px) {
+                    aspect-ratio: 0.67 / 1;
+                }
+
+                @media screen and (max-width: 767px) {
+                    aspect-ratio: 2 / 3;                
+                }
             }
         }
 
@@ -508,6 +535,7 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+    top: 0;
 
     &.white {
         background: rgba(255, 255, 255, 0.15);
