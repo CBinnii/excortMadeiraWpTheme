@@ -3,6 +3,8 @@
 ?>
 
 <title>The Girl Next Door - <?php echo $term->name; ?> Escorts</title>
+<meta name="description" content="<?php echo the_field('meta_description', 'location_' . get_queried_object()->term_id); ?>">
+<meta name="keywords" content="<?php echo the_field('meta_key', 'location_' . get_queried_object()->term_id); ?>">
 
 <?php 
 	get_header();
@@ -29,6 +31,30 @@
                 <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
             </div>
 
+            <?php 
+                $title_text_field_1_page = get_field('title_text_field_1_page', 'location_' . get_queried_object()->term_id);
+                $text_field_1_page = get_field('text_field_1_page', 'location_' . get_queried_object()->term_id);
+                $title_text_field_2_page = get_field('title_text_field_2_page', 'location_' . get_queried_object()->term_id);
+                $text_field_2_page = get_field('text_field_2_page', 'location_' . get_queried_object()->term_id);
+                
+                if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
+                <div class="section-about bg-white pb-0">
+                    <div class="title">
+                        <div class="container">
+                            <h3><?php echo $title_text_field_1_page; ?></h3>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><?php echo $text_field_1_page; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <?php
     
                 // Configura a consulta personalizada
@@ -45,19 +71,11 @@
                     ),
                     'meta_query' => array(
                         array(
-                            'key' => 'age',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'nationality',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
                             'key' => 'photos',
                             'compare' => 'EXISTS',
                         ),
                         array(
-                            'key' => 'location',
+                            'key' => 'more_fields',
                             'compare' => 'EXISTS',
                         ),
                         array(
@@ -74,14 +92,43 @@
                         <div class="container">
                             <div class="row row-adjust-escorts">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
-                                    $age = get_field( 'age' );
-                                    $nationality = get_field( 'nationality' );
                                     $photos = get_field( 'photos' );
-                                    $location = get_field( 'location' );
                                     $member = get_field( 'only_member' );
+
+                                    // Obtém o valor do campo 'more_fields'
+                                    $more_fields_posts = get_field('more_fields'); // Use ACF ou get_post_meta(), se necessário
+
+                                    // Inicializa as variáveis para armazenar os valores de 'location', 'nationality' e 'age'
+                                    $location_more = '';
+                                    $nationality_more = '';
+                                    $age_more = '';
+
+                                    if ($more_fields_posts) :
+                                        // Loop pelos campos dentro de 'more_fields'
+                                        foreach ($more_fields_posts as $field) :
+                                            $label_more = $field['label'];
+                                            $value_more = $field['value'];
+                                            
+                                            // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
+                                            if (strtolower($label_more) == 'age') {
+                                                // Aqui você tem o $label_more e o $value_more quando o label é "Age"
+                                                $age_more = $value_more;
+                                            }
+                                            // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
+                                            if (strtolower($label_more) == 'location') {
+                                                // Aqui você tem o $label_more e o $value_more quando o label é "location"
+                                                $location_more = $value_more;
+                                            }
+                                            // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
+                                            if (strtolower($label_more) == 'nationality') {
+                                                // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
+                                                $nationality_more = $value_more;
+                                            }
+                                        endforeach;
+                                    endif;
                                     ?>
                                     <div class="col-6 col-md-3 col-adjust-escorts">
-                                        <a href="<?php echo $post->post_name; ?>" class="escort-box">
+                                        <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                             <div class="image-container">
                                                 <?php if (is_user_logged_in() ) : ?>
                                                     <div class="image">
@@ -99,8 +146,27 @@
                                                 <?php endif; ?>
                                             </div>
                                             <h3><?php echo get_the_title($post->ID); ?></h3>
-                                            <p><?php echo $location ?></p>
-                                            <p class="small"><strong>Age: </strong> <?php echo $age; ?>, <?php echo $nationality ?></p>
+                                            <p>
+                                                <?php if (!empty($location_more)) : ?>
+                                                    <?php echo $location_more; ?>
+                                                <?php else : ?>
+                                                    <?php echo '-'; ?>
+                                                <?php endif; ?>
+                                            </p>
+                                            <p class="small"><strong>Age: </strong> 
+                                                <?php if (!empty($age_more)) : ?>
+                                                    <?php echo $age_more; ?>
+                                                <?php else : ?>
+                                                    <?php echo '-'; ?>
+                                                <?php endif; ?>
+                                                , 
+                                                
+                                                <?php if (!empty($nationality_more)) : ?>
+                                                    <?php echo $nationality_more; ?>
+                                                <?php else : ?>
+                                                    <?php echo '-'; ?>
+                                                <?php endif; ?>
+                                            </p>
                                         </a>
                                     </div>
                                 <?php endforeach; ?>

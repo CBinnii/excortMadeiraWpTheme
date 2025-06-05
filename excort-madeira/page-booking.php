@@ -288,7 +288,7 @@
                 $more = new WP_Query( $args );
 
 			    if (!empty($more->posts)): ?>
-                    <div class="section-blog">
+                    <div class="section-blog bg-white">
                         <div class="title">
                             <div class="container">
                                 <h3>Blog</h3>
@@ -306,6 +306,8 @@
                                                 <?php } else { ?>
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
+
+                                                <h1> <?php echo get_the_title($post->ID); ?> </h1>
                                             </div>
                                         </a>
                                     </div>

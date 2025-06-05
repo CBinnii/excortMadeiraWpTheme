@@ -28,12 +28,12 @@
                 </ul>
             </div>
         <?php endif; ?>
-        
+<!--         
         <?php if($whatsapp): ?>
             <a target="_blank" title="Whatsapp" href="<?php echo $whatsapp; ?>" class="icon-telegram">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" alt="Whatsapp icon">
             </a>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
         <header id="header" class="header">
             <nav class="navbar">

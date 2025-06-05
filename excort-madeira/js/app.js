@@ -17,12 +17,6 @@ function menuDesktop() {
         menuPattern.classList.add("d-none");
     }
 
-    if (socialHeader.classList.contains("d-none")) {
-        socialHeader.classList.remove("d-none");
-    } else {
-        socialHeader.classList.add("d-none");
-    }
-
     if (menu.classList.contains("cross")) {
         menu.classList.remove("cross");
     } else {

@@ -241,6 +241,8 @@
                                                 <?php } else { ?>
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
+
+                                                <h1> <?php echo get_the_title($post->ID); ?> </h1>
                                             </div>
                                         </a>
                                     </div>

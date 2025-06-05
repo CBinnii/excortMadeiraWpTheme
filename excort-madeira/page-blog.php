@@ -79,7 +79,7 @@
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
-                    'showposts' => 3,
+                    'showposts' => -1,
                 );
 
                 $more = new WP_Query( $args );
