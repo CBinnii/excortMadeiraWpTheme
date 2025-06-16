@@ -140,20 +140,9 @@
                                     <div class="col-6 col-md-3 col-adjust-escorts">
                                         <a href="<?php echo $post->post_name; ?>" class="escort-box">
                                             <div class="image-container">
-                                                <?php if (is_user_logged_in() ) : ?>
-                                                    <div class="image">
-                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    </div>
-                                                <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                    <div class="image">
-                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    </div>
-                                                <?php else : ?>
-                                                    <div class="blur-container"></div>
-                                                    <div class="image">
-                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    </div>
-                                                <?php endif; ?>
+                                                <div class="image">
+                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                </div>
                                             </div>
                                             <h3><?php echo get_the_title($post->ID); ?></h3>
                                             <p>

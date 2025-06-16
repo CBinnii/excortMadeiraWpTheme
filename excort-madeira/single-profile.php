@@ -10,6 +10,7 @@
     $bio = get_field('bio');
     $video = get_field('my_video');
     $photos = get_field( 'photos' );
+    $member_photos = get_field( 'member_photos' );
     $member = get_field( 'only_member' );
     $more_fields = get_field( 'more_fields' );
 
@@ -46,99 +47,140 @@
                         <div class="col-sm-8 mob-p-0">
                             <div class="desktop">
                                 <div class="row profile-photos">
-                                    <?php foreach( $photos as $photo ): ?>
-                                        <?php 
-                                            $extension = pathinfo($photo, PATHINFO_EXTENSION);
-                                            $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
-                                        ?>
-                                        <?php if ($is_video): ?>
-                                            <div class="col-md-6 adjust-col-escort">
-                                                <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                    <div class="image-container">
-                                                        <?php if (is_user_logged_in() ) : ?>
-                                                            <div class="image">
-                                                                <video 
-                                                                    autoplay 
-                                                                    loop
-                                                                    muted 
-                                                                    playsinline 
-                                                                    preload="metadata" 
-                                                                    style="width: 100%; height: auto; object-fit: cover;" 
-                                                                >
-                                                                        <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                                        Seu navegador não suporta vídeo.
-                                                                </video>
+                                    <?php if (is_user_logged_in() ) : ?>
+                                        <?php if ($member_photos) : ?>
+                                            <?php foreach( $member_photos as $photo ): ?>
+                                                <?php 
+                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
+                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                                ?>
+                                                <?php if ($is_video): ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <video 
+                                                                        autoplay 
+                                                                        loop
+                                                                        muted 
+                                                                        playsinline 
+                                                                        preload="metadata" 
+                                                                        style="width: 100%; height: auto; object-fit: cover;" 
+                                                                    >
+                                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                                            Seu navegador não suporta vídeo.
+                                                                    </video>
+                                                                </div>
                                                             </div>
-                                                        <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                            <div class="image">
-                                                                <video 
-                                                                    autoplay 
-                                                                    loop
-                                                                    muted 
-                                                                    playsinline 
-                                                                    preload="metadata" 
-                                                                    style="width: 100%; height: auto; object-fit: cover;" 
-                                                                >
-                                                                        <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                                        Seu navegador não suporta vídeo.
-                                                                </video>
-                                                            </div>
-                                                        <?php else : ?>
-                                                            <div class="blur-container"></div>
-                                                            <div class="image">
-                                                                <video 
-                                                                    autoplay 
-                                                                    loop
-                                                                    muted 
-                                                                    playsinline 
-                                                                    preload="metadata" 
-                                                                    style="width: 100%; height: auto; object-fit: cover;" 
-                                                                >
-                                                                        <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                                        Seu navegador não suporta vídeo.
-                                                                </video>
-                                                            </div>
-                                                        <?php endif; ?>
+                                                        </a>
                                                     </div>
-                                                </a>
-                                            </div>
-                                        <?php else: ?>
-                                            <div class="col-md-6 adjust-col-escort">
-                                                <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                    <div class="image-container">
-                                                        <?php if (is_user_logged_in() ) : ?>
-                                                            <div class="image">
-                                                                <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php else: ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                                </div>
                                                             </div>
-                                                        <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                            <div class="image">
-                                                                <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                            </div>
-                                                        <?php else : ?>
-                                                            <div class="blur-container"></div>
-                                                            <div class="image">
-                                                                <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                            </div>
-                                                        <?php endif; ?>
+                                                        </a>
                                                     </div>
-                                                </a>
-                                            </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         <?php endif; ?>
-                                    <?php endforeach; ?>
+                                        <?php if ($photos) : ?>
+                                            <?php foreach( $photos as $photo ): ?>
+                                                <?php 
+                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
+                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                                ?>
+                                                <?php if ($is_video): ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <video 
+                                                                        autoplay 
+                                                                        loop
+                                                                        muted 
+                                                                        playsinline 
+                                                                        preload="metadata" 
+                                                                        style="width: 100%; height: auto; object-fit: cover;" 
+                                                                    >
+                                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                                            Seu navegador não suporta vídeo.
+                                                                    </video>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <?php if ($photos) : ?>
+                                            <?php foreach( $photos as $photo ): ?>
+                                                <?php 
+                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
+                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                                ?>
+                                                <?php if ($is_video): ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <video 
+                                                                        autoplay 
+                                                                        loop
+                                                                        muted 
+                                                                        playsinline 
+                                                                        preload="metadata" 
+                                                                        style="width: 100%; height: auto; object-fit: cover;" 
+                                                                    >
+                                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                                            Seu navegador não suporta vídeo.
+                                                                    </video>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <div class="col-md-6 adjust-col-escort">
+                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            <div class="image-container">
+                                                                <div class="image">
+                                                                    <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
                             <div class="swiper profile-slider mobile mb-24">
                                 <div class="swiper-wrapper">
-                                    <?php foreach( $photos as $photo ): ?>
-                                        <?php 
-                                            $extension = pathinfo($photo, PATHINFO_EXTENSION);
-                                            $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
-                                        ?>
-                                        <?php if ($is_video): ?>
-                                            <?php if (is_user_logged_in() ) : ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                    <?php if (is_user_logged_in() ) : ?>
+                                        <?php if ($member_photos) : ?>
+                                            <?php foreach( $member_photos as $photo ): ?>
+                                                <?php 
+                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
+                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                                ?>
+                                                <?php if ($is_video): ?>
+                                                    <div class="swiper-slide">
                                                         <video 
                                                             autoplay 
                                                             loop
@@ -149,66 +191,44 @@
                                                         >
                                                             <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                             Seu navegador não suporta vídeo.
-                                                        </video>
-                                                    </a>
-                                                </div>
-                                            <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                        <video 
-                                                            autoplay 
-                                                            loop
-                                                            muted 
-                                                            playsinline 
-                                                            preload="metadata" 
-                                                            style="width: 100%; height: auto; object-fit: cover;" 
-                                                        >
-                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                            Seu navegador não suporta vídeo.
-                                                        </video>
-                                                    </a>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                        <div class="blur-container"></div>
-                                                        <video 
-                                                            autoplay 
-                                                            loop
-                                                            muted 
-                                                            playsinline 
-                                                            preload="metadata" 
-                                                            style="width: 100%; height: auto; object-fit: cover;" 
-                                                        >
-                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                            Seu navegador não suporta vídeo.
-                                                        </video>
-                                                    </a>
-                                                </div>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <?php if (is_user_logged_in() ) : ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
+                                                            </video>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <div class="swiper-slide">
                                                         <img src="<?php echo esc_url($photo); ?>" />
-                                                    </a>
-                                                </div>
-                                            <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                        <img src="<?php echo esc_url($photo); ?>" />
-                                                    </a>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="swiper-slide">
-                                                    <a data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                        <div class="blur-container"></div>
-                                                        <img src="<?php echo esc_url($photo); ?>" />
-                                                    </a>
-                                                </div>
-                                            <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <?php if ($photos) : ?>
+                                            <?php foreach( $photos as $photo ): ?>
+                                                <?php 
+                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
+                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                                ?>
+                                                <?php if ($is_video): ?>
+                                                    <div class="swiper-slide">
+                                                        <video 
+                                                            autoplay 
+                                                            loop
+                                                            muted 
+                                                            playsinline 
+                                                            preload="metadata" 
+                                                            style="width: 100%; height: auto; object-fit: cover;" 
+                                                        >
+                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                            Seu navegador não suporta vídeo.
+                                                            </video>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <div class="swiper-slide">
+                                                        <img src="<?php echo esc_url($photo); ?>" />
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="swiper-button-next swiper-button-next-profile"></div>
                                 <div class="swiper-button-prev swiper-button-prev-profile"></div>
@@ -447,20 +467,9 @@
                                         <div class="swiper-slide">
                                             <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                                 <div class="image-container">
-                                                    <?php if (is_user_logged_in() ) : ?>
-                                                        <div class="image">
-                                                            <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                        </div>
-                                                    <?php elseif ( $member == 'No' && !is_user_logged_in()): ?>
-                                                        <div class="image">
-                                                            <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                        </div>
-                                                    <?php else : ?>
-                                                        <div class="blur-container"></div>
-                                                        <div class="image">
-                                                            <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                        </div>
-                                                    <?php endif; ?>
+                                                    <div class="image">
+                                                        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    </div>
                                                 </div>
                                                 <h3><?php echo get_the_title($post->ID); ?></h3>
                                                 <p>

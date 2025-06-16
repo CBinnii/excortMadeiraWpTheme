@@ -28,8 +28,8 @@
                 </ul>
             </div>
         <?php endif; ?>
-<!--         
-        <?php if($whatsapp): ?>
+        
+        <!-- <?php if($whatsapp): ?>
             <a target="_blank" title="Whatsapp" href="<?php echo $whatsapp; ?>" class="icon-telegram">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" alt="Whatsapp icon">
             </a>
@@ -104,21 +104,28 @@
                                             echo '<p>Menu mobile não encontrado.</p>';
                                         }
                                     ?>
-
-                                    <div class="header-site-search visible-mobile">
-                                        <span class="header-site-search-icon visible-mobile"></span>
-                                        <form method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-                                            <input class="header-site-search-input visible-mobile" type="text" name="s" id="keyword" placeholder="Search..." value="<?php echo get_search_query(); ?>">
-                                            <button type="submit">Search</button>
-                                        </form>
+                                    
+                                    <div class="row w-100">
+                                        <div class="col-5">
+                                            <a href="/membership-login" class="button bold outline medium text-center">
+                                                Member
+                                            </a>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="header-site-search visible-mobile" style="margin-left: 20px; margin-top: 30px;">
+                                                <span class="header-site-search-icon visible-mobile"></span>
+                                                <form method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+                                                    <input class="header-site-search-input visible-mobile" type="text" name="s" id="keyword" placeholder="Search..." value="<?php echo get_search_query(); ?>">
+                                                    <button type="submit">Search</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <a href="/booking" class="button bold outline medium text-center">
+                                                Book Now
+                                            </a>
+                                        </div>
                                     </div>
-
-                                    <a href="/membership-login" class="button bold outline medium">
-                                        Member
-                                    </a>
-                                    <a href="/booking" class="button bold outline medium">
-                                        Book Now
-                                    </a>
                                 </div>
 
                                 <div class="navbar-action">

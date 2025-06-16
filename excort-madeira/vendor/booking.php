@@ -38,20 +38,20 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.transip.email'; // Change to your SMTP server
     $mail->SMTPAuth = true;
-    $mail->Username = 'office@escort-madeira.com'; // Your SMTP email
-    $mail->Password = 'L1$b0nL@t1n@$'; // Your SMTP password
+    $mail->Username = 'office@the-girl-next-door.com'; // Your SMTP email
+    $mail->Password = 'Th3G1rlN3xtD00r'; // Your SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
     // Set sender and recipient
-    $mail->setFrom('office@escort-madeira.com', 'Website Escort Madeira');
-    $mail->addAddress('office@escort-madeira.com'); 
+    $mail->setFrom('office@the-girl-next-door.com', 'Website The Girl Next Door');
+    $mail->addAddress('office@the-girl-next-door.com'); 
     // $mail->addAddress('milla.binni@gmail.com'); 
-    $mail->addReplyTo('office@escort-madeira.com', 'Information Escort Madeira');
+    $mail->addReplyTo('office@the-girl-next-door.com', 'Information The Girl Next Door');
 
     // Email content
     $mail->isHTML(true);
-    $mail->Subject = 'Contact from Booking page on Escort Madeira website';
+    $mail->Subject = 'Contact from Booking page on The Girl Next Door website';
     $mail->Body = "
         <h3>Booking</h3>
         <h4 style='font-weight: 700'>Choose your escort</h4>
