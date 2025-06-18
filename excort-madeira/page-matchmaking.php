@@ -110,7 +110,7 @@
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <label for="firsName" class="form-label"><strong>First name</strong></label>
-                                        <input type="text" class="form-control" id="firsName" name="firsName" placeholder="First name">
+                                        <input type="text" class="form-control" id="firsName" name="firstName" placeholder="First name">
                                     </div>
                                     <div class="col-6">
                                         <label for="lastName" class="form-label"><strong>Last name</strong></label>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput3" class="form-label"><strong>Which languages are you fluent in?</strong></label>
-                                    <select name="languages" id="languages" class="form-control" multiple>
+                                    <select name="languages[]" id="languages" class="form-select" multiple>
                                         <option value="Portuguese">Portuguese</option>
                                         <option value="English">English</option>
                                         <option value="Spanish">Spanish</option>
@@ -167,19 +167,19 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="MoreIntroOrExtro" class="form-label"><strong>Are you more introverted or extroverted?</strong></label>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="MoreIntroOrExtro" id="MoreIntroOrExtro1" value="I am more introverted">
                                         <label class="form-check-label m-0" for="MoreIntroOrExtro1">
                                             I am more introverted
                                         </label>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="MoreIntroOrExtro" id="MoreIntroOrExtro2" value="Somewhere in the middle">
                                         <label class="form-check-label m-0" for="MoreIntroOrExtro2">
                                             Somewhere in the middle
                                         </label>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="MoreIntroOrExtro" id="MoreIntroOrExtro3" value="I am more extroverted">
                                         <label class="form-check-label m-0" for="MoreIntroOrExtro3">
                                             I am more extroverted
@@ -188,19 +188,19 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="TakeTheLead" class="form-label"><strong>Who takes the lead?</strong></label>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="TakeTheLead" id="TakeTheLead1" value="I enjoy taking the lead">
                                         <label class="form-check-label m-0" for="TakeTheLead1">
                                             I enjoy taking the lead
                                         </label>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="TakeTheLead" id="TakeTheLead2" value="Sometimes me, sometimes the other">
                                         <label class="form-check-label m-0" for="TakeTheLead2">
                                             Sometimes me, sometimes the other
                                         </label>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 mb-3">
                                         <input class="form-check-input m-0" type="radio" name="TakeTheLead" id="TakeTheLead3" value="I prefer when the other takes the lead">
                                         <label class="form-check-label m-0" for="TakeTheLead3">
                                             I prefer when the other takes the lead
@@ -218,7 +218,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-6 col-md-2">
-                                                <input class="form-check-input m-0" type="radio" name="smoke" id="smoke2" value="DNo">
+                                                <input class="form-check-input m-0" type="radio" name="smoke" id="smoke2" value="No">
                                                 <label class="form-check-label m-0" for="smoke2">
                                                     No
                                                 </label>
@@ -316,47 +316,47 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="MostImportant" class="form-label"><strong>Select the most important booking aspects</strong></label>
-                                    <div class="col-6 col-md-3 mb-2">
+                                    <div class="col-12 col-md-3 mb-2">
                                         <input class="form-check-input m-0" type="checkbox" name="MostImportant1" id="MostImportant1" value="Companionship">
                                         <label class="form-check-label m-0" for="MostImportant1">
                                             Companionship
                                         </label>
                                     </div>
-                                    <div class="col-6 col-md-3 mb-2">
+                                    <div class="col-12 col-md-3 mb-2">
                                         <input class="form-check-input m-0" type="checkbox" name="MostImportant2" id="MostImportant2" value="Intellectual conversations">
                                         <label class="form-check-label m-0" for="MostImportant2">
                                             Intellectual conversations
                                         </label>
                                     </div>
-                                    <div class="col-6 col-md-3 mb-2">
+                                    <div class="col-12 col-md-3 mb-2">
                                         <input class="form-check-input m-0" type="checkbox" name="MostImportant4" id="MostImportant4" value="Wining and dining">
                                         <label class="form-check-label m-0" for="MostImportant4">
                                             Wining and dining
                                         </label>
                                     </div>
-                                    <div class="col-6 col-md-3 mb-2">
-                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant6" id="MostImportant6" value="Romance">
-                                        <label class="form-check-label m-0" for="MostImportant6">
+                                    <div class="col-12 col-md-3 mb-2">
+                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant5" id="MostImportant5" value="Romance">
+                                        <label class="form-check-label m-0" for="MostImportant5">
                                             Romance
                                         </label>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant5" id="MostImportant5" value="Activities (sightseeing, wellness, theatre, museums, sports, etc.)">
-                                        <label class="form-check-label m-0" for="MostImportant5">
+                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant6" id="MostImportant6" value="Activities (sightseeing, wellness, theatre, museums, sports, etc.)">
+                                        <label class="form-check-label m-0" for="MostImportant6" style="display: inline;">
                                             Activities (sightseeing, wellness, theatre, museums, sports, etc.)
                                         </label>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant6" id="MostImportant6" value="Learning new things (for inexperienced clients)">
-                                        <label class="form-check-label m-0" for="MostImportant6">
+                                        <input class="form-check-input m-0" type="checkbox" name="MostImportant7" id="MostImportant7" value="Learning new things (for inexperienced clients)">
+                                        <label class="form-check-label m-0" style="display: inline;" for="MostImportant7">
                                             Learning new things (for inexperienced clients)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row mb-3 mt-4">
-                                    <div class="col-4">
+                                    <div class="col-12">
                                         <label for="MostImportant" class="form-label"><strong>Terms & Conditions</strong></label> <br>
-                                        <input class="form-check-input m-0" type="checkbox" name="terms" id="terms" value="Companionship">
+                                        <input class="form-check-input m-0" type="checkbox" name="terms" id="terms" value="Yes">
                                         <label class="form-check-label m-0" for="terms">
                                             I accept the terms and conditions
                                         </label>
@@ -418,44 +418,43 @@
                 return false; // impede o envio do formulário
             } else {
                 errorDiv.style.display = "none";
-                return true; // permite o envio do formulário
-            }
             
-            var formData = $(this).serialize(); // Serializa os dados do formulário
-            console.log(formData)
+                var formData = $(this).serialize(); // Serializa os dados do formulário
+                console.log(formData)
 
-            // Alterna a visibilidade dos botões
-            document.getElementById('submit').style.display = 'none';
-            document.getElementById('submited').style.display = 'block';
-            
-            $.ajax({
-                type: "POST",
-                url: "<?php echo get_template_directory_uri(); ?>/vendor/matchmaking.php",
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    console.log("AJAX Response:", response);
+                // Alterna a visibilidade dos botões
+                document.getElementById('submit').style.display = 'none';
+                document.getElementById('submited').style.display = 'block';
+                
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo get_template_directory_uri(); ?>/vendor/matchmaking.php",
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        console.log("AJAX Response:", response);
 
-                    if (response.status === "success") {
-                        $("#formMessage").html('<p style="color: green;">' + response.message + '</p>');
-                        $("#matchMakingForm")[0].reset(); // Clear the form
-                    } else {
-                        $("#formMessage").html('<p style="color: red;">' + response.message + '</p>');
+                        if (response.status === "success") {
+                            $("#formMessage").html('<p style="color: green;">' + response.message + '</p>');
+                            $("#matchMakingForm")[0].reset(); // Clear the form
+                        } else {
+                            $("#formMessage").html('<p style="color: red;">' + response.message + '</p>');
+                        }
+
+                        document.getElementById('submit').style.display = 'block';
+                        document.getElementById('submited').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("AJAX Error:", error);
+                        console.log("Full response:", xhr.responseText);
+
+                        $("#formMessage").html('<p style="color: red;">An error occurred while sending the form.</p>');
+
+                        document.getElementById('submit').style.display = 'block';
+                        document.getElementById('submited').style.display = 'none';
                     }
-
-                    document.getElementById('submit').style.display = 'block';
-                    document.getElementById('submited').style.display = 'none';
-                },
-                error: function (xhr, status, error) {
-                    console.log("AJAX Error:", error);
-                    console.log("Full response:", xhr.responseText);
-
-                    $("#formMessage").html('<p style="color: red;">An error occurred while sending the form.</p>');
-
-                    document.getElementById('submit').style.display = 'block';
-                    document.getElementById('submited').style.display = 'none';
-                }
-            });
+                });
+            }
         });
     });
 </script>

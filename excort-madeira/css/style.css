@@ -22606,7 +22606,7 @@ a.button {
   .header .navbar .container .navbar-menu .navbar-collapse .logo-header {
     display: block;
     position: absolute;
-    top: 15px;
+    top: -2px;
   }
 }
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item,

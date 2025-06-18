@@ -15,11 +15,11 @@ $response = [];
 try {
     // Capture form data
     $gender = $_POST['gender'] ?? '';
-    $firsName = $_POST['firsName'] ?? '';
+    $firstName = $_POST['firstName'] ?? '';
     $lastName = $_POST['lastName'] ?? '';
     $email = $_POST['email'] ?? '';
     $aboutYou = $_POST['aboutYou'] ?? '';
-    $languages = $_POST['languages'] ?? '';
+    $languages = $_POST['languages'] ?? [];
     $conversation = $_POST['conversation'] ?? '';
     $MoreIntroOrExtro = $_POST['MoreIntroOrExtro'] ?? '';
     $TakeTheLead = $_POST['TakeTheLead'] ?? '';
@@ -36,8 +36,15 @@ try {
     $anyTurnOnOtherWish = $_POST['anyTurnOnOtherWish'] ?? '';
     $anyTurnOffOtherWish = $_POST['anyTurnOffOtherWish'] ?? '';
     $dreamBooking = $_POST['dreamBooking'] ?? '';
-    $MostImportant = $_POST['MostImportant'] ?? '';
+    $MostImportant1 = $_POST['MostImportant1'] ?? '';
+    $MostImportant2 = $_POST['MostImportant2'] ?? '';
+    $MostImportant3 = $_POST['MostImportant3'] ?? '';
+    $MostImportant4 = $_POST['MostImportant4'] ?? '';
+    $MostImportant5 = $_POST['MostImportant5'] ?? '';
+    $MostImportant6 = $_POST['MostImportant6'] ?? '';
+    $MostImportant7 = $_POST['MostImportant7'] ?? '';
     $terms = $_POST['terms'] ?? '';
+    $langs = implode(', ', array_map('htmlspecialchars', $languages));
 
     // PHPMailer configuration
     $mail = new PHPMailer(true);
@@ -51,8 +58,8 @@ try {
 
     // Set sender and recipient
     $mail->setFrom('office@the-girl-next-door.com', 'Website The Girl Next Door');
-    // $mail->addAddress('office@the-girl-next-door.com'); 
-    $mail->addAddress('milla.binni@gmail.com'); 
+    $mail->addAddress('office@the-girl-next-door.com'); 
+    // $mail->addAddress('milla.binni@gmail.com'); 
     $mail->addReplyTo('office@the-girl-next-door.com', 'Information The Girl Next Door');
 
     // Email content
@@ -64,7 +71,7 @@ try {
         <p><strong>Name:</strong> $firstName $lastName</p>
         <p><strong>E-mail:</strong> $email</p>
         <p><strong>About you:</strong> $aboutYou</p>
-        <p><strong>Which languages are you fluent in?</strong> $languages</p>
+        <p><strong>Which languages are you fluent in?</strong> $langs</p>
         <p><strong>What are you like as a conversationalist?</strong> $conversation</p>
         <p><strong>Are you more introverted or extroverted?</strong> $MoreIntroOrExtro</p>
         <p><strong>Who takes the lead?</strong> $TakeTheLead</p>
@@ -80,7 +87,7 @@ try {
         <p><strong>Any other turn-ons that you wish to share?</strong> $anyTurnOnOtherWish</p>
         <p><strong>Any turn-offs that you wish to share?</strong> $anyTurnOffOtherWish</p>
         <p><strong>What does your dream booking look like?</strong> $dreamBooking</p>
-        <p><strong>Most important booking aspects</strong> $MostImportant</p>
+        <p><strong>Most important booking aspects</strong> $MostImportant1 $MostImportant2 $MostImportant3 $MostImportant4 $MostImportant5 $MostImportant6 $MostImportant7 </p>
     ";
 
     // Send email
