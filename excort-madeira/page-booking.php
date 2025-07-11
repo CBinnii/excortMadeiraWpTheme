@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <!-- Adicionando o script do Google reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
@@ -276,6 +276,26 @@
                     </div>
                 </div>
             </div>
+            
+            <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
+                <div class="section-about bg-white">
+                    <div class="title pt-0">
+                        <div class="container">
+                            <h2><?php echo $title_text_field_2_page; ?></h2>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_2_page; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- Blog Section -->
             <?php
@@ -291,23 +311,22 @@
                     <div class="section-blog bg-white">
                         <div class="title">
                             <div class="container">
-                                <h3>Blog</h3>
+                                <h2>Blog</h2>
                             </div>
                         </div>
 
                         <div class="container">
                             <div class="row row-adjustment">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
-                                    <div class="col-md-6 col-adjustment">
-                                        <a href="<?php echo $post->post_name; ?>" class="post-box">
+                                    <div class="col-md-4 col-adjustment">
+                                        <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box">
                                             <div class="image">
                                                 <?php if (has_post_thumbnail( $post->ID ) ) { ?>
-                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    <img class="img-normal" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    <img class="img-hover" src="<?php echo $featured_image_hover; ?>" alt="">
                                                 <?php } else { ?>
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
-
-                                                <h1> <?php echo get_the_title($post->ID); ?> </h1>
                                             </div>
                                         </a>
                                     </div>

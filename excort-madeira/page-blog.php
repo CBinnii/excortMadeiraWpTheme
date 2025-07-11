@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php 
 	get_header();
@@ -61,14 +61,16 @@
                 <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_1_page; ?></h3>
+                            <h2><?php echo $title_text_field_1_page; ?></h2>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_1_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_1_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +100,7 @@
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
                                             </div>
-                                            <h3 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h3>
+                                            <h2 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h2>
                                             <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
                                         </a>
                                     </div>
@@ -114,14 +116,16 @@
                 <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_2_page; ?></h3>
+                            <h2><?php echo $title_text_field_2_page; ?></h2>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_2_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_2_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>

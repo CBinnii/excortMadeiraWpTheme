@@ -8,14 +8,43 @@
 
 <?php 
 	get_header();
+
+    $title_text_field_1_page = get_field('title_text_field_1_page', 'location_' . get_queried_object()->term_id);
+    $text_field_1_page = get_field('text_field_1_page', 'location_' . get_queried_object()->term_id);
+    $title_text_field_2_page = get_field('title_text_field_2_page', 'location_' . get_queried_object()->term_id);
+    $text_field_2_page = get_field('text_field_2_page', 'location_' . get_queried_object()->term_id);
 ?>
     <section class="main">
         <div class="section">
-            <div class="section-general-banner slider">
-                <div class="swiper slider-general">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="banner-image" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/bg-6.png');">
+            <?php 
+                $featured_image = get_field('featured_image_location', 'location_' . get_queried_object()->term_id); // Obtém o ID da imagem destacada
+            ?>
+            
+            <?php if (!empty( $featured_image ) ) { ?>
+                <div class="section-general-banner slider desktop">
+                    <div class="swiper slider-general">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="banner-image" style="background-image: url('<?php echo $featured_image['url'];?>');">
+                                    <div class="overlay white"></div>
+                                    <div class="container">
+                                        <div class="banner-text">
+                                            <h1><?php echo $term->name; ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            
+            <?php if (!empty( $featured_image ) ) : ?>
+                <div class="section-general-banner slider mobile">
+                    <div class="swiper slider-general">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="<?php echo $featured_image['url'];?>" alt="Banner Image">
                                 <div class="overlay white"></div>
                                 <div class="container">
                                     <div class="banner-text">
@@ -26,29 +55,22 @@
                         </div>
                     </div>
                 </div>
+            <?php endif; ?>
 
-                <div class="swiper-button-next swiper-button-next-slider-general"></div>
-                <div class="swiper-button-prev swiper-button-prev-slider-general"></div>
-            </div>
-
-            <?php 
-                $title_text_field_1_page = get_field('title_text_field_1_page', 'location_' . get_queried_object()->term_id);
-                $text_field_1_page = get_field('text_field_1_page', 'location_' . get_queried_object()->term_id);
-                $title_text_field_2_page = get_field('title_text_field_2_page', 'location_' . get_queried_object()->term_id);
-                $text_field_2_page = get_field('text_field_2_page', 'location_' . get_queried_object()->term_id);
-                
-                if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
+            <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
                 <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_1_page; ?></h3>
+                            <h2><?php echo $title_text_field_1_page; ?></h2>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_1_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_1_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,16 +201,18 @@
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
                 <div class="section-about bg-white">
-                    <div class="title pt-0">
+                    <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_2_page; ?></h3>
+                            <h2><?php echo $title_text_field_2_page; ?></h2>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_2_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_2_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>

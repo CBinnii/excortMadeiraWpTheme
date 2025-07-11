@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php 
 	get_header();
@@ -50,45 +50,6 @@
                                     <?php if (is_user_logged_in() ) : ?>
                                         <?php if ($member_photos) : ?>
                                             <?php foreach( $member_photos as $photo ): ?>
-                                                <?php 
-                                                    $extension = pathinfo($photo, PATHINFO_EXTENSION);
-                                                    $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
-                                                ?>
-                                                <?php if ($is_video): ?>
-                                                    <div class="col-md-6 adjust-col-escort">
-                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                            <div class="image-container">
-                                                                <div class="image">
-                                                                    <video 
-                                                                        autoplay 
-                                                                        loop
-                                                                        muted 
-                                                                        playsinline 
-                                                                        preload="metadata" 
-                                                                        style="width: 100%; height: auto; object-fit: cover;" 
-                                                                    >
-                                                                            <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
-                                                                            Seu navegador não suporta vídeo.
-                                                                    </video>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <div class="col-md-6 adjust-col-escort">
-                                                        <a class="escort-box" data-fslightbox="gallery_1" href="<?php echo esc_url($photo); ?>">
-                                                            <div class="image-container">
-                                                                <div class="image">
-                                                                    <img src="<?php echo esc_url($photo); ?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                        <?php if ($photos) : ?>
-                                            <?php foreach( $photos as $photo ): ?>
                                                 <?php 
                                                     $extension = pathinfo($photo, PATHINFO_EXTENSION);
                                                     $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
@@ -253,34 +214,119 @@
                                         </div>
 
                                         <div class="profile-book">
-                                            <a href="booking" class="button bold medium">
-                                                Book Now
+                                            <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold medium">
+                                                Get Verified
                                             </a>
+                                            <?php if (is_user_logged_in() ) : ?>
+                                                <a href="https://wa.me/31612345678?text=Hi%2C%20I%20was%20verified%20via%20*the girl next door*%20and%20would%20love%20to%20connect." target="_blank" class="ml-4 button bold medium">
+                                                    Whatsapp
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-bio">
+                                        <button class="accordion-toggle active mb-16">
+                                            <span class="txt-heading block md text-center">ABOUT</span>
+                                            <span class="arrow"></span>
+                                        </button>
+                                        
+                                        <div class="accordion-content" style="display: block;">
+                                            <?php echo apply_filters('the_content', $bio); ?>
                                         </div>
                                     </div>
 
                                     <div class="profile-stat">
                                         <div class="stats">
-                                            <span class="txt-heading block md mb-24 text-center">BODY & SHAPE</span>
+                                            <button class="accordion-toggle mb-16">
+                                                <span class="txt-heading block md text-center">BODY & SHAPE</span>
+                                                <span class="arrow"></span>
+                                            </button>
+                                            
+                                            <div class="accordion-content">
+                                                <div class="row">
+                                                    <div class="table-style">
+                                                        <?php if( have_rows('more_fields') ): ?>
+                                                            <?php
+                                                                while( have_rows('more_fields') ) : the_row();
+                                                                    $label = get_sub_field('label');
+                                                                    $value = get_sub_field('value');
+                                                            ?>
+                                                                <div class="row m-0 table-row">
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                                                    </div>
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                                    </div>
+                                                                </div>
+                                                            <?php endwhile; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="row">
-                                                <div class="table-style">
-                                                    <?php if( have_rows('more_fields') ): ?>
-                                                        <?php
-                                                            while( have_rows('more_fields') ) : the_row();
-                                                                $label = get_sub_field('label');
-                                                                $value = get_sub_field('value');
-                                                        ?>
-                                                            <div class="row m-0 table-row">
-                                                                <div class="col-6 p-0">
-                                                                    <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                    <div class="profile-stat">
+                                        <div class="stats">
+                                            <button class="accordion-toggle mb-16">
+                                                <span class="txt-heading block md text-center">LANGUAGE</span>
+                                                <span class="arrow"></span>
+                                            </button>
+
+                                            <div class="accordion-content">
+                                                <div class="row">
+                                                    <div class="table-style">
+                                                        <?php if( have_rows('languages') ): ?>
+                                                            <?php
+                                                                while( have_rows('languages') ) : the_row();
+                                                                    $language = get_sub_field('language');
+                                                                    $fluency = get_sub_field('fluency');
+                                                            ?>
+                                                                <div class="row m-0 table-row">
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><strong><?php echo $language ?></strong></span>
+                                                                    </div>
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><?php echo $fluency ?></span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-6 p-0">
-                                                                    <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                            <?php endwhile; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-stat">
+                                        <div class="stats">
+                                            <button class="accordion-toggle mb-16">
+                                                <span class="txt-heading block md text-center">APPEARANCE</span>
+                                                <span class="arrow"></span>
+                                            </button>
+                                            
+                                            <div class="accordion-content">
+                                                <div class="row">
+                                                    <div class="table-style">
+                                                        <?php if( have_rows('appearance_fields') ): ?>
+                                                            <?php
+                                                                while( have_rows('appearance_fields') ) : the_row();
+                                                                    $label = get_sub_field('label');
+                                                                    $value = get_sub_field('value');
+                                                            ?>
+                                                                <div class="row m-0 table-row">
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                                                    </div>
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        <?php endwhile; ?>
-                                                    <?php endif; ?>
+                                                            <?php endwhile; ?>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -289,96 +335,100 @@
                                     <?php if( have_rows('rate') ): 
                                         $rates = get_field('rate');?>
                                         <div class="profile-rate">
-                                            <span class="txt-heading block uppercase md mb-16 text-center">Rates</span>
+                                            <button class="accordion-toggle mb-16">
+                                                <span class="txt-heading block uppercase md text-center">Rates</span>
+                                                <span class="arrow"></span>
+                                            </button>
 
-                                            <div class="box-rate">
-                                                <?php if ($rates && count($rates) != 1) : ?>
-                                                    <ul class="nav nav-pills" id="myTab" role="tablist">
+                                            <div class="accordion-content">
+                                                <div class="box-rate">
+                                                    <?php if ($rates && count($rates) != 1) : ?>
+                                                        <ul class="nav nav-pills" id="myTab" role="tablist">
+                                                            <?php
+                                                                while( have_rows('rate') ) : the_row();
+                                                                    $currency = get_sub_field('currency');
+                                                            ?>
+                                                                <li class="nav-item" role="presentation">
+                                                                    <?php if (get_row_index() == 1): ?>
+                                                                        <button class="nav-link active" id="<?php echo $currency ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $currency ?>" type="button" role="tab" aria-controls="<?php echo $currency ?>" aria-selected="true"><?php echo $currency ?></button>
+                                                                    <?php else: ?>
+                                                                        <button class="nav-link" id="<?php echo $currency ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $currency ?>" type="button" role="tab" aria-controls="<?php echo $currency ?>" aria-selected="false"><?php echo $currency ?></button>
+                                                                    <?php endif; ?>
+                                                                </li>
+                                                            <?php endwhile; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+
+                                                    <div class="tab-content mt-3" id="myTabContent">
                                                         <?php
                                                             while( have_rows('rate') ) : the_row();
                                                                 $currency = get_sub_field('currency');
-                                                        ?>
-                                                            <li class="nav-item" role="presentation">
+                                                            ?>
                                                                 <?php if (get_row_index() == 1): ?>
-                                                                    <button class="nav-link active" id="<?php echo $currency ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $currency ?>" type="button" role="tab" aria-controls="<?php echo $currency ?>" aria-selected="true"><?php echo $currency ?></button>
+                                                                    <div class="tab-pane fade show active" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
                                                                 <?php else: ?>
-                                                                    <button class="nav-link" id="<?php echo $currency ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $currency ?>" type="button" role="tab" aria-controls="<?php echo $currency ?>" aria-selected="false"><?php echo $currency ?></button>
+                                                                    <div class="tab-pane fade" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
                                                                 <?php endif; ?>
-                                                            </li>
+                                                                    <div class="rate row m-0">
+                                                                        <div class="col-6 p-0">
+                                                                            <div class="duration">
+                                                                                <div class="table-style">
+                                                                                    <?php
+                                                                                        while( have_rows('values') ) : the_row();
+                                                                                            $duration = get_sub_field('duration');
+                                                                                            $value = get_sub_field('value');
+                                                                                        ?>
+                                                                                            <div class="table-row pr-0">
+                                                                                                <span class="txt-paragraph lg block bold uppercase"><?php echo $duration ?></span>
+                                                                                            </div>
+                                                                                    <?php endwhile; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6 p-0">
+                                                                            <div class="value">
+                                                                                <div class="table-style">
+                                                                                    <?php
+                                                                                        while( have_rows('values') ) : the_row();
+                                                                                            $duration = get_sub_field('duration');
+                                                                                            $value = get_sub_field('value');
+                                                                                        ?>
+                                                                                            <div class="table-row pl-0">
+                                                                                                <span class="txt-paragraph lg block bold uppercase"><?php echo $value ?></span>
+                                                                                            </div>
+                                                                                    <?php endwhile; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
                                                         <?php endwhile; ?>
-                                                    </ul>
-                                                <?php endif; ?>
-
-                                                <div class="tab-content mt-3" id="myTabContent">
-                                                    <?php
-                                                        while( have_rows('rate') ) : the_row();
-                                                            $currency = get_sub_field('currency');
-                                                        ?>
-                                                            <?php if (get_row_index() == 1): ?>
-                                                                <div class="tab-pane fade show active" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
-                                                            <?php else: ?>
-                                                                <div class="tab-pane fade" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
-                                                            <?php endif; ?>
-                                                                <div class="rate row m-0">
-                                                                    <div class="col-6 p-0">
-                                                                        <div class="duration">
-                                                                            <div class="table-style">
-                                                                                <?php
-                                                                                    while( have_rows('values') ) : the_row();
-                                                                                        $duration = get_sub_field('duration');
-                                                                                        $value = get_sub_field('value');
-                                                                                    ?>
-                                                                                        <div class="table-row pr-0">
-                                                                                            <span class="txt-paragraph lg block bold uppercase"><?php echo $duration ?></span>
-                                                                                        </div>
-                                                                                <?php endwhile; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6 p-0">
-                                                                        <div class="value">
-                                                                            <div class="table-style">
-                                                                                <?php
-                                                                                    while( have_rows('values') ) : the_row();
-                                                                                        $duration = get_sub_field('duration');
-                                                                                        $value = get_sub_field('value');
-                                                                                    ?>
-                                                                                        <div class="table-row pl-0">
-                                                                                            <span class="txt-paragraph lg block bold uppercase"><?php echo $value ?></span>
-                                                                                        </div>
-                                                                                <?php endwhile; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                    <?php endwhile; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     <?php endif; ?>
 
-                                    <div class="profile-bio">
-                                        <span class="txt-heading block md text-center mb-16">ABOUT</span>
-                                        
-                                        <?php echo apply_filters('the_content', $bio); ?>
-                                    </div>
-
                                     <?php $services = get_field('services'); 
 
                                         if( $services ) : ?>
                                         <div class="profile-personal-services mb-30">
-                                            <span class="txt-heading block uppercase md mb-16">My services</span>
-                                            
-                                            <div class="tags">
-                                                <div class="row">
-                                                    <?php foreach( $services as $service ): ?>
-                                                        <div class="col-6 tag">
-                                                            <a href="<?php echo get_permalink($service->ID); ?>">
-                                                                <?php echo get_the_title($service->ID); ?>
-                                                            </a>
-                                                        </div>
-                                                    <?php endforeach; ?>
+                                            <button class="accordion-toggle mb-16">
+                                                <span class="txt-heading block uppercase md">My services</span>
+                                                <span class="arrow"></span>
+                                            </button>
+
+                                            <div class="accordion-content">
+                                                <div class="tags">
+                                                    <div class="row">
+                                                        <?php foreach( $services as $service ): ?>
+                                                            <div class="col-6 tag">
+                                                                <a href="<?php echo get_permalink($service->ID); ?>">
+                                                                    <?php echo get_the_title($service->ID); ?>
+                                                                </a>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -420,7 +470,7 @@
                     <div class="related">
                         <div class="title">
                             <div class="container">
-                                <h3>You may also like</h3>
+                                <h2>You may also like</h2>
                             </div>
                         </div>
 
@@ -517,3 +567,25 @@
 <?php
 	get_footer();
 ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggles = document.querySelectorAll('.accordion-toggle');
+
+        toggles.forEach(toggle => {
+            const content = toggle.nextElementSibling;
+
+            // Inicializa visibilidade com base na classe
+            if (window.innerWidth < 768 && toggle.classList.contains('active')) {
+                content.style.display = 'block';
+            }
+
+            toggle.addEventListener('click', function () {
+                if (window.innerWidth < 768) {
+                    const isOpen = this.classList.contains('active');
+                    this.classList.toggle('active');
+                    content.style.display = isOpen ? 'none' : 'block';
+                }
+            });
+        });
+    });
+</script>

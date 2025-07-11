@@ -16,7 +16,6 @@
         });
     };
 </script>
-
 <?php 
 	get_header();
 
@@ -97,111 +96,105 @@
                 <div class="container">
                     <div class="booking">
                         <div class="row m-0">
-                            <div class="col-md-6 p-0">
-                                <div class="image-booking">
-                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bg-8.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 p-0">
+                            <div class="col-12 p-0">
                                 <div class="form-booking">
-                                    <form id="castingForm">
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your name">
+                                    <form id="verifiedForm">
+                                        <div class="row mb-24">
+                                            <div class="col-md-6 mob-mb-8">
+                                                <label for="firstName" class="form-label">First name</label>
+                                                <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="First name">
                                             </div>
                                             <div class="col-md-6">
+                                                <label for="lastName" class="form-label">Last name</label>
+                                                <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last name">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-24">
+                                            <div class="col-md-6 mob-mb-8">
+                                                <label for="nationality" class="form-label">Nationality</label>
+                                                <input type="text" class="form-control" id="nationality" name="nationality" required placeholder="Your nacionality"> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="birthYear" class="form-label">Birth year</label>
+                                                <input type="text" class="form-control" id="birthYear" name="birthYear" required placeholder="Birth year">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-24">
+                                            <div class="col-md-6 mob-mb-8">
                                                 <label for="email" class="form-label">E-mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Your e-mail">
+                                                <input type="email" class="form-control" id="email" name="email" required placeholder="name@example.com">
                                             </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
+                                            <div class="col-md-6">
                                                 <label for="phone" class="form-label">Phone</label>
-                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="city" class="form-label">City</label>
-                                                <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                                                <input type="text" class="form-control" id="phone" name="phone" required placeholder="Your phone">
                                             </div>
                                         </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="nacionality" class="form-label">Nacionality</label>
-                                                <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Your nacionality">
+                                        
+                                        <div class="row mb-24">
+                                            <span class="txt-paragraph lg uppercase block mb-16 white">Verification Method</span>
+                                            <div class="col-md-3">
+                                                <input class="form-check-input m-0" type="radio" name="verified" id="id" required value="ID">
+                                                <label class="form-check-label m-0" for="man">
+                                                    ID
+                                                </label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="country" class="form-label">Country</label>
-                                                <input type="text" class="form-control" id="country" name="country" placeholder="Your country"> 
+                                            <div class="col-md-3">
+                                                <input class="form-check-input m-0" type="radio" name="verified" id="transfer" required value="€1 transfer via Wise or Revolut">
+                                                <label class="form-check-label m-0" for="transfer">
+                                                    €1 transfer via Wise or Revolut
+                                                </label>
                                             </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="instagram" class="form-label">Intagram</label>
-                                                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="@Instagram">
+                                            <div class="col-md-3">
+                                                <input class="form-check-input m-0" type="radio" name="verified" id="hotel-screen" required value="Hotel screenshot">
+                                                <label class="form-check-label m-0" for="couple">
+                                                    Hotel screenshot
+                                                </label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="age" class="form-label">Age</label>
-                                                <input type="number" class="form-control" id="age" name="age" placeholder="Your age"> 
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-4 mb-16">
-                                                <label for="chest" class="form-label">Chest</label>
-                                                <input type="text" class="form-control" id="chest" name="chest" placeholder="Chest (cm)">
-                                            </div>
-                                            <div class="col-md-4 mb-16">
-                                                <label for="hip" class="form-label">Hip</label>
-                                                <input type="text" class="form-control" id="hip" name="hip" placeholder="Hip (cm)"> 
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="waist" class="form-label">Waist</label>
-                                                <input type="text" class="form-control" id="waist" name="waist" placeholder="Waist (cm)"> 
+                                            <div class="col-md-3">
+                                                <input class="form-check-input m-0" type="radio" name="verified" id="hotel-phone" required value="Hotel phone verification">
+                                                <label class="form-check-label m-0" for="couple">
+                                                    Hotel phone verification
+                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="mb-16">
-                                            <label for="languages" class="form-label">Languages</label>
-                                            <input type="text" class="form-control" id="languages" name="languages" placeholder="Languages">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="experience" class="form-label">Experience</label>
-                                            <input type="text" class="form-control" id="experience" name="experience" placeholder="Experience">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="description" class="form-label">Description</label>
-                                            <textarea class="form-control" id="description" name="description" rows="2" placeholder="Describe you"></textarea>
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="profile" class="form-label">Profile</label>
-                                            <input type="file" class="form-control" id="profile" name="profile" placeholder="Profile">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="wholeBody" class="form-label">Whole body</label>
-                                            <input type="file" class="form-control" id="wholeBody" name="wholeBody" placeholder="Whole body">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="selfie" class="form-label">Selfie</label>
-                                            <input type="file" class="form-control" id="selfie" name="selfie" placeholder="Selfie">
+                                        <div class="row mb-24">
+                                            <div class="col-12 mb-2">
+                                                <input class="form-check-input m-0" type="checkbox" name="confirm1" id="confirm1" value="I confirm I am over 18 years of age">
+                                                <label class="form-check-label m-0" for="confirm1">
+                                                    I confirm I am over 18 years of age.
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <input class="form-check-input m-0" type="checkbox" name="confirm2" id="confirm2" value="I understand the girl next door only facilitates introductions">
+                                                <label class="form-check-label m-0" for="confirm2">
+                                                    I understand the girl next door only facilitates introductions.
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <input class="form-check-input m-0" type="checkbox" name="confirm4" id="confirm4" value="I agree to the Privacy Policy and Terms & Conditions">
+                                                <label class="form-check-label m-0" for="confirm4">
+                                                    I agree to the <a href="<?php echo get_home_url(); ?>/privacy-policy-2" target="_blank">Privacy Policy</a> and <a href="<?php echo get_home_url(); ?>/terms-conditions" target="_blank">Terms & Conditions</a>.
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <input class="form-check-input m-0" type="checkbox" name="confirm5" id="confirm5" value="I understand all introductions are subject to verification">
+                                                <label class="form-check-label m-0" for="confirm5">
+                                                    I understand all introductions are subject to verification.
+                                                </label>
+                                            </div>
                                         </div>
 
                                         <div>
                                             <!-- Google reCAPTCHA -->
-                                            <div id="html_element" class="mb-16"></div>
+                                            <div id="html_element" class="mb-3"></div>
                                         </div>
-                
-                                        <div class="d-flex justify-content-start mb-16">
-                                            <button type="submit" id="submit" class="button white bold">Submit</button>
-                                            <button disabled id="submited" class="button white bold" style="display: none">Submit</button>
+
+                                        <div class="d-flex justify-content-start mb-3">
+                                            <button type="submit" id="submit" class="button white bold">Get Verified</button>
+                                            <button disabled id="submited" class="button white bold" style="display: none">Get Verified</button>
                                         </div>
                                     </form>
 
@@ -239,22 +232,23 @@
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
-                    'showposts' => 2,
+                    'showposts' => 6,
                 );
 
                 $more = new WP_Query( $args );
 
 			    if (!empty($more->posts)): ?>
-                    <div class="section-blog bg-white">
+                    <div class="section-blog">
                         <div class="title">
                             <div class="container">
-                                <h3>Blog</h3>
+                                <h2>Blog</h2>
                             </div>
                         </div>
 
                         <div class="container">
                             <div class="row row-adjustment">
-                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/
+                                    $featured_image_hover = get_field('featured_image_hover');?>
                                     <div class="col-md-6 col-adjustment">
                                         <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box">
                                             <div class="image">
@@ -271,7 +265,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="blog" class="button bold white">
+                                <a href="<?php echo get_home_url(); ?>/blog" class="button bold white">
                                     Read more
                                 </a>
                             </div>
@@ -289,8 +283,23 @@
 
 <script>
     $(document).ready(function () {
-        $("#castingForm").submit(function (event) {
+        $("#verifiedForm").submit(function (event) {
             event.preventDefault(); // Evita o reload da página
+
+            // Verificar se todos os checkboxes obrigatórios estão marcados
+            const requiredCheckboxes = ['#confirm1', '#confirm2', '#confirm4', '#confirm5'];
+            let allChecked = true;
+
+            requiredCheckboxes.forEach(function(selector) {
+                if (!$(selector).is(':checked')) {
+                    allChecked = false;
+                }
+            });
+
+            if (!allChecked) {
+                $("#formMessage").html('<p style="color: red;">Please check all the required confirmations before submitting the form.</p>');
+                return; // Impede o envio
+            }
             
             var formData = $(this).serialize(); // Serializa os dados do formulário
 
@@ -300,7 +309,7 @@
             
             $.ajax({
                 type: "POST",
-                url: "<?php echo get_template_directory_uri(); ?>/vendor/casting.php",
+                url: "<?php echo get_template_directory_uri(); ?>/vendor/verified.php",
                 data: formData,
                 dataType: "json",
                 success: function (response) {
@@ -308,7 +317,7 @@
 
                     if (response.status === "success") {
                         $("#formMessage").html('<p style="color: green;">' + response.message + '</p>');
-                        $("#castingForm")[0].reset(); // Clear the form
+                        $("#verifiedForm")[0].reset(); // Clear the form
                     } else {
                         $("#formMessage").html('<p style="color: red;">' + response.message + '</p>');
                     }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&family=Rufina:wght@400;700&display=swap');
 
 @import "./vendor/variables.scss";
 @import "./vendor/bootstrap/bootstrap.scss";
@@ -126,7 +127,21 @@ body {
 .title {
     padding: 56px 0;
 
-    h3 {
+    .section-label {
+        font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 18px !important;
+        // text-shadow: 0 8px 3px rgba(0, 0, 0, .2);
+        text-transform: uppercase;
+        margin-bottom: 0 !important;
+        color: var(--text-color);
+        text-align: center;
+
+        @media screen and (max-width: 767px) {
+            font-size: 14px !important;
+        }
+    }
+
+    h1, h2 {
         font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
         font-size: 56px !important;
         // text-shadow: 0 8px 3px rgba(0, 0, 0, .2);
@@ -135,8 +150,12 @@ body {
         color: var(--text-color);
         text-align: center;
 
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 991px) {
             font-size: 32px !important;
+        }
+
+        @media screen and (max-width: 767px) {
+            font-size: 28px !important;
         }
     }
 }
@@ -170,6 +189,18 @@ body {
     }
 }
 
+.modal-content {
+    border: none;
+    border-radius: 0;
+}
+
+.content {
+    max-width: 620px;
+    margin: 0 auto;
+
+    text-align: justify;
+}
+
 .mob-p-0 {
     @media screen and (max-width: 767px) {
         padding: 0 !important;
@@ -195,6 +226,14 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+.form-check-label {
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        color: #f8f9fa;
+    }
+}
+
 .table-style {
     width: 100%;
 
@@ -207,7 +246,7 @@ body {
         color: var(--text-color);
 
         &:nth-child(odd) {
-            background-color: #f8f9fa;
+            background-color: #FFFF84;
         }
 
         &:nth-child(even) {
@@ -293,6 +332,36 @@ body {
 
 .mb-8 {
     margin-bottom: 8px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .mob-mb-0 {
+        margin-bottom: 0 !important;
+    }
+    .mob-mb-8 {
+        margin-bottom: 8px !important;
+    }
+    .mob-mb-16 {
+        margin-bottom: 16px !important;
+    }
+    .mob-mb-24 {
+        margin-bottom: 24px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mob-mt-0 {
+        margin-top: 0 !important;
+    }
+    .mob-mt-8 {
+        margin-top: 8px !important;
+    }
+    .mob-mt-16 {
+        margin-top: 16px !important;
+    }
+    .mob-mt-24 {
+        margin-top: 24px !important;
+    }
 }
 
 .border-bottom {

@@ -107,8 +107,8 @@
                                     
                                     <div class="row w-100">
                                         <div class="col-5">
-                                            <a href="/membership-login" class="button bold outline medium text-center">
-                                                Member
+                                            <a href="<?php echo get_home_url(); ?>/login" class="button bold outline medium text-center">
+                                                Login
                                             </a>
                                         </div>
                                         <div class="col-2">
@@ -121,8 +121,8 @@
                                             </div>
                                         </div>
                                         <div class="col-5">
-                                            <a href="/booking" class="button bold outline medium text-center">
-                                                Book Now
+                                            <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold outline medium text-center pl-0 pr-0">
+                                                Get Verified
                                             </a>
                                         </div>
                                     </div>
@@ -138,12 +138,12 @@
                                             </form>
                                         </div>
 
-                                        <a href="/membership-login" class="button bold outline medium">
-                                            Member
+                                        <a href="<?php echo get_home_url(); ?>/login" class="button bold outline medium">
+                                            Login
                                         </a>
 
-                                        <a href="/booking" class="button bold outline medium">
-                                            Book Now
+                                        <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold outline medium p-0">
+                                            Get Verified
                                         </a>
                                     </span>
 

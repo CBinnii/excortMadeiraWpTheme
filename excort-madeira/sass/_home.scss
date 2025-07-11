@@ -153,6 +153,9 @@
 
                 .swiper-slide {
                     height: auto;
+                    @media screen and (max-width: 767px) {
+                        width: 40%;
+                    }
 
                     img {
                         @media screen and (max-width: 1100px) {
@@ -186,12 +189,11 @@
             }
         }
 
-        h3 {
+        h2 {
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 24px;
             text-transform: uppercase;
             margin-bottom: 32px;
-            text-align: center;
 
             @media screen and (max-width: 991px) {
                 font-size: 18px;
@@ -199,7 +201,6 @@
         }
 
         p {
-            text-align: center;
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 16px;
             line-height: 1.4;
@@ -228,7 +229,6 @@
             justify-content: center;
             flex-direction: column;
             color: #f6cd7e;
-            text-align: center;
         }
     }
 
@@ -308,7 +308,7 @@
             }
         }
 
-        h3 {
+        h2 {
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 28px;
             text-transform: uppercase;
@@ -361,7 +361,6 @@
             justify-content: center;
             flex-direction: column;
             color: #012319;
-            text-align: center;
             transition: transform 0.3s ease;
             cursor: pointer;
             overflow: hidden;
@@ -370,8 +369,12 @@
             @media screen and (min-width: 768px) {
                 &:hover {
                     .image {
-                        img {
-                            transform: scale(1.1);
+                        .img-hover {
+                            opacity: 1;
+                        }
+
+                        .img-normal {
+                            opacity: 0;
                         }
                     }
                 }
@@ -399,9 +402,18 @@
                     object-fit: cover;
                     object-position: center;
                     transition: transform 0.3s ease;
+                    display: block;
                 }
 
-                h1 {
+                .img-hover {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    transition: opacity 0.6s ease;
+                }
+
+                h2 {
                     position: absolute;
                     top: 0;
                     width: 100%;
@@ -426,7 +438,8 @@
                 }
             }
 
-            h3 {
+            h2 {
+                text-align: center;
                 font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
                 font-size: 32px;
                 // text-shadow: 0 8px 3px rgba(0, 0, 0, .2);
@@ -456,6 +469,30 @@
                 }
             }
         }
+
+        p {
+            text-align: justify;
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0px;
+            color: var(--text-color);
+            opacity: 1;
+            margin-bottom: 8px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
+            }
+
+            a {
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
     }
 
     .page-blog {
@@ -470,7 +507,7 @@
         .faq-title {
             padding: 56px 0;
 
-            h3 {
+            h2 {
                 font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
                 font-size: 56px;
                 // text-shadow: 0 8px 3px rgba(0, 0, 0, .2);
@@ -490,22 +527,61 @@
         }
     }
 
-    .section-seo {
-        background: var(--color-white-pure);
-        padding-bottom: 56px;
+    .section-unlock-access {
+        margin-bottom: 56px;
+        height: 580px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
 
-        .image-about-us {
+        @media screen and (max-width: 991px) {
+            height: 260px;
+        }
+
+        @media screen and (max-width: 550px) {
+            height: 195px;
+        }
+
+        .container {
             height: 100%;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .media {
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
 
             img {
-                width: 100%;
-                height: 100%;
                 object-fit: cover;
-                object-position: center;
-                border-radius: 12px;
+                object-position: center center;
+                transition: opacity .1s cubic-bezier(.25,.46,.45,.94);
+                opacity: 0.8;
+                display: block;
+                max-width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
             }
+        }
+
+        .context {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 16px;
         }
 
         h3 {
@@ -513,7 +589,98 @@
             font-size: 24px;
             text-transform: uppercase;
             margin-bottom: 32px;
-            text-align: center;
+
+            @media screen and (max-width: 991px) {
+                font-size: 18px;
+            }
+        }
+
+        p {            text-align: center;
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0px;
+            color: var(--text-color);
+            opacity: 1;
+            margin-bottom: 8px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
+            }
+
+            a {
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
+    }
+
+    .section-become-escort {
+        background: var(--background-white);
+        height: 580px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+
+        @media screen and (max-width: 991px) {
+            height: 260px;
+        }
+
+        @media screen and (max-width: 550px) {
+            height: 195px;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .media {
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+
+            img {
+                object-fit: cover;
+                object-position: center center;
+                transition: opacity .1s cubic-bezier(.25,.46,.45,.94);
+                opacity: 0.8;
+                display: block;
+                max-width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .context {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h3 {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
 
             @media screen and (max-width: 991px) {
                 font-size: 18px;
@@ -521,7 +688,45 @@
         }
 
         p {
-            text-align: center;
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0px;
+            color: var(--text-color);
+            opacity: 1;
+            margin-bottom: 8px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
+            }
+
+            a {
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
+    }
+
+    .section-this-is-the-girl-next-door-escort {
+        background: var(--color-white-pure);
+        padding-bottom: 56px;
+
+        h2 {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+
+            @media screen and (max-width: 991px) {
+                font-size: 18px;
+            }
+        }
+
+        p {
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 16px;
             line-height: 1.4;
@@ -550,9 +755,74 @@
             justify-content: center;
             flex-direction: column;
             color: #f6cd7e;
-            text-align: center;
         }
     }
+
+    .section-seo {
+        background: var(--color-white-pure);
+        padding-bottom: 56px;
+
+        .image-about-us {
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                border-radius: 12px;
+            }
+        }
+
+        h3 {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+
+            @media screen and (max-width: 991px) {
+                font-size: 18px;
+            }
+        }
+
+        p {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0px;
+            color: var(--text-color);
+            opacity: 1;
+            margin-bottom: 8px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
+            }
+
+            a {
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
+
+        .text-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #f6cd7e;
+        }
+    }
+}
+
+.title-section {
+    padding: 0 !important;
+    margin-bottom: 24px;
 }
 
 .overlay {
@@ -615,5 +885,105 @@
     to {
         opacity: 0;
         top: 45px;
+    }
+}
+
+.fs-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: inherit;
+    display: flex;
+    flex-wrap: wrap;
+
+    .fs-entry-container {
+        width: 16.666666666666668% !important;
+        padding-top: 16.666666666666668% !important;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 16.666666666666668%;
+
+        @media screen and (max-width: 767px) {
+            width: 33.333333333333336% !important;
+            padding-top: 33.333333333333336% !important;
+            flex: 0 0 33.333333333333336%;
+        }
+
+        .fs-entry {
+            cursor: pointer;
+            position: absolute;
+            background-color: transparent;
+            list-style-type: none;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 1px;
+            
+            .fs-text-container {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transition: opacity .25s;
+                opacity: 0;
+                background-color: rgba(0, 0, 0, 0.35);
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.modal-dialog {
+    .btn-close {
+        position: absolute;
+        right: 16px;
+    }
+
+    .modal-content {
+        .modal-header {}
+        .modal-body {
+            img {
+                max-width: 100%;
+
+                @media screen and (max-width: 767px) {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                }
+            }
+
+            h2 {
+                font-size: 40px;
+                margin-bottom: 4px;
+            }
+
+            p {
+                &#location {
+                    font-size: 14px;
+                    margin-bottom: 24px;
+                }
+
+                &#description {
+                    font-size: 16px;
+                    margin-bottom: 24px;
+                    line-height: 1.4;
+                }
+            }
+        }
+        .modal-footer {}
     }
 }

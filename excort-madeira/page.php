@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php
     get_header(); 
@@ -61,14 +61,16 @@
                 <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_1_page; ?></h3>
+                            <h2><?php echo $title_text_field_1_page; ?></h2>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_1_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_1_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -78,13 +80,15 @@
             <div class="section-single-page">
                 <div class="title pt-0">
                     <div class="container">
-                        <h3><?php echo get_the_title(); ?></h3>
+                        <h2><?php echo get_the_title(); ?></h2>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="row">
-                        <?php echo apply_filters('the_content', $post->post_content); ?>
+                        <div class="content">
+                            <?php echo apply_filters('the_content', $post->post_content); ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,8 +103,10 @@
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p><?php echo $text_field_2_page; ?></p>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_2_page; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>

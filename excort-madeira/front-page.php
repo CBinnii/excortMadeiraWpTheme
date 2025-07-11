@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php 
 	get_header();
@@ -96,7 +96,8 @@
                     <div class="section-topexcorts">
                         <div class="title">
                             <div class="container">
-                                <h3>Top escorts</h3>
+                                <h2>Verified Escorts</h2>
+                                <div class="section-label">Verified Independent Escorts</div>
                             </div>
                         </div>
 
@@ -150,7 +151,7 @@
                                                         <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
                                                     </div>
                                                 </div>
-                                                <h3><?php echo get_the_title($post->ID); ?></h3>
+                                                <h2><?php echo get_the_title($post->ID); ?></h2>
                                                 <p>
                                                     <?php if (!empty($location_more)) : ?>
                                                         <?php echo $location_more; ?>
@@ -179,8 +180,8 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="escorts" class="button bold white">
-                                    See all escorts
+                                <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
+                                    View all escorts
                                 </a>
                             </div>
                         </div>
@@ -192,63 +193,170 @@
             <!-- About Section -->
             <?php 
                 $title = get_field('title_about_section');
+                $subtitle = get_field('subtitle_about_section');
                 $text = get_field('text_about_section');
                 
                 if ($title && $text) : ?>
                 <div class="section-about">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title; ?></h3>
+                            <h1><?php echo $title; ?></h1>
+                            <?php if ($subtitle) : ?>
+                                <div class="section-label"><?php echo $subtitle; ?></div>
+                            <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <?php echo apply_filters('the_content', $text); ?>
-                            </div>
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <?php echo apply_filters('the_content', $text); ?>
+                                </div>
 
-                            <div class="d-flex justify-content-center mt-30">
-                                <a href="about" class="button bold white">
-                                    More about us
-                                </a>
+                                <div class="d-flex justify-content-center mt-30">
+                                    <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
+                                        View profiles
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
+            
+            <!-- Unlock Access Section -->
+            <?php 
+                $title_section = get_field('title_section');
+                $subtitle_section = get_field('subtitle_section');
+                $text_section = get_field('text_section');
+                $button_text = get_field('button_text');
+                $button_link = get_field('button_link');
+                $image_section = get_field('image_section');
+            ?>
+                <div class="section-unlock-access">
+                    <div class="container p-0">
+                        <div class="media">
+                            <img src="<?php echo $image_section ?>" alt="Image <?php echo $title_section; ?>">
+                        </div>
+                    
+                        <div class="context">
+                            <div class="title title-section mob-mb-8">
+                                <h1><?php echo $title_section; ?></h1>
+                                <?php if ($subtitle_section) : ?>
+                                    <div class="section-label"><?php echo $subtitle_section; ?></div>
+                                <?php endif; ?>
+                            </div>
 
+                            <div class="row">
+                                <div class="content">
+                                    <div class="col-md-12">
+                                        <?php echo apply_filters('the_content', $text_section); ?>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mt-30 mob-mt-8">
+                                        <a href="<?php echo $button_link; ?>" class="button bold white">
+                                            <?php echo $button_text; ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Become The Girl Section -->
+            <?php 
+                $title_become_section = get_field('title_become_section');
+                $subtitle_become_section = get_field('subtitle_become_section');
+                $text_become_section = get_field('text_become_section');
+                $button_become_text = get_field('button_become_text');
+                $button_become_link = get_field('button_become_link');
+                $image_become_section = get_field('image_become_section');
+            ?>
+                <div class="section-become-escort">
+                    <div class="container p-0">
+                        <div class="media">
+                            <img src="<?php echo $image_become_section ?>" alt="Image <?php echo $title_become_section; ?>">
+                        </div>
+
+                        <div class="context">
+                            <div class="title title-section mob-mb-8">
+                                <h1><?php echo $title_become_section; ?></h1>
+                                <?php if ($subtitle_become_section) : ?>
+                                    <div class="section-label"><?php echo $subtitle_become_section; ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="row">
+                                <div class="content">
+                                    <div class="col-md-12">
+                                        <?php echo apply_filters('the_content', $text_become_section); ?>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mt-30 mob-mt-8">
+                                        <a href="<?php echo $button_become_link; ?>" class="button bold white">
+                                            <?php echo $button_become_text; ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
             <!-- Blog Section -->
             <?php
+                $title_blog_section = get_field('title_blog_section');
+                $subtitle_blog_section = get_field('subtitle_blog_section');
+                $text_blog_section = get_field('text_blog_section');
+
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
                     'showposts' => 6,
+                    'meta_query' => array(
+                        array(
+                            'key' => 'featured_image_hover',
+                            'compare' => 'EXISTS',
+                        ),
+                    ),
                 );
 
                 $more = new WP_Query( $args );
 
-			    if (!empty($more->posts)): ?>
-                    <div class="section-blog">
+			    if (!empty($more->posts)): 
+                ?>
+                    <div class="section-blog bg-white">
                         <div class="title">
                             <div class="container">
-                                <h3>Blog</h3>
+                                <h2><?php echo $title_blog_section; ?></h2>
+
+                                <?php if ($subtitle_blog_section) : ?>
+                                    <div class="section-label"><?php echo $subtitle_blog_section; ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="container">
+                            <?php if ($text_blog_section) : ?>
+                                <div class="content">
+                                    <div class="col-md-12 mb-24">
+                                        <?php echo apply_filters('the_content', $text_blog_section); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <div class="row row-adjustment">
-                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/
+                                    $featured_image_hover = get_field('featured_image_hover');?>
                                     <div class="col-md-6 col-adjustment">
-                                        <a href="<?php echo $post->post_name; ?>" class="post-box">
+                                        <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box">
                                             <div class="image">
                                                 <?php if (has_post_thumbnail( $post->ID ) ) { ?>
-                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    <img class="img-normal" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    <img class="img-hover" src="<?php echo $featured_image_hover; ?>" alt="">
                                                 <?php } else { ?>
                                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
                                                 <?php } ?>
-
-                                                <h1> <?php echo get_the_title($post->ID); ?> </h1>
                                             </div>
                                         </a>
                                     </div>
@@ -256,7 +364,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="blog" class="button bold white">
+                                <a href="<?php echo get_home_url(); ?>/blog" class="button bold white">
                                     Read more
                                 </a>
                             </div>
@@ -265,13 +373,71 @@
                 <?php endif;
                 wp_reset_query();
             ?>
+
+            <!-- This is the girl next door Section -->
+            <?php 
+                $title_section_this_is_the_girl_next_door = get_field('title_section_this_is_the_girl_next_door');
+                $subtitle_section_this_is_the_girl_next_door = get_field('subtitle_section_this_is_the_girl_next_door');
+                $text_section_this_is_the_girl_next_door = get_field('text_section_this_is_the_girl_next_door');
+                $button_text_this_is_the_girl_next_door = get_field('button_text_this_is_the_girl_next_door');
+                $button_link_this_is_the_girl_next_door = get_field('button_link_this_is_the_girl_next_door');
+                $image_section_this_is_the_girl_next_door = get_field('image_section_this_is_the_girl_next_door');
+            ?>
+                <div class="section-this-is-the-girl-next-door-escort bg-light">
+                    <div class="title">
+                        <div class="container">
+                            <h1><?php echo $title_section_this_is_the_girl_next_door; ?></h1>
+                            <?php if ($subtitle_section_this_is_the_girl_next_door) : ?>
+                                <div class="section-label"><?php echo $subtitle_section_this_is_the_girl_next_door; ?></div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <?php if ($text_section_this_is_the_girl_next_door) : ?>
+                                <div class="content">
+                                    <div class="col-md-12">
+                                        <?php echo apply_filters('the_content', $text_section_this_is_the_girl_next_door); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div>
+                            <?php if ($image_section_this_is_the_girl_next_door) : ?>
+                                <div class="fs-wrapper">
+                                    <?php foreach( $image_section_this_is_the_girl_next_door as $photo ): ?>
+                                        <div class="fs-entry-container">
+                                            <div class="fs-entry" style="background-image: url('<?php echo esc_url($photo['url']); ?>')">
+                                                <div class="fs-text-container" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-image="<?php echo esc_url($photo['url']); ?>" data-bs-title="<?php echo $photo['title'] ?>" data-bs-link="<?php echo $photo['alt'] ?>" data-bs-description="<?php echo $photo['description'] ?>" data-bs-location="<?php echo $photo['caption'] ?>">
+                                                    <div class="fs-service-icon">
+                                                        <i class="fs-icon fs-fa-instagram"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($button_link_this_is_the_girl_next_door && $button_text_this_is_the_girl_next_door) : ?>
+                                <div class="d-flex justify-content-center mt-30">
+                                    <a href="<?php echo $button_link_this_is_the_girl_next_door; ?>" class="button bold white">
+                                        <?php echo $button_text_this_is_the_girl_next_door; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
             
             <!-- FAQ Section -->
             <?php if( have_rows('faq') ): ?>
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h3>FAQ</h3>
+                            <h2>FAQ</h2>
                         </div>
                     </div>
 
@@ -306,6 +472,34 @@
         </div>
     </section>
 
+    <div class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="" alt="" id="image">
+                            </div>
+                            <div class="col-md-7">
+                                <h2 id="title"></h2>
+                                <p id="location"></p>
+                                <p id="description"></p>
+
+                                <div class="d-flex justify-content-center">
+                                    <a href="#" target="_blank" class="button bold medium text-center"> See more </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php
 	get_footer();
 ?>
+
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/modal.js"></script>

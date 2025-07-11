@@ -79,6 +79,14 @@ a {
         padding: var(--spacing-8) var(--spacing-12);
     }
 
+    &.pl-0 {
+        padding-left: 0 !important;
+    }
+
+    &.pr-0 {
+        padding-right: 0 !important;
+    }
+
     &.white {
         color: #f9f4de;
     }

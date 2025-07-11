@@ -82,7 +82,7 @@
                 }
             }
 
-            h3 {
+            h2 {
                 font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
                 font-size: 32px;
                 // text-shadow: 0 8px 3px rgba(0, 0, 0, .2);
@@ -137,6 +137,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
 
             .button {
                 width: 200px;
@@ -281,5 +282,88 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+/* Esconde o conteúdo por padrão no mobile */
+.accordion-content {
+    display: none;
+    border: none;
+}
+
+/* Botão do título do accordion */
+.accordion-toggle {
+    width: 100%;
+    background-color: #f9f4de;
+    border: none;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    border-radius: 30px;
+    cursor: pointer !important;
+
+    .arrow {
+        transition: transform 0.3s ease;
+        position: absolute;
+        top: 9px;
+        right: 20px;
+
+        &:after, &:before {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: "";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        &:after {
+            border-color: rgba(255, 255, 255, 0);
+            border-top-color: #f9f4de;
+            border-width: 6px;
+            margin-left: -6px;
+        }
+        
+        &:before {
+            border-color: rgba(0, 0, 0, 0);
+            border-top-color: #000;
+            border-width: 10px;
+            margin-left: -10px;
+        }
+    }
+    
+    &.active {
+        .arrow {
+            transform: rotate(180deg); /* seta para cima */
+            top: 19px;
+        }
+    }
+}
+
+/* Apenas no mobile */
+@media (min-width: 768px) {
+    .accordion-toggle,
+    .accordion-content {
+        display: block !important;
+        cursor: default !important;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+    .accordion-toggle {
+        cursor: default;
+        background: none;
+        padding: 0;
+        border: none;
+        font-size: 24px;
+    }
+
+    .accordion-content {
+        padding: 0;
+        border: none;
     }
 }

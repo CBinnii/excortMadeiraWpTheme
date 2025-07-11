@@ -1,5 +1,5 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="keywords" content="<?php echo the_field('meta_key'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php 
 	get_header();
@@ -52,19 +52,61 @@
                 </div>
             <?php endif; ?>
 
+            <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
+                <div class="section-about bg-white pb-0">
+                    <div class="title">
+                        <div class="container">
+                            <h2><?php echo $title_text_field_1_page; ?></h2>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_1_page; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <div class="section-pricing">
                 <div class="title pt-0">
                     <div class="container">
-                        <h3>Payment and rate</h3>
+                        <h2>Payment and rate</h2>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="row">
-                        <?php echo apply_filters('the_content', $post->post_content); ?>
+                        <div class="content">
+                            <?php echo apply_filters('the_content', $post->post_content); ?>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
+                <div class="section-about bg-white pb-0">
+                    <div class="title">
+                        <div class="container">
+                            <h2><?php echo $title_text_field_2_page; ?></h2>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <p><?php echo $text_field_2_page; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 

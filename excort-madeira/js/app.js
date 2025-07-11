@@ -165,9 +165,13 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
     },
     freeMode: true,
     loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: true,
+    },
     breakpoints: {
         240: {
-            slidesPerView: 2,
+            slidesPerView: "auto",
             spaceBetween: 2,
         },
         768: {
