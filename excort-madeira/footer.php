@@ -35,7 +35,9 @@
                         <h3>Contact</h3>
 
                         <div class="footer-contact">
-                            <?php echo the_field('contact', 'option'); ?>
+                            <div class="mb-24">
+                                <?php echo the_field('contact', 'option'); ?>
+                            </div>
 
                             <?php 
                                 $whatsapp = get_field('whatsapp_url', 'option');
@@ -61,7 +63,9 @@
 
                 <div class="partner">
                     <div class="content">
-                        <p class="mb-16"><strong>The girl next door</strong> is a platform for verified independent escorts. We facilitate introductions only and do not manage, influence or take responsibility for any agreement before, during or after a meeting. Read full disclaimer</p>
+                        <div class="mb-16">
+                            <?php echo the_field('disclaimer', 'option'); ?>
+                        </div>
                     </div>
 
                     <?php 

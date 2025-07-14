@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                     <?php echo apply_filters('the_content', $post->post_content); ?>
                                 </div>
                                 
-                                <div class="col-md-6 mob-mb-24">
+                                <div class="col-12 mob-mb-24">
                                     <h3 class="text-uppercase">Contact</h3>
                                     <?php echo the_field('contact', 'option'); ?>
 
@@ -123,11 +123,6 @@
                                             <?php endif; ?>
                                         </li>
                                     </ul>
-                                </div>
-        
-                                <div class="col-md-6">
-                                    <h3 class="text-uppercase">Opening hours</h3>
-                                    <?php echo the_field('opening_hours', 'option'); ?>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +181,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>

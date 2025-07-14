@@ -361,21 +361,19 @@
             justify-content: center;
             flex-direction: column;
             color: #012319;
-            transition: transform 0.3s ease;
+            // transition: transform 0.3s ease;
             cursor: pointer;
             overflow: hidden;
             text-decoration: none;
+            
+            &:hover {
+                .image {
+                    .img-hover {
+                        opacity: 1;
+                    }
 
-            @media screen and (min-width: 768px) {
-                &:hover {
-                    .image {
-                        .img-hover {
-                            opacity: 1;
-                        }
-
-                        .img-normal {
-                            opacity: 0;
-                        }
+                    .img-normal {
+                        opacity: 0;
                     }
                 }
             }
@@ -410,7 +408,6 @@
                     top: 0;
                     left: 0;
                     opacity: 0;
-                    transition: opacity 0.6s ease;
                 }
 
                 h2 {
@@ -562,7 +559,6 @@
                 object-fit: cover;
                 object-position: center center;
                 transition: opacity .1s cubic-bezier(.25,.46,.45,.94);
-                opacity: 0.8;
                 display: block;
                 max-width: 100%;
                 position: absolute;
@@ -600,7 +596,6 @@
             font-size: 16px;
             line-height: 1.4;
             letter-spacing: 0px;
-            color: var(--text-color);
             opacity: 1;
             margin-bottom: 8px;
 
@@ -654,7 +649,6 @@
                 object-fit: cover;
                 object-position: center center;
                 transition: opacity .1s cubic-bezier(.25,.46,.45,.94);
-                opacity: 0.8;
                 display: block;
                 max-width: 100%;
                 position: absolute;
@@ -692,7 +686,6 @@
             font-size: 16px;
             line-height: 1.4;
             letter-spacing: 0px;
-            color: var(--text-color);
             opacity: 1;
             margin-bottom: 8px;
 

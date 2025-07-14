@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>

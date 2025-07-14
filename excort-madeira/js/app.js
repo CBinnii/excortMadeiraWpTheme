@@ -165,10 +165,6 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
     },
     freeMode: true,
     loop: true,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: true,
-    },
     breakpoints: {
         240: {
             slidesPerView: "auto",
@@ -225,9 +221,10 @@ var swiperWhy = new Swiper(".slider-why", {
 
 var swiperProfileSlider = new Swiper(".profile-slider", {
     loop: true,
-    spaceBetween: 10,
     navigation: {
         nextEl: ".swiper-button-next-profile",
         prevEl: ".swiper-button-prev-profile",
     },
+    slidesPerView: "auto",
+    spaceBetween: 1,
 });

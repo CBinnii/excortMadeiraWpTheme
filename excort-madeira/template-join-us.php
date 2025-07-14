@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -98,121 +98,40 @@
                 </div>
             <?php endif; ?>
 
-            <div class="section-booking border-bottom">
+            <div class="section-single-page">
+                <div class="title pt-0">
+                    <div class="container">
+                        <h2><?php echo get_the_title(); ?></h2>
+                    </div>
+                </div>
+
                 <div class="container">
-                    <div class="booking">
-                        <div class="row m-0">
-                            <div class="col-md-6 p-0">
-                                <div class="image-booking">
-                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bg-8.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 p-0">
-                                <div class="form-booking">
-                                    <form id="castingForm">
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="email" class="form-label">E-mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Your e-mail">
-                                            </div>
-                                        </div>
+                    <div class="row">
+                        <div class="content">
+                            <?php echo apply_filters('the_content', $post->post_content); ?>
 
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="phone" class="form-label">Phone</label>
-                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="city" class="form-label">City</label>
-                                                <input type="text" class="form-control" id="city" name="city" placeholder="City">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="nacionality" class="form-label">Nacionality</label>
-                                                <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Your nacionality">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="country" class="form-label">Country</label>
-                                                <input type="text" class="form-control" id="country" name="country" placeholder="Your country"> 
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-6 mb-16">
-                                                <label for="instagram" class="form-label">Intagram</label>
-                                                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="@Instagram">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="age" class="form-label">Age</label>
-                                                <input type="number" class="form-control" id="age" name="age" placeholder="Your age"> 
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-16">
-                                            <div class="col-md-4 mb-16">
-                                                <label for="chest" class="form-label">Chest</label>
-                                                <input type="text" class="form-control" id="chest" name="chest" placeholder="Chest (cm)">
-                                            </div>
-                                            <div class="col-md-4 mb-16">
-                                                <label for="hip" class="form-label">Hip</label>
-                                                <input type="text" class="form-control" id="hip" name="hip" placeholder="Hip (cm)"> 
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="waist" class="form-label">Waist</label>
-                                                <input type="text" class="form-control" id="waist" name="waist" placeholder="Waist (cm)"> 
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="languages" class="form-label">Languages</label>
-                                            <input type="text" class="form-control" id="languages" name="languages" placeholder="Languages">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="experience" class="form-label">Experience</label>
-                                            <input type="text" class="form-control" id="experience" name="experience" placeholder="Experience">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="description" class="form-label">Description</label>
-                                            <textarea class="form-control" id="description" name="description" rows="2" placeholder="Describe you"></textarea>
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="profile" class="form-label">Profile</label>
-                                            <input type="file" class="form-control" id="profile" name="profile" placeholder="Profile">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="wholeBody" class="form-label">Whole body</label>
-                                            <input type="file" class="form-control" id="wholeBody" name="wholeBody" placeholder="Whole body">
-                                        </div>
-
-                                        <div class="mb-16">
-                                            <label for="selfie" class="form-label">Selfie</label>
-                                            <input type="file" class="form-control" id="selfie" name="selfie" placeholder="Selfie">
-                                        </div>
-
-                                        <div>
-                                            <!-- Google reCAPTCHA -->
-                                            <div id="html_element" class="mb-16"></div>
-                                        </div>
-                
-                                        <div class="d-flex justify-content-start mb-16">
-                                            <button type="submit" id="submit" class="button white bold">Submit</button>
-                                            <button disabled id="submited" class="button white bold" style="display: none">Submit</button>
-                                        </div>
-                                    </form>
-
-                                    <!-- Onde será exibida a mensagem de retorno -->
-                                    <div id="formMessage"></div>
-                                </div>
+                            <div class="advertise-contact">
+                                <?php 
+                                    $whatsapp = get_field('whatsapp_url', 'option');
+                                    $phone = get_field('phone', 'option');
+                                    $clean_phone = preg_replace('/[^\d+]/', '', $phone);
+                                ?>
+                                <ul>
+                                    <li>
+                                        <?php if($whatsapp): ?>
+                                            <a href="<?php echo $whatsapp; ?>" target="_blank">
+                                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" width="24" alt="Whatsapp icon"> Whatsapp
+                                            </a>
+                                        <?php endif; ?>
+                                    </li>
+                                    <li>
+                                        <?php if($phone): ?>
+                                            <a href="tel:<?php echo $clean_phone; ?>" target="_blank">
+                                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/phone.svg" width="24" alt="Telegram icon"> <?php echo $phone; ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -231,60 +150,13 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
-
-            <!-- Blog Section -->
-            <?php
-                $args = array(
-                    'post_type' => 'post',
-                    'status' => 'publish',
-                    'showposts' => 2,
-                );
-
-                $more = new WP_Query( $args );
-
-			    if (!empty($more->posts)): ?>
-                    <div class="section-blog bg-white">
-                        <div class="title">
-                            <div class="container">
-                                <h3>Blog</h3>
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <div class="row row-adjustment">
-                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
-                                    <div class="col-md-6 col-adjustment">
-                                        <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box">
-                                            <div class="image">
-                                                <?php if (has_post_thumbnail( $post->ID ) ) { ?>
-                                                    <img class="img-normal" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
-                                                    <img class="img-hover" src="<?php echo $featured_image_hover; ?>" alt="">
-                                                <?php } else { ?>
-                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
-                                                <?php } ?>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-
-                            <div class="d-flex justify-content-center mt-30">
-                                <a href="blog" class="button bold white">
-                                    Read more
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif;
-                wp_reset_query();
-            ?>
         </div>
     </section>
 

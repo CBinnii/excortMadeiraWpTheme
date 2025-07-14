@@ -140,5 +140,22 @@
                 margin-bottom: 8px;
             }
         }
+
+        .form-verified {
+            background-color: #FFFFFF;
+            height: 100%;
+            padding: 24px;
+
+            label {
+                font-size: 16px;
+                color: #333333;
+                margin-bottom: 8px;
+                line-height: 1.4;
+
+                a {
+                    color: #313131;
+                }
+            }
+        }
     }
 }

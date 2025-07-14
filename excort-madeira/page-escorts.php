@@ -68,7 +68,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                     endif;
                                     ?>
                                     <div class="col-6 col-md-3 col-adjust-escorts">
-                                        <a href="<?php echo $post->post_name; ?>" class="escort-box">
+                                        <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                             <div class="image-container">
                                                 <div class="image">
                                                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
@@ -179,8 +179,8 @@
             ?>
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
-                <div class="section-about bg-white pb-0">
-                    <div class="title">
+                <div class="section-about pt-0 bg-white">
+                    <div class="title pt-0">
                         <div class="container">
                             <h2><?php echo $title_text_field_2_page; ?></h2>
                         </div>
@@ -190,7 +190,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>

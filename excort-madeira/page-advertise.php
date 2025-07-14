@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -240,21 +240,29 @@
                     'post_type' => 'post',
                     'status' => 'publish',
                     'showposts' => 2,
+                    'meta_query' => array(
+                        array(
+                            'key' => 'featured_image_hover',
+                            'compare' => 'EXISTS',
+                        ),
+                    ),
                 );
 
                 $more = new WP_Query( $args );
 
-			    if (!empty($more->posts)): ?>
+			    if (!empty($more->posts)): 
+                ?>
                     <div class="section-blog bg-white">
                         <div class="title">
                             <div class="container">
-                                <h3>Blog</h3>
+                                <h2>Our Blog</h2>
                             </div>
                         </div>
 
                         <div class="container">
                             <div class="row row-adjustment">
-                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/
+                                    $featured_image_hover = get_field('featured_image_hover');?>
                                     <div class="col-md-6 col-adjustment">
                                         <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box">
                                             <div class="image">
@@ -271,7 +279,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="blog" class="button bold white">
+                                <a href="<?php echo get_home_url(); ?>/blog" class="button bold white">
                                     Read more
                                 </a>
                             </div>

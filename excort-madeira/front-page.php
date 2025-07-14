@@ -96,8 +96,7 @@
                     <div class="section-topexcorts">
                         <div class="title">
                             <div class="container">
-                                <h2>Verified Escorts</h2>
-                                <div class="section-label">Verified Independent Escorts</div>
+                                <h2>Meet Verified Independent Escorts in Portugal</h2>
                             </div>
                         </div>
 
@@ -215,7 +214,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center mt-30">
-                                    <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
+                                    <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
                                         View profiles
                                     </a>
                                 </div>
@@ -242,15 +241,15 @@
                     
                         <div class="context">
                             <div class="title title-section mob-mb-8">
-                                <h1><?php echo $title_section; ?></h1>
+                                <h1 class="color-white"><?php echo $title_section; ?></h1>
                                 <?php if ($subtitle_section) : ?>
-                                    <div class="section-label"><?php echo $subtitle_section; ?></div>
+                                    <div class="section-label color-white"><?php echo $subtitle_section; ?></div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="row">
                                 <div class="content">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 color-white">
                                         <?php echo apply_filters('the_content', $text_section); ?>
                                     </div>
 
@@ -282,14 +281,14 @@
 
                         <div class="context">
                             <div class="title title-section mob-mb-8">
-                                <h1><?php echo $title_become_section; ?></h1>
+                                <h1 class="color-white"><?php echo $title_become_section; ?></h1>
                                 <?php if ($subtitle_become_section) : ?>
-                                    <div class="section-label"><?php echo $subtitle_become_section; ?></div>
+                                    <div class="section-label color-white"><?php echo $subtitle_become_section; ?></div>
                                 <?php endif; ?>
                             </div>
                             <div class="row">
                                 <div class="content">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 color-white">
                                         <?php echo apply_filters('the_content', $text_become_section); ?>
                                     </div>
 
@@ -489,7 +488,7 @@
                                 <p id="description"></p>
 
                                 <div class="d-flex justify-content-center">
-                                    <a href="#" target="_blank" class="button bold medium text-center"> See more </a>
+                                    <a href="#" class="button bold medium text-center"> See more </a>
                                 </div>
                             </div>
                         </div>

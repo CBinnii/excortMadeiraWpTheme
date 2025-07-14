@@ -73,7 +73,7 @@
             <?php endif; ?>
 
             <?php if( !empty($title_text_field_1_page) || !empty($text_field_1_page) ): ?>
-                <div class="section-about bg-white pb-0">
+                <div class="section-about pb-0">
                     <div class="title">
                         <div class="container">
                             <h2><?php echo $title_text_field_1_page; ?></h2>
@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -92,12 +92,12 @@
                 </div>
             <?php endif; ?>
 
-            <div class="section-booking border-bottom">
+            <div class="section-booking bg-light">
                 <div class="container">
                     <div class="booking">
                         <div class="row m-0">
                             <div class="col-12 p-0">
-                                <div class="form-booking">
+                                <div class="form-booking form-verified">
                                     <form id="verifiedForm">
                                         <div class="row mb-24">
                                             <div class="col-md-6 mob-mb-8">
@@ -133,26 +133,26 @@
                                         </div>
                                         
                                         <div class="row mb-24">
-                                            <span class="txt-paragraph lg uppercase block mb-16 white">Verification Method</span>
-                                            <div class="col-md-3">
+                                            <span class="txt-paragraph lg uppercase block mb-16">Verification Method</span>
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="radio" name="verified" id="id" required value="ID">
                                                 <label class="form-check-label m-0" for="man">
                                                     ID
                                                 </label>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="radio" name="verified" id="transfer" required value="€1 transfer via Wise or Revolut">
                                                 <label class="form-check-label m-0" for="transfer">
                                                     €1 transfer via Wise or Revolut
                                                 </label>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="radio" name="verified" id="hotel-screen" required value="Hotel screenshot">
                                                 <label class="form-check-label m-0" for="couple">
                                                     Hotel screenshot
                                                 </label>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="radio" name="verified" id="hotel-phone" required value="Hotel phone verification">
                                                 <label class="form-check-label m-0" for="couple">
                                                     Hotel phone verification
@@ -161,27 +161,28 @@
                                         </div>
 
                                         <div class="row mb-24">
-                                            <div class="col-12 mb-2">
+                                            <span class="txt-paragraph lg uppercase block mb-16">Accept terms</span>
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="checkbox" name="confirm1" id="confirm1" value="I confirm I am over 18 years of age">
-                                                <label class="form-check-label m-0" for="confirm1">
+                                                <label class="form-check-label m-0" for="confirm1" style="display: inline;">
                                                     I confirm I am over 18 years of age.
                                                 </label>
                                             </div>
-                                            <div class="col-12 mb-2">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="checkbox" name="confirm2" id="confirm2" value="I understand the girl next door only facilitates introductions">
-                                                <label class="form-check-label m-0" for="confirm2">
+                                                <label class="form-check-label m-0" for="confirm2" style="display: inline;">
                                                     I understand the girl next door only facilitates introductions.
                                                 </label>
                                             </div>
-                                            <div class="col-12 mb-2">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="checkbox" name="confirm4" id="confirm4" value="I agree to the Privacy Policy and Terms & Conditions">
-                                                <label class="form-check-label m-0" for="confirm4">
+                                                <label class="form-check-label m-0" for="confirm4" style="display: inline;">
                                                     I agree to the <a href="<?php echo get_home_url(); ?>/privacy-policy-2" target="_blank">Privacy Policy</a> and <a href="<?php echo get_home_url(); ?>/terms-conditions" target="_blank">Terms & Conditions</a>.
                                                 </label>
                                             </div>
-                                            <div class="col-12 mb-2">
+                                            <div class="col-12 mb-24">
                                                 <input class="form-check-input m-0" type="checkbox" name="confirm5" id="confirm5" value="I understand all introductions are subject to verification">
-                                                <label class="form-check-label m-0" for="confirm5">
+                                                <label class="form-check-label m-0" for="confirm5" style="display: inline;">
                                                     I understand all introductions are subject to verification.
                                                 </label>
                                             </div>
@@ -192,7 +193,7 @@
                                             <div id="html_element" class="mb-3"></div>
                                         </div>
 
-                                        <div class="d-flex justify-content-start mb-3">
+                                        <div class="d-flex justify-content-start">
                                             <button type="submit" id="submit" class="button white bold">Get Verified</button>
                                             <button disabled id="submited" class="button white bold" style="display: none">Get Verified</button>
                                         </div>
@@ -208,7 +209,7 @@
             </div>
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
-                <div class="section-about bg-white pb-0">
+                <div class="section-about pb-0">
                     <div class="title">
                         <div class="container">
                             <h2><?php echo $title_text_field_2_page; ?></h2>
@@ -219,7 +220,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -232,16 +233,23 @@
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
-                    'showposts' => 6,
+                    'showposts' => 2,
+                    'meta_query' => array(
+                        array(
+                            'key' => 'featured_image_hover',
+                            'compare' => 'EXISTS',
+                        ),
+                    ),
                 );
 
                 $more = new WP_Query( $args );
 
-			    if (!empty($more->posts)): ?>
-                    <div class="section-blog">
+			    if (!empty($more->posts)): 
+                ?>
+                    <div class="section-blog bg-white">
                         <div class="title">
                             <div class="container">
-                                <h2>Blog</h2>
+                                <h2>Our Blog</h2>
                             </div>
                         </div>
 

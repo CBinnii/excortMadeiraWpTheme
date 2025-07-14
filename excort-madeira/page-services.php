@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_1_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_1_page); ?>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="row">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
                                     <div class="col-sm-3">
-                                        <a href="<?php echo $post->post_name; ?>" class="service-box">
+                                        <a href="<?php echo get_permalink($post->ID); ?>" class="service-box">
                                             <div class="image">
                                                 <?php if (has_post_thumbnail( $post->ID ) ) { ?>
                                                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
@@ -115,7 +115,7 @@
             ?>
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
-                <div class="section-about bg-white pb-0">
+                <div class="section-about bg-white">
                     <div class="title">
                         <div class="container">
                             <h2><?php echo $title_text_field_2_page; ?></h2>
@@ -126,7 +126,7 @@
                         <div class="row">
                             <div class="content">
                                 <div class="col-md-12">
-                                    <p><?php echo $text_field_2_page; ?></p>
+                                    <?php echo apply_filters('the_content', $text_field_2_page); ?>
                                 </div>
                             </div>
                         </div>

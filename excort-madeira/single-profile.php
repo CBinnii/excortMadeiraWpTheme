@@ -214,71 +214,72 @@
                                         </div>
 
                                         <div class="profile-book">
-                                            <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold medium">
-                                                Get Verified
-                                            </a>
                                             <?php if (is_user_logged_in() ) : ?>
                                                 <a href="https://wa.me/31612345678?text=Hi%2C%20I%20was%20verified%20via%20*the girl next door*%20and%20would%20love%20to%20connect." target="_blank" class="ml-4 button bold medium">
                                                     Whatsapp
+                                                </a>
+                                            <?php else : ?>
+                                                <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold medium">
+                                                    Get Verified
                                                 </a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
 
                                     <div class="profile-bio">
-                                        <button class="accordion-toggle active mb-16">
+                                        <button class="accordion-toggle mb-16 mob-mb-0">
                                             <span class="txt-heading block md text-center">ABOUT</span>
                                             <span class="arrow"></span>
                                         </button>
                                         
-                                        <div class="accordion-content" style="display: block;">
+                                        <div class="accordion-content">
                                             <?php echo apply_filters('the_content', $bio); ?>
                                         </div>
                                     </div>
 
-                                    <div class="profile-stat">
-                                        <div class="stats">
-                                            <button class="accordion-toggle mb-16">
-                                                <span class="txt-heading block md text-center">BODY & SHAPE</span>
-                                                <span class="arrow"></span>
-                                            </button>
-                                            
-                                            <div class="accordion-content">
-                                                <div class="row">
-                                                    <div class="table-style">
-                                                        <?php if( have_rows('more_fields') ): ?>
-                                                            <?php
-                                                                while( have_rows('more_fields') ) : the_row();
-                                                                    $label = get_sub_field('label');
-                                                                    $value = get_sub_field('value');
-                                                            ?>
-                                                                <div class="row m-0 table-row">
-                                                                    <div class="col-6 p-0">
-                                                                        <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                    <?php if( have_rows('more_fields') ): ?>
+                                        <div class="profile-stat">
+                                            <div class="stats">
+                                                <button class="accordion-toggle mb-16 mob-mb-0">
+                                                    <span class="txt-heading block md text-center">GENERAL</span>
+                                                    <span class="arrow"></span>
+                                                </button>
+                                                
+                                                <div class="accordion-content">
+                                                    <div class="row">
+                                                        <div class="table-style">
+                                                                <?php
+                                                                    while( have_rows('more_fields') ) : the_row();
+                                                                        $label = get_sub_field('label');
+                                                                        $value = get_sub_field('value');
+                                                                ?>
+                                                                    <div class="row m-0 table-row">
+                                                                        <div class="col-6 p-0">
+                                                                            <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
+                                                                        </div>
+                                                                        <div class="col-6 p-0">
+                                                                            <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-6 p-0">
-                                                                        <span class="txt-paragraph block lg"><?php echo $value ?></span>
-                                                                    </div>
-                                                                </div>
-                                                            <?php endwhile; ?>
-                                                        <?php endif; ?>
+                                                                <?php endwhile; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
 
-                                    <div class="profile-stat">
-                                        <div class="stats">
-                                            <button class="accordion-toggle mb-16">
-                                                <span class="txt-heading block md text-center">LANGUAGE</span>
-                                                <span class="arrow"></span>
-                                            </button>
+                                    <?php if( have_rows('languages') ): ?>
+                                        <div class="profile-stat">
+                                            <div class="stats">
+                                                <button class="accordion-toggle mb-16 mob-mb-0">
+                                                    <span class="txt-heading block md text-center">LANGUAGE</span>
+                                                    <span class="arrow"></span>
+                                                </button>
 
-                                            <div class="accordion-content">
-                                                <div class="row">
-                                                    <div class="table-style">
-                                                        <?php if( have_rows('languages') ): ?>
+                                                <div class="accordion-content">
+                                                    <div class="row">
+                                                        <div class="table-style">
                                                             <?php
                                                                 while( have_rows('languages') ) : the_row();
                                                                     $language = get_sub_field('language');
@@ -293,24 +294,24 @@
                                                                     </div>
                                                                 </div>
                                                             <?php endwhile; ?>
-                                                        <?php endif; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
 
-                                    <div class="profile-stat">
-                                        <div class="stats">
-                                            <button class="accordion-toggle mb-16">
-                                                <span class="txt-heading block md text-center">APPEARANCE</span>
-                                                <span class="arrow"></span>
-                                            </button>
-                                            
-                                            <div class="accordion-content">
-                                                <div class="row">
-                                                    <div class="table-style">
-                                                        <?php if( have_rows('appearance_fields') ): ?>
+                                    <?php if( have_rows('appearance_fields') ): ?>
+                                        <div class="profile-stat">
+                                            <div class="stats">
+                                                <button class="accordion-toggle mb-16 mob-mb-0">
+                                                    <span class="txt-heading block md text-center">APPEARANCE</span>
+                                                    <span class="arrow"></span>
+                                                </button>
+                                                
+                                                <div class="accordion-content">
+                                                    <div class="row">
+                                                        <div class="table-style">
                                                             <?php
                                                                 while( have_rows('appearance_fields') ) : the_row();
                                                                     $label = get_sub_field('label');
@@ -325,17 +326,17 @@
                                                                     </div>
                                                                 </div>
                                                             <?php endwhile; ?>
-                                                        <?php endif; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                     
                                     <?php if( have_rows('rate') ): 
                                         $rates = get_field('rate');?>
                                         <div class="profile-rate">
-                                            <button class="accordion-toggle mb-16">
+                                            <button class="accordion-toggle mb-16 mob-mb-0">
                                                 <span class="txt-heading block uppercase md text-center">Rates</span>
                                                 <span class="arrow"></span>
                                             </button>
@@ -413,7 +414,7 @@
 
                                         if( $services ) : ?>
                                         <div class="profile-personal-services mb-30">
-                                            <button class="accordion-toggle mb-16">
+                                            <button class="accordion-toggle mb-16 mob-mb-0">
                                                 <span class="txt-heading block uppercase md">My services</span>
                                                 <span class="arrow"></span>
                                             </button>

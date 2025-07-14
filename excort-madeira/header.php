@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <?php 
+        <!-- <?php 
             $whatsapp = get_field('whatsapp_url', 'option');
             $telegram = get_field('telegram_url', 'option');
         ?>
@@ -27,7 +27,7 @@
                     </li>
                 </ul>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
         
         <!-- <?php if($whatsapp): ?>
             <a target="_blank" title="Whatsapp" href="<?php echo $whatsapp; ?>" class="icon-telegram">
