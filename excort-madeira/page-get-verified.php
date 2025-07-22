@@ -113,7 +113,7 @@
                                         <div class="row mb-24">
                                             <div class="col-md-6 mob-mb-8">
                                                 <label for="nationality" class="form-label">Nationality</label>
-                                                <input type="text" class="form-control" id="nationality" name="nationality" required placeholder="Your nacionality"> 
+                                                <input type="text" class="form-control" id="nationality" name="nationality" required placeholder="Your nationality"> 
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="birthYear" class="form-label">Birth year</label>

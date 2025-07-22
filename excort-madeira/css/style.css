@@ -22629,6 +22629,12 @@ a.button {
     height: auto;
   }
 }
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item:last-of-type a,
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item:last-of-type a,
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .menu-item:last-of-type a {
+  border: 1px solid #d2261a;
+  border-radius: 8px;
+}
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item.current_page_item .nav-link,
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item.current_page_item a,
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item.current_page_item .nav-link,
@@ -24456,8 +24462,6 @@ a.button {
   transition: all 0.35s ease-in-out;
   width: 100%;
   z-index: 2;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
 }
 .section .section-services .service-box .text-box p {
   color: #fff6d7;
@@ -25026,6 +25030,7 @@ a.button {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 @media screen and (min-width: 768px) {
   .section .section-profile .profile-book {
@@ -25153,12 +25158,12 @@ a.button {
   height: auto;
 }
 @media screen and (max-width: 767px) {
-  .section .profile-slider .swiper-wrapper .swiper-slide {
-    width: 90%;
-  }
-}
-@media screen and (max-width: 767px) {
   .section .profile-slider .swiper-wrapper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 600px;
     aspect-ratio: 2/3;
   }
 }
@@ -25181,13 +25186,6 @@ a.button {
 }
 .section .profile-thumb .swiper-slide-thumb-active {
   opacity: 1;
-}
-.section .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  max-height: 600px;
 }
 
 /* Esconde o conteúdo por padrão no mobile */
@@ -25468,7 +25466,7 @@ a.button {
   font-size: 16px;
   color: var(--text-color);
   line-height: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 16px !important;
 }
 .section .section-about a {
   font-size: 16px;
@@ -25889,6 +25887,12 @@ body {
 .swiper-slide {
   height: auto !important;
   -webkit-box-sizing: border-box;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .advertise-contact {

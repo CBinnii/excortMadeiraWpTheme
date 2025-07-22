@@ -11,8 +11,10 @@
     $video = get_field('my_video');
     $photos = get_field( 'photos' );
     $member_photos = get_field( 'member_photos' );
-    $member = get_field( 'only_member' );
     $more_fields = get_field( 'more_fields' );
+    $only_members = get_field( 'only_members' );
+
+    // var_dump($only_members);
 
     if( have_rows('more_fields') ): 
         // Loop para percorrer as linhas dos campos repetíveis
@@ -47,7 +49,7 @@
                         <div class="col-sm-8 mob-p-0">
                             <div class="desktop">
                                 <div class="row profile-photos">
-                                    <?php if (is_user_logged_in() ) : ?>
+                                    <?php if ($only_members == 'yes' ) : ?>
                                         <?php if ($member_photos) : ?>
                                             <?php foreach( $member_photos as $photo ): ?>
                                                 <?php 
@@ -133,7 +135,7 @@
 
                             <div class="swiper profile-slider mobile mb-24">
                                 <div class="swiper-wrapper">
-                                    <?php if (is_user_logged_in() ) : ?>
+                                    <?php if ($only_members == 'yes' ) : ?>
                                         <?php if ($member_photos) : ?>
                                             <?php foreach( $member_photos as $photo ): ?>
                                                 <?php 
@@ -214,10 +216,21 @@
                                         </div>
 
                                         <div class="profile-book">
-                                            <?php if (is_user_logged_in() ) : ?>
-                                                <a href="https://wa.me/31612345678?text=Hi%2C%20I%20was%20verified%20via%20*the girl next door*%20and%20would%20love%20to%20connect." target="_blank" class="ml-4 button bold medium">
-                                                    Whatsapp
-                                                </a>
+                                            <?php if ($only_members == 'yes' ) : 
+                                                $phone = get_field('phonebumber');
+                                                $clean_phone = preg_replace('/[^\d+]/', '', $phone);
+                                                $whatsapp = get_field( 'whatsapp_link' );
+
+                                                if ($phone) : ?>
+                                                    <a href="tel:<?php echo $clean_phone; ?>" class="button bold medium">
+                                                        Call
+                                                    </a>
+                                                <?php endif;
+                                                    if ($whatsapp) : ?>
+                                                    <a href="<?php echo esc_url($whatsapp); ?>" target="_blank" class="ml-4 button bold medium">
+                                                        Whatsapp
+                                                    </a>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold medium">
                                                     Get Verified
@@ -458,10 +471,6 @@
                             'key' => 'more_fields',
                             'compare' => 'EXISTS',
                         ),
-                        array(
-                            'key' => 'only_member',
-                            'compare' => 'EXISTS',
-                        ),
                     ),
                 );
 
@@ -480,7 +489,6 @@
                                 <div class="swiper-wrapper">
                                     <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
                                         $photos = get_field( 'photos' );
-                                        $member = get_field( 'only_member' );
 
                                         // Obtém o valor do campo 'more_fields'
                                         $more_fields_posts = get_field('more_fields'); // Use ACF ou get_post_meta(), se necessário

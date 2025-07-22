@@ -266,6 +266,13 @@ body {
 .swiper-slide {
     height: auto !important;
     -webkit-box-sizing: border-box;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .advertise-contact {

@@ -225,6 +225,4 @@ var swiperProfileSlider = new Swiper(".profile-slider", {
         nextEl: ".swiper-button-next-profile",
         prevEl: ".swiper-button-prev-profile",
     },
-    slidesPerView: "auto",
-    spaceBetween: 1,
 });

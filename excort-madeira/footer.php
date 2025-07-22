@@ -110,7 +110,7 @@
                     <?php endif; ?>
 
                     <div class="content">
-                        <p>All rights reserved | 2025 Escort ©</p>
+                        <p class="mb-8">All rights reserved | 2025 the girl next door ©</p>
                     </div>
                 </div>
             </div>
