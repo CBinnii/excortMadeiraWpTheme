@@ -209,10 +209,5 @@ get_header();
             sampler.eliminateAndDraw(i);
             render();
         });
-
-        // Função para exibir o perfil final
-        function mostrarPerfilFinal(finalProfile) {
-            $('#profile1').html('<h2>Your Perfect Match</h2><img src="' + finalProfile.image + '" alt="' + finalProfile.name + '"><h3>' + finalProfile.name + '</h3>').show();
-        }
     });
 </script>
