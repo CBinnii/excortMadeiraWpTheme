@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="area">
+        <div id="atuais"></div>
+        <div id="final" style="display:none; margin-top:12px; padding:10px; border:1px solid #ddd; border-radius:8px;">
+        </div>
+
+        <button id="elim0">Eliminar o 1º</button>
+        <button id="elim1">Eliminar o 2º</button>
+    </div>
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    // ---- Sampler em JS (usável com jQuery) ----
+    function createSlidingUniqueSampler(items) {
+        if (!Array.isArray(items) || items.length < 2) {
+            throw new Error('Precisa de pelo menos 2 itens.');
+        }
+
+        // cria [0..n-1] e embaralha (Fisher–Yates)
+        var bag = Array.from({ length: items.length }, (_, i) => i);
+        for (var i = bag.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = bag[i]; bag[i] = bag[j]; bag[j] = tmp;
+        }
+
+        // dois índices únicos iniciais
+        var current = [bag.pop(), bag.pop()];
+
+        // ⬇️ Ajuste: retornar o tamanho real
+        function getCurrentIndexes() { return current.slice(); }
+        function getCurrentItems() { return current.map(i => items[i]); }
+
+        function eliminateAndDraw(eliminatedIndex) {
+            var pos = current.indexOf(eliminatedIndex);
+            if (pos === -1) throw new Error('O índice eliminado não está entre os 2 atuais.');
+            if (bag.length === 0) {
+                // acabou a reposição: remove e não repõe
+                current.splice(pos, 1);
+                return null;
+            }
+            var next = bag.pop();
+            current[pos] = next;
+            return next;
+        }
+
+        return { getCurrentIndexes, getCurrentItems, eliminateAndDraw };
+    }
+
+    // ---- Demo com jQuery ----
+    $(function () {
+        var availables = ['a', 'b', 'c', 'd', 'e', 'f'];
+        var sampler = createSlidingUniqueSampler(availables);
+
+        function render() {
+            var idx = sampler.getCurrentIndexes();
+            var it = sampler.getCurrentItems();
+
+            if (idx.length === 1) {
+                // Último item (vencedor)
+                $('#atuais').hide();
+                $('#final')
+                    .show()
+                    .text('Último que sobrou => índice: ' + idx[0] + ', item: ' + it[0]);
+                // desabilita os botões
+                $('#elim0, #elim1').prop('disabled', true);
+                return;
+            }
+
+            // Estado normal (2 itens)
+            $('#final').hide().empty();
+            $('#atuais').show().text(
+                'Atuais => índices: [' + idx.join(', ') + '], itens: [' + it.join(', ') + ']'
+            );
+
+            // desabilita botões se por algum motivo não houver 2
+            $('#elim0').prop('disabled', idx.length < 2);
+            $('#elim1').prop('disabled', idx.length < 2);
+        }
+
+        $('#elim0').on('click', function () {
+            var idx = sampler.getCurrentIndexes();
+            var i = idx[0];
+            sampler.eliminateAndDraw(i);
+            render();
+        });
+
+        $('#elim1').on('click', function () {
+            var idx = sampler.getCurrentIndexes();
+            var i = idx[1];
+            sampler.eliminateAndDraw(i);
+            render();
+        });
+
+        render();
+    });
+</script>

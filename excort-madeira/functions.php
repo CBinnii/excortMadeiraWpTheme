@@ -8,25 +8,6 @@
 add_theme_support('post-thumbnails', array('page', 'post', 'service', 'profile'));
 add_theme_support('widgets');
 
-function custom_location_taxonomy_rewrite() {
-    global $wp_rewrite;
-    $location_terms = get_terms([
-        'taxonomy' => 'location',
-        'hide_empty' => false,
-    ]);
-
-    if (!empty($location_terms) && !is_wp_error($location_terms)) {
-        foreach ($location_terms as $term) {
-            add_rewrite_rule(
-                '^' . $term->slug . '/?$',
-                'index.php?location=' . $term->slug,
-                'top'
-            );
-        }
-    }
-}
-add_action('init', 'custom_location_taxonomy_rewrite');
-
 function custom_profile_permalink($post_link, $post) {
     if ($post->post_type == 'profile') {
         $terms = get_the_terms($post->ID, 'location');
@@ -60,39 +41,6 @@ function remove_menus(){
 }
 add_action( 'admin_menu', 'remove_menus' );
 
-function cf7_popular_dropdown_profiles($tag) {
-    if ($tag['name'] != 'profile-list') { 
-        return $tag; // Retorna o campo original se não for o select correto
-    }
-
-    $args = array(
-        'post_type'      => 'profile', // Substitua pelo nome correto do CPT
-        'posts_per_page' => -1, // Pega todos os posts
-        'orderby'        => 'title',
-        'order'          => 'ASC',
-    );
-
-    $query = new WP_Query($args);
-    $values = array();
-
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $values[] = get_the_title(); // Título visível
-        }
-        wp_reset_postdata();
-    } else {
-        $values[] = 'Nenhum perfil encontrado|';
-    }
-
-    $tag['raw_values'] = $values;
-    $tag['values'] = $values;
-
-    return $tag;
-}
-
-add_filter('wpcf7_form_tag', 'cf7_popular_dropdown_profiles', 10, 1);
-
 // Alterar o texto "Join Us" para "Be a Member"
 function custom_swpm_join_us_text($text) {
     if (strpos($text, 'Join Us') !== false) {
@@ -104,3 +52,90 @@ function custom_swpm_join_us_text($text) {
     return $text;
 }
 add_filter('swpm_registration_button_text', 'custom_swpm_join_us_text');
+
+// Função para buscar as localizações da taxonomia 'location' e a imagem de destaque (URL)
+function buscar_localizacoes() {
+    $terms = get_terms(array(
+        'taxonomy' => 'location',
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => false, // Mesmo que não haja posts associados, as localizações serão retornadas
+    ));
+
+    if (!empty($terms) && !is_wp_error($terms)) {
+        $locations = array();
+
+        foreach ($terms as $term) {
+            // Recupera o ID da imagem de destaque associada à localização
+            $featured_image_id = get_term_meta($term->term_id, 'featured_image_location', true);
+            
+            // Se a imagem de destaque foi encontrada, obtém o URL
+            if ($featured_image_id) {
+                $featured_image_url = wp_get_attachment_url($featured_image_id);  // Obtém o URL da imagem
+            } else {
+                // Caso não haja imagem, você pode definir um URL padrão
+                $featured_image_url = 'https://the-girl-next-door.com/wp-content/themes/excort-madeira/images/no-image.jpeg';  // Substitua pelo URL de uma imagem padrão
+            }
+
+            $locations[] = array(
+                'name' => $term->name,
+                'slug' => $term->slug,
+                'featured_image' => $featured_image_url, // Inclui o URL da imagem de destaque
+            );
+        }
+
+        wp_send_json_success($locations); // Retorna as localizações com o URL da imagem
+    } else {
+        wp_send_json_error('Nenhuma localização encontrada');
+    }
+
+    wp_die(); // Finaliza a execução
+}
+add_action('wp_ajax_get_locations', 'buscar_localizacoes');
+add_action('wp_ajax_nopriv_get_locations', 'buscar_localizacoes');
+
+// Função para buscar os perfis da localização
+function buscar_perfis_por_localizacao() {
+    if (isset($_GET['location'])) {
+        $location_slug = sanitize_text_field($_GET['location']);
+
+        // Query para buscar perfis da localização
+        $args = array(
+            'post_type' => 'profile',
+            'posts_per_page' => 10,  // Alterado para pegar mais perfis
+            'orderby' => 'rand',  // Aleatorizar os perfis
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'location',
+                    'field'    => 'slug',
+                    'terms'    => $location_slug,
+                ),
+            ),
+        );
+
+        $query = new WP_Query($args);
+        
+        if ($query->have_posts()) :
+            $response = [];
+            
+            while ($query->have_posts()) : $query->the_post();
+                $profile = [
+                    'id' => get_the_ID(),
+                    'name' => get_the_title(),
+                    'image' => get_the_post_thumbnail_url(),
+                    'link' => get_permalink(), // Link para o perfil completo
+                ];
+                $response[] = $profile;
+            endwhile;
+            
+            wp_send_json_success($response);  // Retorna os perfis encontrados
+        else :
+            wp_send_json_error('Nenhum perfil encontrado para essa localização.');
+        endif;
+    }
+
+    wp_die();  // Finaliza a execução
+}
+
+add_action('wp_ajax_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');
+add_action('wp_ajax_nopriv_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');

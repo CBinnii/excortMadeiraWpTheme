@@ -216,26 +216,45 @@
                                         </div>
 
                                         <div class="profile-book">
-                                            <?php if ($only_members == 'yes' ) : 
-                                                $phone = get_field('phonebumber');
-                                                $clean_phone = preg_replace('/[^\d+]/', '', $phone);
-                                                $whatsapp = get_field( 'whatsapp_link' );
+                                            <?php
+                                            $phone = get_field('phonebumber');
+                                            $clean_phone = preg_replace('/[^\d+]/', '', $phone);
+                                            $whatsapp = get_field('whatsapp_link');
+                                            $is_user_logged_in = is_user_logged_in();
 
+                                            if ($only_members === 'yes') {
+                                                if ($is_user_logged_in) {
+                                                    if ($phone) : ?>
+                                                        <a href="tel:<?php echo esc_attr($clean_phone); ?>" class="button bold medium">
+                                                            Call
+                                                        </a>
+                                                    <?php endif;
+                                                    if ($whatsapp) : ?>
+                                                        <a href="<?php echo esc_url($whatsapp); ?>" target="_blank" class="ml-4 button bold medium">
+                                                            Whatsapp
+                                                        </a>
+                                                    <?php endif;
+                                                } else { ?>
+                                                    <a href="<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
+                                                        Get Verified
+                                                    </a>
+                                                <?php }
+                                            } elseif ($only_members === 'no') {
                                                 if ($phone) : ?>
-                                                    <a href="tel:<?php echo $clean_phone; ?>" class="button bold medium">
+                                                    <a href="tel:<?php echo esc_attr($clean_phone); ?>" class="button bold medium">
                                                         Call
                                                     </a>
                                                 <?php endif;
-                                                    if ($whatsapp) : ?>
+                                                if ($whatsapp) : ?>
                                                     <a href="<?php echo esc_url($whatsapp); ?>" target="_blank" class="ml-4 button bold medium">
                                                         Whatsapp
                                                     </a>
-                                                <?php endif; ?>
-                                            <?php else : ?>
-                                                <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold medium">
+                                                <?php endif;
+                                            } else { ?>
+                                                <a href="tel:<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
                                                     Get Verified
                                                 </a>
-                                            <?php endif; ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
 
