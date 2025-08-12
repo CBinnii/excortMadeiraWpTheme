@@ -57,7 +57,7 @@ add_filter('swpm_registration_button_text', 'custom_swpm_join_us_text');
 function buscar_localizacoes() {
     $terms = get_terms(array(
         'taxonomy' => 'location',
-        'orderby' => 'name',
+        'orderby' => 'term_id',
         'order' => 'ASC',
         'hide_empty' => false, // Mesmo que não haja posts associados, as localizações serão retornadas
     ));

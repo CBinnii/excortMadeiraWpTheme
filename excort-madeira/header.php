@@ -12,33 +12,10 @@
     </head>
 
     <body>
-        <!-- <?php 
-            $whatsapp = get_field('whatsapp_url', 'option');
-            $telegram = get_field('telegram_url', 'option');
-        ?>
-        <?php if($telegram): ?>
-            <div class="follow-floted">
-                <label>SUBSCRIBE TO OUR CHANNEL! | </label>
-                <ul>
-                    <li>
-                        <a target="_blank" title="Telegram" href="<?php echo $telegram; ?>">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/telegram.svg" alt="Telegram icon">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        <?php endif; ?> -->
-        
-        <!-- <?php if($whatsapp): ?>
-            <a target="_blank" title="Whatsapp" href="<?php echo $whatsapp; ?>" class="icon-telegram">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/whatsapp.svg" alt="Whatsapp icon">
-            </a>
-        <?php endif; ?> -->
-
         <header id="header" class="header">
             <nav class="navbar">
-                <div class="container">
-                    <div class="row w-100">
+                <div class="container p-0">
+                    <div class="row w-100 m-0">
                         <div class="col-sm-8 logo-header">
                             <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></a>
 

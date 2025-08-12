@@ -526,7 +526,7 @@
 
     .section-unlock-access {
         margin-bottom: 56px;
-        height: 580px;
+        height: 520px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -614,9 +614,100 @@
         }
     }
 
+    .section-your-girl {
+        background: var(--background-white);
+        height: 520px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        margin-bottom: 56px;
+
+        @media screen and (max-width: 991px) {
+            height: 260px;
+        }
+
+        @media screen and (max-width: 550px) {
+            height: 195px;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .media {
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+
+            img {
+                object-fit: cover;
+                object-position: center center;
+                transition: opacity .1s cubic-bezier(.25,.46,.45,.94);
+                display: block;
+                max-width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .context {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h3 {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+
+            @media screen and (max-width: 991px) {
+                font-size: 18px;
+            }
+        }
+
+        p {
+            font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0px;
+            opacity: 1;
+            margin-bottom: 8px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
+            }
+
+            a {
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
+    }
+
     .section-become-escort {
         background: var(--background-white);
-        height: 580px;
+        height: 520px;
         display: flex;
         position: relative;
         flex-direction: column;

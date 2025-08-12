@@ -212,11 +212,52 @@
                                 <div class="col-md-12">
                                     <?php echo apply_filters('the_content', $text); ?>
                                 </div>
-
+                                
                                 <div class="d-flex justify-content-center mt-30">
                                     <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
                                         View profiles
                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+            <!-- your Girl Quiz Section -->
+            <?php 
+                $title_your_girl = get_field('title_your_girl_section');
+                $subtitle_your_girl = get_field('subtitle_your_girl_section');
+                $text_your_girl = get_field('text_your_girl_section');
+                $button_your_girl_text = get_field('text_button_your_girl_section');
+                $button_your_girl_link = get_field('link_button_your_girl_section');
+                $image_your_girl = get_field('image_your_girl_section');
+                
+                if ($title_your_girl && $text_your_girl) : ?>
+                <div class="section-your-girl bg-white">
+                    <div class="container p-0">
+                        <div class="media">
+                            <img src="<?php echo $image_your_girl ?>" alt="Image <?php echo $title_your_girl; ?>">
+                        </div>
+
+                        <div class="context">
+                            <div class="title title-section mob-mb-8">
+                                <h1 class="color-white"><?php echo $title_your_girl; ?></h1>
+                                <?php if ($subtitle_your_girl) : ?>
+                                    <div class="section-label color-white"><?php echo $subtitle_your_girl; ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="row">
+                                <div class="content">
+                                    <div class="col-md-12 color-white">
+                                        <?php echo apply_filters('the_content', $text_your_girl); ?>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mt-30 mob-mt-8">
+                                        <a href="<?php echo $button_your_girl_link; ?>" class="button bold white">
+                                            <?php echo $button_your_girl_text; ?>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

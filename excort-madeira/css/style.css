@@ -22622,6 +22622,11 @@ a.button {
   height: 100%;
   cursor: pointer;
 }
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item.menu-item-has-children .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item.menu-item-has-children .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .menu-item.menu-item-has-children .sub-menu .menu-item:last-of-type a {
+  border: none;
+}
 @media screen and (max-width: 767px) {
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item,
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item,
@@ -22855,6 +22860,11 @@ a.button {
   border-top: 6px solid #1c1410; /* cor da seta */
   transition: transform 0.3s ease-in-out; /* animação */
 }
+.header .navbar .container .navbar-nav-desktop .nav-item.menu-item-has-children .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-nav-desktop .page_item.menu-item-has-children .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-nav-desktop .menu-item.menu-item-has-children .sub-menu .menu-item:last-of-type a {
+  border: none;
+}
 .header .navbar .container .navbar-nav-desktop .nav-item.active .sub-menu,
 .header .navbar .container .navbar-nav-desktop .page_item.active .sub-menu,
 .header .navbar .container .navbar-nav-desktop .menu-item.active .sub-menu {
@@ -22865,6 +22875,12 @@ a.button {
 .header .navbar .container .navbar-nav-desktop .page_item .sub-menu,
 .header .navbar .container .navbar-nav-desktop .menu-item .sub-menu {
   display: none;
+}
+.header .navbar .container .navbar-nav-desktop .nav-item .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-nav-desktop .page_item .sub-menu .menu-item:last-of-type a,
+.header .navbar .container .navbar-nav-desktop .menu-item .sub-menu .menu-item:last-of-type a {
+  border: 1px solid #d2261a;
+  border-radius: 8px;
 }
 .header .navbar .container .navbar-nav-desktop .nav-item.current_page_item .nav-link,
 .header .navbar .container .navbar-nav-desktop .nav-item.current_page_item a,
@@ -23980,7 +23996,7 @@ a.button {
 }
 .section .section-unlock-access {
   margin-bottom: 56px;
-  height: 580px;
+  height: 520px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -24064,9 +24080,95 @@ a.button {
   color: var(--text-color);
   font-weight: 500;
 }
+.section .section-your-girl {
+  background: var(--background-white);
+  height: 520px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-bottom: 56px;
+}
+@media screen and (max-width: 991px) {
+  .section .section-your-girl {
+    height: 260px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .section .section-your-girl {
+    height: 195px;
+  }
+}
+.section .section-your-girl .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.section .section-your-girl .media {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.section .section-your-girl .media img {
+  object-fit: cover;
+  object-position: center center;
+  transition: opacity 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.section .section-your-girl .context {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section .section-your-girl h3, .section .section-your-girl .h3 {
+  font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+@media screen and (max-width: 991px) {
+  .section .section-your-girl h3, .section .section-your-girl .h3 {
+    font-size: 18px;
+  }
+}
+.section .section-your-girl p {
+  font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0px;
+  opacity: 1;
+  margin-bottom: 8px;
+}
+.section .section-your-girl p:last-of-type {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 767px) {
+  .section .section-your-girl p {
+    font-size: 14px;
+  }
+}
+.section .section-your-girl p a {
+  color: var(--text-color);
+  font-weight: 500;
+}
 .section .section-become-escort {
   background: var(--background-white);
-  height: 580px;
+  height: 520px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -25667,6 +25769,10 @@ a.button {
   text-transform: initial;
 }
 
+.quiz-template {
+  min-height: 500px;
+}
+
 .quiz-intro {
   text-align: center;
   max-width: 740px;
@@ -25713,6 +25819,11 @@ a.button {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 768px) {
+  .location-selection {
+    min-height: auto;
+  }
+}
 .location-selection .location-selection-content {
   display: flex;
   flex-direction: column;
@@ -25721,25 +25832,40 @@ a.button {
   height: 100%;
   padding: 20px;
 }
+.location-selection .location-selection-content h2, .location-selection .location-selection-content .h2 {
+  font-size: 36px;
+}
+@media screen and (max-width: 768px) {
+  .location-selection .location-selection-content h2, .location-selection .location-selection-content .h2 {
+    font-size: 24px;
+  }
+}
 .location-selection .location {
-  height: 100px;
+  width: 48%;
+  height: 170px;
   background-color: #f0f0f0;
   font-size: 28px;
-  margin-bottom: 24px;
-  margin-left: 24px;
 }
 @media screen and (max-width: 768px) {
   .location-selection .location {
+    width: 100%;
     margin-left: 0;
-    max-width: 200px;
-    margin-bottom: 16px;
     font-size: 24px;
+    max-width: 200px;
+    height: 100px;
   }
 }
 .location-selection #location-list {
   margin-top: 32px;
   margin-bottom: 32px;
   justify-content: center;
+  width: 100%;
+  gap: 24px;
+}
+@media screen and (max-width: 768px) {
+  .location-selection #location-list {
+    margin-bottom: 16px;
+  }
 }
 
 .profile-quiz {
@@ -25751,10 +25877,25 @@ a.button {
   margin: 0 auto;
   padding: 50px 20px;
 }
+@media screen and (max-width: 768px) {
+  .profile-quiz {
+    padding: 20px;
+    height: auto;
+  }
+  .profile-quiz .profile-quiz-container {
+    width: 100%;
+    max-width: 200px;
+  }
+}
 .profile-quiz h2, .profile-quiz .h2 {
-  font-size: 24px;
+  font-size: 36px;
   color: #333;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 768px) {
+  .profile-quiz h2, .profile-quiz .h2 {
+    font-size: 24px;
+  }
 }
 .profile-quiz .profile-quiz-content {
   display: flex;
@@ -25770,6 +25911,23 @@ a.button {
 .profile-quiz .profile-quiz-content .profile-quiz-container {
   position: relative;
   cursor: pointer;
+  width: 340px;
+  height: 513px;
+}
+@media screen and (max-width: 768px) {
+  .profile-quiz .profile-quiz-content .profile-quiz-container {
+    height: auto;
+  }
+}
+.profile-quiz .profile-quiz-content .profile-quiz-container.match {
+  max-width: 350px;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  .profile-quiz .profile-quiz-content .profile-quiz-container.match {
+    max-width: 250px;
+    height: auto;
+  }
 }
 .profile-quiz .profile-quiz-content .profile-quiz-container img {
   width: 100%;
@@ -25896,6 +26054,10 @@ body {
     justify-content: center;
     align-items: center;
   }
+}
+
+#menu-item-675, #menu-item-457 {
+  min-width: 125px;
 }
 
 .title {
