@@ -268,6 +268,9 @@ get_header();
                     sorted = []; // Limpa os perfis sorteados
                     sampler = null; // Reseta o sampler
                     $('.profile-quiz').hide(); // Esconde a tela de quiz
+                    $('#buttons').hide(); // Esconde os botões
+                    $('#profile1, #profile2').removeClass('match').hide(); // Reseta os perfis
+                    $('#profile-text').text('Who do you prefer?'); // Reseta
                     carregarLocalizacoes();  // Carrega as localizações
                     $('.location-selection').show(); // Exibe a tela de localização novamente
                 });

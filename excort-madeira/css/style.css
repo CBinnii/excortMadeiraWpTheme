@@ -22498,7 +22498,7 @@ a.button {
   background-color: #f9f4de;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4);
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header {
     height: 45px;
   }
@@ -22509,7 +22509,7 @@ a.button {
   position: relative;
   z-index: 1000;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .logo-header {
     justify-content: center;
     width: 100%;
@@ -22519,7 +22519,7 @@ a.button {
   display: flex;
   justify-content: flex-end;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .menu-header {
     justify-content: space-between;
     width: 100%;
@@ -22542,7 +22542,7 @@ a.button {
     width: 100%;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container {
     width: 100%;
     justify-content: center;
@@ -22559,7 +22559,7 @@ a.button {
   width: 180px;
   height: auto;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-brand img {
     width: auto;
     height: 40px;
@@ -22572,7 +22572,7 @@ a.button {
   width: 100%;
   height: 100%;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu {
     justify-content: space-between;
     width: 100%;
@@ -22592,7 +22592,7 @@ a.button {
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse.show {
     flex-direction: column;
   }
@@ -22600,7 +22600,7 @@ a.button {
 .header .navbar .container .navbar-menu .navbar-collapse .button {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse .button {
     display: block;
     margin-top: 32px;
@@ -22609,7 +22609,7 @@ a.button {
 .header .navbar .container .navbar-menu .navbar-collapse .logo-header {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse .logo-header {
     display: block;
     position: absolute;
@@ -22627,7 +22627,7 @@ a.button {
 .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .menu-item.menu-item-has-children .sub-menu .menu-item:last-of-type a {
   border: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item,
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item,
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .menu-item {
@@ -22670,7 +22670,7 @@ a.button {
   font-family: "Rufina", serif, Verdana, sans-serif;
   color: #1c1410;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item .nav-link,
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .nav-item a,
   .header .navbar .container .navbar-menu .navbar-collapse .navbar-nav .page_item .nav-link,
@@ -22713,7 +22713,7 @@ a.button {
   height: 100%;
   cursor: pointer;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse ul .nav-item,
   .header .navbar .container .navbar-menu .navbar-collapse ul .page_item,
   .header .navbar .container .navbar-menu .navbar-collapse ul .menu-item {
@@ -22750,7 +22750,7 @@ a.button {
   font-family: "Rufina", serif, Verdana, sans-serif;
   color: #1c1410;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-menu .navbar-collapse ul .nav-item .nav-link,
   .header .navbar .container .navbar-menu .navbar-collapse ul .nav-item a,
   .header .navbar .container .navbar-menu .navbar-collapse ul .page_item .nav-link,
@@ -22794,7 +22794,7 @@ a.button {
   position: relative;
   z-index: 1000;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-action {
     position: absolute;
     right: 16px;
@@ -22821,7 +22821,7 @@ a.button {
   height: 30px;
   margin-left: 16px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header .navbar .container .navbar-nav-desktop {
     display: none;
   }
@@ -22993,7 +22993,7 @@ a.button {
   width: 50px;
   z-index: 1000;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header-site-search {
     display: none;
   }
@@ -23149,7 +23149,7 @@ a.button {
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse.show {
     flex-direction: column;
   }
@@ -23157,7 +23157,7 @@ a.button {
 .navbar-collapse .button {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse .button {
     display: block;
     margin-top: 32px;
@@ -23166,7 +23166,7 @@ a.button {
 .navbar-collapse .logo-header {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse .logo-header {
     display: block;
     position: absolute;
@@ -23179,7 +23179,7 @@ a.button {
   height: 100%;
   cursor: pointer;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse .navbar-nav .nav-item,
   .navbar-collapse .navbar-nav .page_item,
   .navbar-collapse .navbar-nav .menu-item {
@@ -23275,7 +23275,7 @@ a.button {
   font-family: "Rufina", serif, Verdana, sans-serif;
   color: #1c1410;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse .navbar-nav .nav-item .nav-link,
   .navbar-collapse .navbar-nav .nav-item a,
   .navbar-collapse .navbar-nav .page_item .nav-link,
@@ -23318,7 +23318,7 @@ a.button {
   height: 100%;
   cursor: pointer;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse ul .nav-item,
   .navbar-collapse ul .page_item,
   .navbar-collapse ul .menu-item {
@@ -23355,7 +23355,7 @@ a.button {
   font-family: "Rufina", serif, Verdana, sans-serif;
   color: #1c1410;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-collapse ul .nav-item .nav-link,
   .navbar-collapse ul .nav-item a,
   .navbar-collapse ul .page_item .nav-link,

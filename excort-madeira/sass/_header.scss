@@ -8,7 +8,7 @@
 	background-color: #f9f4de;
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4);
 
-	@media screen and (max-width: 767px) {
+	@media screen and (max-width: 991px) {
 		height: 45px;
 	}
 
@@ -18,7 +18,7 @@
 		position: relative;
 		z-index: 1000;
 
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			justify-content: center;
 			width: 100%;
 		}
@@ -28,7 +28,7 @@
 		display: flex;
 		justify-content: flex-end;
 
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			justify-content: space-between;
 			width: 100%;
 			z-index: 1000;
@@ -50,7 +50,7 @@
 				width: 100%;
 			}
 
-			@media screen and (max-width: 767px) {
+			@media screen and (max-width: 991px) {
 				width: 100%;
 				justify-content: center;
 			}
@@ -66,7 +66,7 @@
 					width: 180px;
 					height: auto;
 
-					@media screen and (max-width: 767px) {
+					@media screen and (max-width: 991px) {
 						width: auto;
 						height: 40px;
 					}
@@ -80,7 +80,7 @@
 				width: 100%;
 				height: 100%;
 
-				@media screen and (max-width: 767px) {
+				@media screen and (max-width: 991px) {
 					justify-content: space-between;
 					width: 100%;
 				}
@@ -99,7 +99,7 @@
 						align-items: center;
 						justify-content: center;
 
-						@media screen and (max-width: 767px) {
+						@media screen and (max-width: 991px) {
 							flex-direction: column;
 						}
 					}
@@ -107,7 +107,7 @@
 					.button {
 						display: none;
 
-						@media screen and (max-width: 767px) {
+						@media screen and (max-width: 991px) {
 							display: block;
 							margin-top: 32px;
 						}
@@ -116,7 +116,7 @@
 					.logo-header {
 						display: none;
 
-						@media screen and (max-width: 767px) {
+						@media screen and (max-width: 991px) {
 							display: block;
 							position: absolute;
 							top: -2px;
@@ -142,7 +142,7 @@
 								}
 							}
 
-							@media screen and (max-width: 767px) {
+							@media screen and (max-width: 991px) {
 								height: auto;
 							}
 
@@ -179,7 +179,7 @@
 								font-family: "Rufina", serif, Verdana, sans-serif;
 								color: #1c1410;
 
-								@media screen and (max-width: 767px) {
+								@media screen and (max-width: 991px) {
 									height: auto;
 								}
 
@@ -205,7 +205,7 @@
 							height: 100%;
 							cursor: pointer;
 
-							@media screen and (max-width: 767px) {
+							@media screen and (max-width: 991px) {
 								height: auto;
 							}
 
@@ -235,7 +235,7 @@
 								font-family: "Rufina", serif, Verdana, sans-serif;
 								color: #1c1410;
 
-								@media screen and (max-width: 767px) {
+								@media screen and (max-width: 991px) {
 									height: auto;
 								}
 
@@ -263,7 +263,7 @@
 					z-index: 1000;
 				}
 
-				@media screen and (max-width: 767px) {
+				@media screen and (max-width: 991px) {
 					position: absolute;
 					right: 16px;
 					top: 12px;
@@ -295,7 +295,7 @@
 				height: 30px;
 				margin-left: 16px;
 
-				@media screen and (max-width: 767px) {
+				@media screen and (max-width: 991px) {
 					display: none;
 				}
 
@@ -467,7 +467,7 @@
 	width: 50px;
 	z-index: 1000;
 
-	@media screen and (max-width: 767px) {
+	@media screen and (max-width: 991px) {
 		display: none;
 	}
 
@@ -649,7 +649,7 @@
 		align-items: center;
 		justify-content: center;
 
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			flex-direction: column;
 		}
 	}
@@ -657,7 +657,7 @@
 	.button {
 		display: none;
 
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			display: block;
 			margin-top: 32px;
 		}
@@ -666,7 +666,7 @@
 	.logo-header {
 		display: none;
 
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			display: block;
 			position: absolute;
 			top: 15px;
@@ -685,7 +685,7 @@
 			height: 100%;
 			cursor: pointer;
 
-			@media screen and (max-width: 767px) {
+			@media screen and (max-width: 991px) {
 				height: auto;
 			}
 
@@ -766,7 +766,7 @@
 				font-family: "Rufina", serif, Verdana, sans-serif;
 				color: #1c1410;
 
-				@media screen and (max-width: 767px) {
+				@media screen and (max-width: 991px) {
 					height: auto;
 				}
 
@@ -792,7 +792,7 @@
 			height: 100%;
 			cursor: pointer;
 
-			@media screen and (max-width: 767px) {
+			@media screen and (max-width: 991px) {
 				height: auto;
 			}
 
@@ -822,7 +822,7 @@
 				font-family: "Rufina", serif, Verdana, sans-serif;
 				color: #1c1410;
 
-				@media screen and (max-width: 767px) {
+				@media screen and (max-width: 991px) {
 					height: auto;
 				}
 
