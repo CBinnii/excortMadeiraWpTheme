@@ -1,23 +1,11 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
-<!-- Adicionando o script do Google reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-<script>
-    // Função de callback chamada quando o reCAPTCHA é carregado
-    // Você pode usar essa função para inicializar o reCAPTCHA ou executar outras ações
-    // Exemplo: exibir um alerta quando o reCAPTCHA estiver pronto
-    // Você pode remover ou modificar essa função conforme necessário
-    // Se você não precisar dela, pode removê-la
-    var onloadCallback = function() {
-        // Aqui você pode inicializar o reCAPTCHA, se necessário
-        grecaptcha.render('html_element', {
-            'sitekey' : '6Lf8zgQrAAAAADm4g0KXA_y0G0-9cx4-SwL-5-ES'
-        });
-    };
-</script>
-
 <?php 
+    /**
+     * Template Name: Advertise
+     * Description: Personalized Page "Advertise"
+     */
 	get_header();
 
     $title_text_field_1_page = get_field('title_text_field_1_page');

@@ -403,31 +403,60 @@
                                                                     <div class="tab-pane fade" id="<?php echo $currency ?>" role="tabpanel" aria-labelledby="<?php echo $currency ?>-tab">
                                                                 <?php endif; ?>
                                                                     <div class="rate row m-0">
-                                                                        <div class="col-6 p-0">
+                                                                        <div class="col-4 p-0">
                                                                             <div class="duration">
                                                                                 <div class="table-style">
+                                                                                    <span class="txt-paragraph lg block bold uppercase">&nbsp;</span>
                                                                                     <?php
                                                                                         while( have_rows('values') ) : the_row();
                                                                                             $duration = get_sub_field('duration');
                                                                                             $value = get_sub_field('value');
+                                                                                            $outcall = get_sub_field('outcall');
                                                                                         ?>
                                                                                             <div class="table-row pr-0">
-                                                                                                <span class="txt-paragraph lg block bold uppercase"><?php echo $duration ?></span>
+                                                                                                <span class="txt-paragraph lg block bold"><?php echo $duration ?></span>
                                                                                             </div>
                                                                                     <?php endwhile; ?>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-6 p-0">
+                                                                        <div class="col-4 p-0">
                                                                             <div class="value">
                                                                                 <div class="table-style">
+                                                                                    <span class="txt-paragraph lg block bold uppercase">Incall</span>
                                                                                     <?php
                                                                                         while( have_rows('values') ) : the_row();
                                                                                             $duration = get_sub_field('duration');
                                                                                             $value = get_sub_field('value');
+                                                                                            $outcall = get_sub_field('outcall');
+
+                                                                                            if (empty($outcall)) {
+                                                                                                $outcall = '-';
+                                                                                            }
                                                                                         ?>
                                                                                             <div class="table-row pl-0">
                                                                                                 <span class="txt-paragraph lg block bold uppercase"><?php echo $value ?></span>
+                                                                                            </div>
+                                                                                    <?php endwhile; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 p-0">
+                                                                            <div class="value">
+                                                                                <div class="table-style">
+                                                                                    <span class="txt-paragraph lg block bold uppercase">Outcall</span>
+                                                                                    <?php
+                                                                                        while( have_rows('values') ) : the_row();
+                                                                                            $duration = get_sub_field('duration');
+                                                                                            $value = get_sub_field('value');
+                                                                                            $outcall = get_sub_field('outcall');
+
+                                                                                            if (empty($outcall)) {
+                                                                                                $outcall = '-';
+                                                                                            }
+                                                                                        ?>
+                                                                                            <div class="table-row pl-0">
+                                                                                                <span class="txt-paragraph lg block bold uppercase"><?php echo $outcall ?></span>
                                                                                             </div>
                                                                                     <?php endwhile; ?>
                                                                                 </div>
