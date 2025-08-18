@@ -278,7 +278,7 @@ get_header();
                 // 🎉 Dispara o confete
                 launchConfetti();
                 
-                $('#profile-text').text('Your Perfect Match');
+                $('#profile-text').text('This Is Your Girl Next Door');
                 $('#profile1').html('<img src="' + it[0].image + '" alt="' + it[0].name + '"><h3>' + it[0].name + '</h3>').show();
                 $('#profile2').hide(); // Esconde o segundo perfil
                 $('#profile1').addClass('match'); // Adiciona classe para estilização

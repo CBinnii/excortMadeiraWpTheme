@@ -203,7 +203,7 @@
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>FAQ</h2>
+                            <h2>Questions? We have answers.</h2>
                         </div>
                     </div>
 

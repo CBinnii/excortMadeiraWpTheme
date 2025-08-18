@@ -220,11 +220,11 @@
             <?php endif; ?>
             
             <!-- FAQ Section -->
-            <?php if( have_rows('faq') ): ?>
+            <?php if( have_rows('faq', 'location_' . get_queried_object()->term_id) ): ?>
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>FAQ</h2>
+                            <h2>Questions? We have answers.</h2>
                         </div>
                     </div>
 
@@ -233,7 +233,7 @@
                             <div class="row m-0">
                                 <div class="accordion" id="accordionFAQ">
                                     <?php
-                                        while( have_rows('faq') ) : the_row();
+                                        while( have_rows('faq', 'location_' . get_queried_object()->term_id) ) : the_row();
                                             $question = get_sub_field('question');
                                             $answer = get_sub_field('answer');
                                     ?>

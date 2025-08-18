@@ -610,7 +610,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="escorts" class="button bold white">
+                                <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
                                     See all escorts
                                 </a>
                             </div>

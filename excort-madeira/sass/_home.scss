@@ -145,6 +145,12 @@
         min-height: 500px;
         padding-bottom: 56px;
 
+        .title {
+            @media screen  and (max-width: 991px) {
+                padding-bottom: 24px !important;
+            }
+        }
+
         .slider-top-escorts {
             // height: 560px;
 
@@ -154,7 +160,7 @@
                 .swiper-slide {
                     height: auto;
                     @media screen and (max-width: 767px) {
-                        width: 40%;
+                        width: 45%;
                     }
 
                     img {
