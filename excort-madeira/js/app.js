@@ -163,7 +163,6 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
         nextEl: ".swiper-button-next-top-escorts",
         prevEl: ".swiper-button-prev-top-escorts",
     },
-    freeMode: true,
     loop: true,
     breakpoints: {
         240: {

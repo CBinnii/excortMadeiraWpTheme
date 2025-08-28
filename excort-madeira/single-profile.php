@@ -474,7 +474,7 @@
                                     <?php $services = get_field('services'); 
 
                                         if( $services ) : ?>
-                                        <div class="profile-personal-services mb-30">
+                                        <div class="profile-personal-services">
                                             <button class="accordion-toggle mb-16 mob-mb-0">
                                                 <span class="txt-heading block uppercase md">My services</span>
                                                 <span class="arrow"></span>
@@ -491,6 +491,24 @@
                                                             </div>
                                                         <?php endforeach; ?>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php wp_reset_postdata(); ?>
+                                    <?php endif; ?>
+
+                                    <?php $maps = get_field('maps'); 
+
+                                        if( $maps ) : ?>
+                                        <div class="profile-maps mb-30">
+                                            <button class="accordion-toggle mb-16 mob-mb-0">
+                                                <span class="txt-heading block uppercase md">Incall Location</span>
+                                                <span class="arrow"></span>
+                                            </button>
+
+                                            <div class="accordion-content">
+                                                <div class="row">
+                                                    <?php echo $maps; ?>
                                                 </div>
                                             </div>
                                         </div>
