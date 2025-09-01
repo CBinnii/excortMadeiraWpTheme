@@ -3,12 +3,18 @@ function menuDesktop() {
     var menu = document.getElementById("menu-button-desktop");
     var collapse = document.getElementById("navbar-collapse-desktop");
     var menuPattern = document.getElementById("navbar-menu-desktop-pattern");
-    var socialHeader = document.getElementById("social-header");
+    var language = document.getElementById("language-switcher");
 
     if (collapse.classList.contains("show")) {
         collapse.classList.remove("show");
     } else {
         collapse.classList.add("show");
+    }
+
+    if (language.classList.contains("d-none")) {
+        language.classList.remove("d-none");
+    } else {
+        language.classList.add("d-none");
     }
 
     if (menuPattern.classList.contains("d-none")) {
@@ -28,11 +34,18 @@ function menuDesktop() {
 function menuMobile() {
     var menu = document.getElementById("menu-button");
     var collapse = document.getElementById("navbar-collapse");
+    var language = document.getElementById("language-switcher");
 
     if (collapse.classList.contains("show")) {
         collapse.classList.remove("show");
     } else {
         collapse.classList.add("show");
+    }
+
+    if (language.classList.contains("d-none")) {
+        language.classList.remove("d-none");
+    } else {
+        language.classList.add("d-none");
     }
 
     if (menu.classList.contains("cross")) {

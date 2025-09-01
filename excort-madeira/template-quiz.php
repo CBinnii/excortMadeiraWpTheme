@@ -7,24 +7,48 @@ get_header();
         <div class="container">
             <div class="quiz-intro">
                 <div class="quiz-intro-content">
-                    <h1>Find Your Girl Next Door</h1>
-                    <p>Tap an image to choose your location. Then keep picking the girl who catches your eye untill one remains. Your Girl Next Door</p>
+                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                        <h1>Encontre sua namorada</h1>
+                    <?php else : ?>
+                        <h1>Find Your Girl Next Door</h1>
+                    <?php endif; ?>
+
+                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                        <p>Toque numa imagem para escolher a sua localização. De seguida, continue a escolher a rapariga que lhe chamar a atenção até que sobre apenas uma. A Sua Menina da Porta ao Lado</p>
+                    <?php else : ?>
+                        <p>Tap an image to choose your location. Then keep picking the girl who catches your eye untill one remains. Your Girl Next Door</p>
+                    <?php endif; ?>
 
                     <div class="buttons">
-                        <button id="begin-quiz-btn" class="button bold pointer">Let's Begin</button>
+                        <button id="begin-quiz-btn" class="button bold pointer">
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Iniciar
+                            <?php else : ?>
+                                Let's Begin
+                            <?php endif; ?>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="location-selection" style="display:none;">
                 <div class="location-selection-content">
-                    <h2>Where are you looking for Your Girl Next Door?</h2>
+                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                        <h2>Onde está à procura da Your Girl Next Door?</h2>
+                    <?php else : ?>
+                        <h2>Where are you looking for Your Girl Next Door?</h2>
+                    <?php endif; ?>
+
                     <div id="location-list" class="row"></div> <!-- Aqui serão exibidas as localizações -->
                 </div>
             </div>
 
             <div class="profile-quiz" style="display:none;">
-                <h2 id="profile-text">Who do you prefer?</h2>
+                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                    <h2 id="profile-text">Quem prefere?</h2>
+                <?php else : ?>
+                    <h2 id="profile-text">Who do you prefer?</h2>
+                <?php endif; ?>
 
                 <div class="profile-quiz-content">
                     <div id="profile1" data-id="" class="profile-quiz-container" style="display:none;"></div>
@@ -32,8 +56,20 @@ get_header();
                 </div>
 
                 <div class="buttons" id="buttons" style="display:none;">
-                    <a href="#" id="view-profile" class="button bold pointer">View Full Profile</a>
-                    <button id="do-again" class="button bold pointer">Choose again</button>
+                    <a href="#" id="view-profile" class="button bold pointer">
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            Ver perfil
+                        <?php else : ?>
+                            View Full Profile
+                        <?php endif; ?>
+                    </a>
+                    <button id="do-again" class="button bold pointer">
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            Escolher de novo
+                        <?php else : ?>
+                            Choose again
+                        <?php endif; ?>
+                    </button>
                 </div>
             </div>
         </div>

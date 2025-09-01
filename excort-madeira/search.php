@@ -30,6 +30,7 @@
                 $args = array(
                     's' => $search_query, // A pesquisa
                     'posts_per_page' => -1, // Exibir todos os resultados
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                 );
 
                 // Query para 'post'

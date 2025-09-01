@@ -37,42 +37,61 @@ function custom_profile_permalink($post_link, $post) {
 }
 add_filter('post_type_link', 'custom_profile_permalink', 10, 2);
 
-// 2) Regras de rewrite para /{location}/{profile}
+// 2) Regras de rewrite por idioma:
+// /{lang}/{location}            -> arquivo da taxonomia 'location' (sem /location/)
+// /{lang}/{location}/{profile}  -> single do CPT 'profile'
+// /{lang}/{location}/page/2     -> paginação da taxonomia
 function add_custom_profile_rewrite_rules($rules) {
-    $new_rules = [];
+    $new = [];
 
-    $terms = get_terms([
-        'taxonomy'   => 'location',
-        'hide_empty' => false,
-    ]);
+    // idiomas ativos no Polylang
+    $langs = function_exists('pll_languages_list')
+        ? pll_languages_list(['fields' => 'slug'])
+        : ['pt', 'en']; // fallback
 
-    if (!is_wp_error($terms) && !empty($terms)) {
-        foreach ($terms as $term) {
-            $slug = $term->slug;
+    $tax = 'location';
 
-            // Single profile sob o termo: /{location}/{profile}
-            // (resolve pelo slug do post: name=$matches[1])
-            $new_rules[$slug . '/([^/]+)/?$'] = 'index.php?post_type=profile&name=$matches[1]';
+    foreach ($langs as $lang) {
+        // Tax term (um nível). Se usar hierarquia, troque ([^/]+) por (.+) e trate no term_link.
+        $term_pattern = '([^/]+)';
 
-            // (Opcional) Taxonomy term root: /{location}
-            // Remova se você NÃO quer a listagem da taxonomy no root.
-            $new_rules[$slug . '/?$'] = 'index.php?location=' . $slug;
+        // Arquivo da taxonomia: /pt/{term}
+        $new["{$lang}/{$term_pattern}/?$"]
+            = "index.php?taxonomy={$tax}&term=\$matches[1]&lang={$lang}";
 
-            // (Opcional) Paginação da taxonomy: /{location}/page/2
-            $new_rules[$slug . '/page/([0-9]{1,})/?$'] =
-                'index.php?location=' . $slug . '&paged=$matches[1]';
-        }
+        // Paginação do arquivo: /pt/{term}/page/2
+        $new["{$lang}/{$term_pattern}/page/([0-9]{1,})/?$"]
+            = "index.php?taxonomy={$tax}&term=\$matches[1]&lang={$lang}&paged=\$matches[2]";
+
+        // Single profile: /pt/{term}/{profile}
+        // Aqui usamos 'name' para resolver o post pelo slug
+        $new["{$lang}/{$term_pattern}/([^/]+)/?$"]
+            = "index.php?post_type=profile&name=\$matches[2]&lang={$lang}";
     }
 
-    // Fallback profiles sem termo: /sem-local/{profile}
-    $new_rules['sem-local/([^/]+)/?$'] = 'index.php?post_type=profile&name=$matches[1]';
+    // Fallback para sem local: /{lang}/sem-local/{profile}
+    foreach ($langs as $lang) {
+        $new["{$lang}/sem-local/([^/]+)/?$"]
+            = "index.php?post_type=profile&name=\$matches[1]&lang={$lang}";
+    }
 
-    // ⭐ Páginas primeiro; NOSSAS regras depois (evita quebrar páginas)
-    return $rules + $new_rules;
+    // Mantém as regras do WP primeiro e adiciona as nossas depois (evita conflito com páginas)
+    return $rules + $new;
 }
 add_filter('rewrite_rules_array', 'add_custom_profile_rewrite_rules', 20);
 
-// 3) Flush automático quando termos mudarem (evita “perder” regras após plugin mexer)
+// 3) Gera o link de 'location' sem a base, respeitando /{lang}/
+add_filter('term_link', function ($url, $term, $taxonomy) {
+    if ($taxonomy !== 'location') return $url;
+
+    $lang = function_exists('pll_get_term_language') ? pll_get_term_language($term->term_id, 'slug') : '';
+    $lang_prefix = $lang ? '/' . $lang : '';
+
+    // Apenas /{lang}/{slug-do-termo}
+    return home_url(user_trailingslashit($lang_prefix . '/' . $term->slug));
+}, 10, 3);
+
+// 4) Flush automático quando termos mudarem (evita “perder” regras após plugin mexer)
 function tgnd_flush_on_location_change() { flush_rewrite_rules(); }
 add_action('created_location', 'tgnd_flush_on_location_change');
 add_action('edited_location',  'tgnd_flush_on_location_change');
@@ -93,89 +112,95 @@ function custom_swpm_join_us_text($text) {
 }
 add_filter('swpm_registration_button_text', 'custom_swpm_join_us_text');
 
-// Função para buscar as localizações da taxonomia 'location' e a imagem de destaque (URL)
+// Função para buscar as localizações (apenas do idioma atual) + imagem destacada
 function buscar_localizacoes() {
-    $terms = get_terms(array(
-        'taxonomy' => 'location',
-        'orderby' => 'term_id',
-        'order' => 'ASC',
-        'hide_empty' => false, // Mesmo que não haja posts associados, as localizações serão retornadas
-    ));
+    $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
+
+    $terms = get_terms([
+        'taxonomy'   => 'location',
+        'orderby'    => 'term_id',
+        'order'      => 'ASC',
+        'hide_empty' => false,
+        // Polylang: filtra por idioma
+        'lang'       => $lang ? $lang : 'all',
+    ]);
 
     if (!empty($terms) && !is_wp_error($terms)) {
-        $locations = array();
+        $locations = [];
 
         foreach ($terms as $term) {
-            // Recupera o ID da imagem de destaque associada à localização
             $featured_image_id = get_term_meta($term->term_id, 'featured_image_location', true);
-            
-            // Se a imagem de destaque foi encontrada, obtém o URL
-            if ($featured_image_id) {
-                $featured_image_url = wp_get_attachment_url($featured_image_id);  // Obtém o URL da imagem
-            } else {
-                // Caso não haja imagem, você pode definir um URL padrão
-                $featured_image_url = 'https://the-girl-next-door.com/wp-content/themes/excort-madeira/images/no-image.jpeg';  // Substitua pelo URL de uma imagem padrão
-            }
+            $featured_image_url = $featured_image_id
+                ? wp_get_attachment_url($featured_image_id)
+                : 'https://the-girl-next-door.com/wp-content/themes/excort-madeira/images/no-image.jpeg';
 
-            $locations[] = array(
-                'name' => $term->description ? $term->description : $term->name, // Usa a descrição se disponível, senão o nome
-                'slug' => $term->slug,
-                'featured_image' => $featured_image_url, // Inclui o URL da imagem de destaque
-            );
+            $locations[] = [
+                'name'           => $term->description ? $term->description : $term->name,
+                'slug'           => $term->slug,
+                'featured_image' => $featured_image_url,
+                'link'           => get_term_link($term), // já sai como /{lang}/{slug}
+            ];
         }
 
-        wp_send_json_success($locations); // Retorna as localizações com o URL da imagem
+        wp_send_json_success($locations);
     } else {
         wp_send_json_error('Nenhuma localização encontrada');
     }
 
-    wp_die(); // Finaliza a execução
+    wp_die();
 }
 add_action('wp_ajax_get_locations', 'buscar_localizacoes');
 add_action('wp_ajax_nopriv_get_locations', 'buscar_localizacoes');
 
-// Função para buscar os perfis da localização
+// Função para buscar perfis da localização (respeitando idioma atual)
 function buscar_perfis_por_localizacao() {
-    if (isset($_GET['location'])) {
-        $location_slug = sanitize_text_field($_GET['location']);
-
-        // Query para buscar perfis da localização
-        $args = array(
-            'post_type' => 'profile',
-            'posts_per_page' => 10,  // Alterado para pegar mais perfis
-            'orderby' => 'rand',  // Aleatorizar os perfis
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'location',
-                    'field'    => 'slug',
-                    'terms'    => $location_slug,
-                ),
-            ),
-        );
-
-        $query = new WP_Query($args);
-        
-        if ($query->have_posts()) :
-            $response = [];
-            
-            while ($query->have_posts()) : $query->the_post();
-                $profile = [
-                    'id' => get_the_ID(),
-                    'name' => get_the_title(),
-                    'image' => get_the_post_thumbnail_url(),
-                    'link' => get_permalink(), // Link para o perfil completo
-                ];
-                $response[] = $profile;
-            endwhile;
-            
-            wp_send_json_success($response);  // Retorna os perfis encontrados
-        else :
-            wp_send_json_error('Nenhum perfil encontrado para essa localização.');
-        endif;
+    if (!isset($_GET['location'])) {
+        wp_send_json_error('Parâmetro "location" é obrigatório.');
+        wp_die();
     }
 
-    wp_die();  // Finaliza a execução
-}
+    $location_slug = sanitize_text_field($_GET['location']);
+    $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
 
+    // Query para perfis da localização no idioma atual
+    $args = [
+        'post_type'      => 'profile',
+        'post_status'    => 'publish',
+        'posts_per_page' => 10,
+        'orderby'        => 'rand',
+        // Polylang: restringe posts ao idioma da tela
+        'lang'           => $lang ?: 'all',
+        'tax_query'      => [
+            [
+                'taxonomy' => 'location',
+                'field'    => 'slug',
+                'terms'    => $location_slug,
+            ],
+        ],
+    ];
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        $response = [];
+
+        while ($query->have_posts()) {
+            $query->the_post();
+            $response[] = [
+                'id'    => get_the_ID(),
+                'name'  => get_the_title(),
+                'image' => get_the_post_thumbnail_url(),
+                'link'  => get_permalink(), // já vem como /{lang}/{location}/{profile}
+            ];
+        }
+
+        wp_reset_postdata();
+        wp_send_json_success($response);
+    } else {
+        wp_send_json_error('Nenhum perfil encontrado para essa localização.');
+    }
+
+    wp_die();
+}
 add_action('wp_ajax_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');
 add_action('wp_ajax_nopriv_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');

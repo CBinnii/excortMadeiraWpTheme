@@ -21,7 +21,15 @@
 
                             <div class="desktop d-flex align-items-center" id="navbar-menu-desktop-pattern">
                                 <?php
-                                    $menu_padrao = get_term_by('name', 'Menu', 'nav_menu');
+                                    $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
+
+                                    if ($lang === 'en') {
+                                        $menu_2_name = 'Menu';
+                                    } elseif ($lang === 'pt') {
+                                        $menu_2_name = 'Menu PT';
+                                    }
+                                    
+                                    $menu_padrao = get_term_by('name', $menu_2_name, 'nav_menu');
 
                                     if ($menu_padrao) {
                                         wp_nav_menu(array(
@@ -39,14 +47,24 @@
                         </div>
 
                         <div class="col-sm-4 menu-header">
-                            <div class="navbar-menu">
+                            <div class="navbar-menu">    
+                                <div class="language-switcher d-none" id="language-switcher">
+                                    <a href="<?php echo pll_home_url('en'); ?>">EN</a>/<a href="<?php echo pll_home_url('pt'); ?>">PT</a>
+                                </div>
+                                
                                 <div class="collapse navbar-collapse desktop" id="navbar-collapse-desktop">
                                     <div class="col-sm-7 logo-header">
                                         <span class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></span>
                                     </div>
-                                    
                                     <?php
-                                        $menu_hamburguer = get_term_by('name', 'Menu Mobile', 'nav_menu');
+                                        $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
+                                        if ($lang === 'en') {
+                                            $menu_1_name = 'Menu Mobile';
+                                        } elseif ($lang === 'pt') {
+                                            $menu_1_name = 'Menu Mobile PT';
+                                        }
+
+                                        $menu_hamburguer = get_term_by('name', $menu_1_name, 'nav_menu');
 
                                         if ($menu_hamburguer) {
                                             wp_nav_menu(array(
@@ -67,7 +85,7 @@
                                     </div>
                                     
                                     <?php
-                                        $menu_mobile = get_term_by('name', 'Menu mobile', 'nav_menu');
+                                        $menu_mobile = get_term_by('name', $menu_1_name, 'nav_menu');
 
                                         if ($menu_mobile) {
                                             wp_nav_menu(array(
@@ -84,23 +102,42 @@
                                     
                                     <div class="row w-100">
                                         <div class="col-5">
-                                            <a href="<?php echo get_home_url(); ?>/login" class="button bold outline medium text-center">
-                                                Login
-                                            </a>
+                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                <a href="<?php echo pll_home_url('pt'); ?>/login-2" class="button bold outline medium text-center">
+                                                    Login
+                                                </a>
+                                            <?php else : ?>
+                                                <a href="<?php echo pll_home_url('en'); ?>/login" class="button bold outline medium text-center">
+                                                    Login
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="col-2">
                                             <div class="header-site-search visible-mobile" style="margin-left: 20px; margin-top: 30px;">
                                                 <span class="header-site-search-icon visible-mobile"></span>
                                                 <form method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-                                                    <input class="header-site-search-input visible-mobile" type="text" name="s" id="keyword" placeholder="Search..." value="<?php echo get_search_query(); ?>">
-                                                    <button type="submit">Search</button>
+                                                    <input class="header-site-search-input visible-mobile" type="text" name="s" id="keyword" placeholder="<?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>Pesquisar<?php else : ?>Search<?php endif; ?>..." value="<?php echo get_search_query(); ?>">
+                                                    <button type="submit">
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            Pesquisar
+                                                        <?php else : ?>
+                                                            Search
+                                                        <?php endif; ?>
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="col-5">
-                                            <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold outline medium text-center pl-0 pr-0">
-                                                Get Verified
-                                            </a>
+                                            
+                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                <a href="<?php echo pll_home_url('pt'); ?>/verifique-se" class="button bold outline medium text-center pl-0 pr-0">
+                                                    Verifique-se
+                                                </a>
+                                            <?php else : ?>
+                                                <a href="<?php echo pll_home_url('en'); ?>/get-verified" class="button bold outline medium text-center pl-0 pr-0">
+                                                    Get Verified
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -110,18 +147,37 @@
                                         <div class="header-site-search visible-desktop">
                                             <span class="header-site-search-icon visible-desktop"></span>
                                             <form method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-                                                <input class="header-site-search-input visible-desktop" type="text" name="s" id="keyword" placeholder="Search..." value="<?php echo get_search_query(); ?>">
-                                                <button type="submit">Search</button>
+                                                <input class="header-site-search-input visible-desktop" type="text" name="s" id="keyword" placeholder="<?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>Pesquisar<?php else : ?>Search<?php endif; ?>..." value="<?php echo get_search_query(); ?>">
+                                                <button type="submit">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        Pesquisar
+                                                    <?php else : ?>
+                                                        Search
+                                                    <?php endif; ?>
+                                                </button>
                                             </form>
                                         </div>
 
-                                        <a href="<?php echo get_home_url(); ?>/login" class="button bold outline medium">
-                                            Login
-                                        </a>
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/login-2" class="button bold outline medium">
+                                                Login
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/login" class="button bold outline medium">
+                                                Login
+                                            </a>
+                                        <?php endif; ?>
 
-                                        <a href="<?php echo get_home_url(); ?>/get-verified" class="button bold outline medium p-0">
-                                            Get Verified
-                                        </a>
+
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/verifique-se" class="button bold outline medium p-0">
+                                                Verifique-se
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/get-verified" class="button bold outline medium p-0">
+                                                Get Verified
+                                            </a>
+                                        <?php endif; ?>
                                     </span>
 
                                     <div class="desktop">

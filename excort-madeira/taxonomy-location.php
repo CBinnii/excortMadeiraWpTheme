@@ -84,6 +84,7 @@
                     'post_type' => 'profile',  // ou o tipo de post que você está usando
                     'status' => 'publish',
                     'showposts' => -1, // ou qualquer número de posts que você quiser
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'tax_query' => array(
                         array(
                             'taxonomy' => 'location', // Substitua pela sua taxonomia
@@ -224,7 +225,11 @@
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>Questions? We have answers.</h2>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <h2>Dúvidas? Nós temos as respostas.</h2>
+                            <?php else : ?>
+                                <h2>Questions? We have answers.</h2>
+                            <?php endif; ?>
                         </div>
                     </div>
 

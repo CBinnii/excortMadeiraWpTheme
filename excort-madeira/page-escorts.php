@@ -77,27 +77,19 @@
             <?php endif; ?>
 
             <?php
-                $args = array(
-                    'post_type' => 'profile',
-                    'status' => 'publish',
-                    'showposts' => -1,
-                    'meta_query' => array(
-                        array(
-                            'key' => 'photos',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'more_fields',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'only_member',
-                            'compare' => 'EXISTS',
-                        ),
-                    ),
-                );
+                $args = [
+                    'post_type'      => 'profile',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => -1,
+                    'lang'           => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
+                    'meta_query'     => [
+                        ['key' => 'photos',       'compare' => 'EXISTS'],
+                        ['key' => 'more_fields',  'compare' => 'EXISTS'],
+                        ['key' => 'only_member',  'compare' => 'EXISTS'],
+                    ],
+                ];
 
-                $more = new WP_Query( $args );
+                $more = new WP_Query($args);
 
 			    if (!empty($more->posts)): ?>
                     <div class="section-escorts">
@@ -203,7 +195,11 @@
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>Questions? We have answers.</h2>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <h2>Dúvidas? Nós temos as respostas.</h2>
+                            <?php else : ?>
+                                <h2>Questions? We have answers.</h2>
+                            <?php endif; ?>
                         </div>
                     </div>
 

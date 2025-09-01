@@ -527,6 +527,7 @@
                     'post_type' => 'profile',
                     'status' => 'publish',
                     'showposts' => 4,
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'post__not_in' => array($post->ID),
                     'meta_query' => array(
                         array(

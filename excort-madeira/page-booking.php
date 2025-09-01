@@ -104,6 +104,7 @@
                                                 $args = array(
                                                     'post_type'      => 'profile',
                                                     'posts_per_page' => -1,
+                                                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                                                     'orderby'        => 'title',
                                                     'order'          => 'ASC',
                                                 );
@@ -303,6 +304,7 @@
                     'post_type' => 'post',
                     'status' => 'publish',
                     'showposts' => 2,
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'meta_query' => array(
                         array(
                             'key' => 'featured_image_hover',

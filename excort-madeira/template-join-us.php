@@ -163,7 +163,11 @@
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>Questions? We have answers.</h2>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <h2>Dúvidas? Nós temos as respostas.</h2>
+                            <?php else : ?>
+                                <h2>Questions? We have answers.</h2>
+                            <?php endif; ?>
                         </div>
                     </div>
 

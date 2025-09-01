@@ -78,6 +78,7 @@
                     'post_type' => 'profile',
                     'status' => 'publish',
                     'showposts' => 8,
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'meta_query' => array(
                         array(
                             'key' => 'photos',
@@ -96,7 +97,11 @@
                     <div class="section-topexcorts">
                         <div class="title">
                             <div class="container">
-                                <h2>Meet Verified Independent Escorts in Portugal</h2>
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <h2>Conheça acompanhantes independentes verificadas em Portugal</h2>
+                                <?php else : ?>
+                                    <h2>Meet Verified Independent Escorts in Portugal</h2>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -158,7 +163,14 @@
                                                         <?php echo '-'; ?>
                                                     <?php endif; ?>
                                                 </p>
-                                                <p class="small"><strong>Age: </strong> 
+                                                <p class="small">
+                                                    <strong>
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            Idade
+                                                        <?php else : ?>
+                                                            Age
+                                                        <?php endif; ?>:
+                                                        </strong> 
                                                     <?php if (!empty($age_more)) : ?>
                                                         <?php echo $age_more; ?>
                                                     <?php else : ?>
@@ -180,7 +192,11 @@
 
                             <div class="d-flex justify-content-center mt-30">
                                 <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
-                                    View all escorts
+                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                        Ver acompanhantes
+                                    <?php else : ?>
+                                        View all escorts
+                                    <?php endif; ?>
                                 </a>
                             </div>
                         </div>
@@ -215,7 +231,11 @@
                                 
                                 <div class="d-flex justify-content-center mt-30">
                                     <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
-                                        View profiles
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            Ver perfis
+                                        <?php else : ?>
+                                            View profiles
+                                        <?php endif; ?>
                                     </a>
                                 </div>
                             </div>
@@ -354,6 +374,7 @@
                     'post_type' => 'post',
                     'status' => 'publish',
                     'showposts' => 6,
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'meta_query' => array(
                         array(
                             'key' => 'featured_image_hover',
@@ -405,7 +426,11 @@
 
                             <div class="d-flex justify-content-center mt-30">
                                 <a href="<?php echo get_home_url(); ?>/blog" class="button bold white">
-                                    Read more
+                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                        Leia mais
+                                    <?php else : ?>
+                                        Read more
+                                    <?php endif; ?>
                                 </a>
                             </div>
                         </div>
@@ -477,7 +502,11 @@
                 <div class="section-faq">
                     <div class="faq-title">
                         <div class="container">
-                            <h2>Questions? We have answers.</h2>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <h2>Dúvidas? Nós temos as respostas.</h2>
+                            <?php else : ?>
+                                <h2>Questions? We have answers.</h2>
+                            <?php endif; ?>
                         </div>
                     </div>
 

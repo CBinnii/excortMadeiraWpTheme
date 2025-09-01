@@ -81,6 +81,7 @@
                 $args = array(
                     'post_type' => 'post',
                     'status' => 'publish',
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
                     'showposts' => -1,
                 );
 
