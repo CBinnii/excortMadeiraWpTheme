@@ -103,7 +103,7 @@
                                     <div class="row w-100">
                                         <div class="col-5">
                                             <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                <a href="<?php echo pll_home_url('pt'); ?>/login-2" class="button bold outline medium text-center">
+                                                <a href="<?php echo pll_home_url('pt'); ?>/login" class="button bold outline medium text-center">
                                                     Login
                                                 </a>
                                             <?php else : ?>
@@ -159,7 +159,7 @@
                                         </div>
 
                                         <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/login-2" class="button bold outline medium">
+                                            <a href="<?php echo pll_home_url('pt'); ?>/login" class="button bold outline medium">
                                                 Login
                                             </a>
                                         <?php else : ?>

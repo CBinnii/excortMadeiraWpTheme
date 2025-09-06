@@ -104,6 +104,8 @@ get_header();
 <?php get_footer(); ?>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script>
+    var lang = "<?php echo function_exists('pll_current_language') ? pll_current_language() : 'en'; ?>";
+
     function showBootstrapModal(message) {
         // altera o texto do modal
         $('#quizAlertModal .modal-body').text(message);
@@ -119,7 +121,11 @@ get_header();
     // ---- Sampler em JS (usável com jQuery) ----
     function createSlidingUniqueSampler(items) {
         if (!Array.isArray(items) || items.length < 2) {
-            showBootstrapModal('There are not enough profiles for the quiz.');
+            if (lang === 'pt') {
+                showBootstrapModal('Não há perfis suficientes para o quiz.');
+            } else {
+                showBootstrapModal('There are not enough profiles for the quiz.');
+            }
             throw new Error('There are not enough profiles for the quiz.');
             return;
         }
@@ -272,7 +278,11 @@ get_header();
                         console.log(response.data);
                         render(); // Renderiza os perfis iniciais
                     } else {
-                        showBootstrapModal('No profiles found for this location.');
+                        if (lang === 'pt') {
+                            showBootstrapModal('Não foram encontrados perfis para esta localização.');
+                        } else {
+                            showBootstrapModal('No profiles found for this location.');
+                        }
                         $('.location-selection').show(); // Exibe a tela de localização novamente
                     }
                 }
@@ -306,7 +316,11 @@ get_header();
                     $('.profile-quiz').hide(); // Esconde a tela de quiz
                     $('#buttons').hide(); // Esconde os botões
                     $('#profile1, #profile2').removeClass('match').hide(); // Reseta os perfis
-                    $('#profile-text').text('Who do you prefer?'); // Reseta
+                    if (lang === 'pt') {
+                        $('#profile-text').text('Quem prefere?'); // Reseta
+                    } else {
+                        $('#profile-text').text('Who do you prefer?'); // Reseta
+                    }
                     carregarLocalizacoes();  // Carrega as localizações
                     $('.location-selection').show(); // Exibe a tela de localização novamente
                 });
@@ -314,7 +328,11 @@ get_header();
                 // 🎉 Dispara o confete
                 launchConfetti();
                 
-                $('#profile-text').text('This Is Your Girl Next Door');
+                if (lang === 'pt') {
+                    $('#profile-text').text('Esta é a sua namorada');
+                } else {
+                    $('#profile-text').text('This Is Your Girl Next Door');
+                }
                 $('#profile1').html('<img src="' + it[0].image + '" alt="' + it[0].name + '"><h3>' + it[0].name + '</h3>').show();
                 $('#profile2').hide(); // Esconde o segundo perfil
                 $('#profile1').addClass('match'); // Adiciona classe para estilização

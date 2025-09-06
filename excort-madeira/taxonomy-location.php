@@ -176,7 +176,14 @@
                                                     <?php echo '-'; ?>
                                                 <?php endif; ?>
                                             </p>
-                                            <p class="small"><strong>Age: </strong> 
+                                            <p class="small">
+                                                <strong>
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        Idade
+                                                    <?php else : ?>
+                                                        Age
+                                                    <?php endif; ?>: 
+                                                </strong> 
                                                 <?php if (!empty($age_more)) : ?>
                                                     <?php echo $age_more; ?>
                                                 <?php else : ?>

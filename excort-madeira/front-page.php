@@ -163,27 +163,6 @@
                                                         <?php echo '-'; ?>
                                                     <?php endif; ?>
                                                 </p>
-                                                <p class="small">
-                                                    <strong>
-                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                            Idade
-                                                        <?php else : ?>
-                                                            Age
-                                                        <?php endif; ?>:
-                                                        </strong> 
-                                                    <?php if (!empty($age_more)) : ?>
-                                                        <?php echo $age_more; ?>
-                                                    <?php else : ?>
-                                                        <?php echo '-'; ?>
-                                                    <?php endif; ?>
-                                                    , 
-                                                    
-                                                    <?php if (!empty($nationality_more)) : ?>
-                                                        <?php echo $nationality_more; ?>
-                                                    <?php else : ?>
-                                                        <?php echo '-'; ?>
-                                                    <?php endif; ?>
-                                                </p>
                                             </a>
                                         </div>
                                     <?php endforeach; ?>

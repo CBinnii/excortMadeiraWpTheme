@@ -8,27 +8,51 @@
                     </div>
                     <div class="col-sm-4">
                         <h3>Quick Menu</h3>
-                        <?php if (have_rows('quick_menu', 'option')) : ?>
-                            <ul class="footer-menu">
-                                <?php while (have_rows('quick_menu', 'option')) : the_row(); ?>
-                                    <li class="nav-item">
-                                        <a href="<?php the_sub_field('link_menu', 'option'); ?>"><?php the_sub_field('text_menu', 'option'); ?></a>
-                                    </li>
-                                <?php endwhile; ?>
-                            </ul>
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            <?php if (have_rows('quick_menu_pt', 'option')) : ?>
+                                <ul class="footer-menu">
+                                    <?php while (have_rows('quick_menu_pt', 'option')) : the_row(); ?>
+                                        <li class="nav-item">
+                                            <a href="<?php the_sub_field('link_menu', 'option'); ?>"><?php the_sub_field('text_menu', 'option'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <?php if (have_rows('quick_menu', 'option')) : ?>
+                                <ul class="footer-menu">
+                                    <?php while (have_rows('quick_menu', 'option')) : the_row(); ?>
+                                        <li class="nav-item">
+                                            <a href="<?php the_sub_field('link_menu', 'option'); ?>"><?php the_sub_field('text_menu', 'option'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                     <div class="col-sm-4">
                         <h3>Legal</h3>
 
-                        <?php if (have_rows('terms_conditions', 'option')) : ?>
-                            <ul class="footer-menu">
-                                <?php while (have_rows('terms_conditions', 'option')) : the_row(); ?>
-                                    <li>
-                                    <a href="<?php the_sub_field('link_terms', 'option'); ?>"><?php the_sub_field('text_terms', 'option'); ?></a>
-                                    </li>
-                                <?php endwhile; ?>
-                            </ul>
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            <?php if (have_rows('terms_conditions_pt', 'option')) : ?>
+                                <ul class="footer-menu">
+                                    <?php while (have_rows('terms_conditions_pt', 'option')) : the_row(); ?>
+                                        <li>
+                                        <a href="<?php the_sub_field('link_terms', 'option'); ?>"><?php the_sub_field('text_terms', 'option'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <?php if (have_rows('terms_conditions', 'option')) : ?>
+                                <ul class="footer-menu">
+                                    <?php while (have_rows('terms_conditions', 'option')) : the_row(); ?>
+                                        <li>
+                                        <a href="<?php the_sub_field('link_terms', 'option'); ?>"><?php the_sub_field('text_terms', 'option'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                     <div class="col-sm-4">
@@ -36,12 +60,20 @@
 
                         <div class="footer-contact">
                             <div class="mb-24">
-                                <?php echo the_field('contact', 'option'); ?>
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <?php echo the_field('contact_pt', 'option'); ?>
+                                <?php else : ?>
+                                    <?php echo the_field('contact', 'option'); ?>
+                                <?php endif; ?>
                             </div>
 
-                            <?php 
-                                $whatsapp = get_field('whatsapp_url', 'option');
-                                $telegram = get_field('telegram_url', 'option');
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') :
+                                    $whatsapp = get_field('whatsapp_url_pt', 'option');
+                                    $telegram = get_field('telegram_url_pt', 'option');
+                                else :
+                                    $whatsapp = get_field('whatsapp_url', 'option');
+                                    $telegram = get_field('telegram_url', 'option');
+                                endif;
                             ?>
                             <ul class="d-flex justify-content-center align-items-center">
                                 <li>
@@ -64,13 +96,23 @@
                 <div class="partner">
                     <div class="content">
                         <div class="mb-16">
-                            <?php echo the_field('disclaimer', 'option'); ?>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') :
+                                    echo the_field('disclaimer_pt', 'option');
+                                else :
+                                    echo the_field('disclaimer', 'option');
+                                endif;
+                            ?>
                         </div>
                     </div>
 
-                    <?php 
-                        $instagram = get_field('instagram_url', 'option');
-                        $tiktok = get_field('tiktok_url', 'option');
+                    
+                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') :
+                            $instagram = get_field('instagram_url_pt', 'option');
+                            $tiktok = get_field('tiktok_url_pt', 'option');
+                        else :
+                            $instagram = get_field('instagram_url', 'option');
+                            $tiktok = get_field('tiktok_url', 'option');
+                        endif;
                     ?>
                     
                     <?php if($instagram || $tiktok) : ?>
@@ -110,7 +152,11 @@
                     <?php endif; ?>
 
                     <div class="content">
-                        <p class="mb-8">All rights reserved | 2025 the girl next door ©</p>
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            <p class="mb-8">Todos os direitos reservados | 2025 the girl next door ©</p>
+                        <?php else : ?>
+                            <p class="mb-8">All rights reserved | 2025 the girl next door ©</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -127,5 +173,20 @@
         <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.bundle.min.js"></script>
         <!-- App JS -->
         <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/app.js"></script>
+
+        <script>
+            var lang = "<?php echo function_exists('pll_current_language') ? pll_current_language() : 'en'; ?>";
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const link = document.getElementById('register');
+                if (link) {
+                    if (lang === 'pt') {
+                        link.textContent = 'Seja membro'; // Texto em português
+                    } else {
+                        link.textContent = 'Be a member'; // Texto em inglês
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

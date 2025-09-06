@@ -110,13 +110,6 @@ if (siteSearch) {
     })
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const link = document.getElementById('register');
-    if (link) {
-        link.textContent = 'Be a member'; // Substitua pelo texto desejado
-    }
-});
-
 // SEARCH 
 const siteSearchMobile = document.querySelector('.header-site-search.visible-mobile');
 const siteSearchInputMobile = document.querySelector('.header-site-search-input.visible-mobile');

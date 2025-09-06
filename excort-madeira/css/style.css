@@ -22994,8 +22994,9 @@ a.button {
   transform: translateX(-50%);
   z-index: 1000;
   font-family: "Rufina", serif, Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 1px;
+  font-weight: 700;
 }
 .language-switcher a {
   text-decoration: none;
@@ -23006,9 +23007,10 @@ a.button {
 }
 @media screen and (max-width: 991px) {
   .language-switcher {
-    left: 44px;
-    font-size: 15px;
-    top: 18px;
+    left: 50px;
+    font-size: 17px;
+    top: 14px;
+    font-weight: 700;
   }
 }
 

@@ -462,14 +462,14 @@
 }
 
 .language-switcher {
-	position: absolute;
-	// top: 18px;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 1000;
-	font-family: 'Rufina', serif, Verdana, sans-serif;
-	font-size: 14px;
-	letter-spacing: 1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-family: "Rufina", serif, Verdana, sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 700;
 
 	a {
 		text-decoration: none;
@@ -481,9 +481,10 @@
 	}
 
 	@media screen and (max-width: 991px) {
-		left: 44px;
-        font-size: 15px;
-        top: 18px;
+        left: 50px;
+        font-size: 17px;
+        top: 14px;
+        font-weight: 700;
 	}
 }
 

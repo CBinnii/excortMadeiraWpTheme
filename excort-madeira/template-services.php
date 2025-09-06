@@ -1,18 +1,17 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
-<?php 
-    /**
-     * Template Name: Advertise Page
-     * Description: Personalized Page "Advertise"
-     */
-	get_header();
+<?php
+    /* Template Name: Services Page */
+
+    get_header(); 
 
     $title_text_field_1_page = get_field('title_text_field_1_page');
     $text_field_1_page = get_field('text_field_1_page');
     $title_text_field_2_page = get_field('title_text_field_2_page');
     $text_field_2_page = get_field('text_field_2_page');
 ?>
+
     <section class="main">
         <div class="section">
             <?php if (has_post_thumbnail( $post->ID ) ) { ?>
@@ -80,27 +79,49 @@
                 </div>
             <?php endif; ?>
 
-            <div class="section-single-page">
-                <div class="title pt-0">
-                    <div class="container">
-                        <h2><?php echo get_the_title(); ?></h2>
-                    </div>
-                </div>
+            <?php
+                $args = array(
+                    'post_type' => 'service',
+                    'status' => 'publish',
+                    'lang'           => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
+                    'showposts' => -1,
+                );
 
-                <div class="container">
-                    <div class="row">
-                        <div class="content">
-                            <?php echo apply_filters('the_content', $post->post_content); ?>
+                $more = new WP_Query( $args );
+
+			    if (!empty($more->posts)): ?>
+                    <div class="section-services">
+                        <div class="container">
+                            <div class="row">
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                    <div class="col-sm-3">
+                                        <a href="<?php echo get_permalink($post->ID); ?>" class="service-box">
+                                            <div class="image">
+                                                <?php if (has_post_thumbnail( $post->ID ) ) { ?>
+                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } else { ?>
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } ?>
+                                            </div>
+                                            <div class="text-box">
+                                                <h2><?php echo get_the_title($post->ID); ?></h2>
+                                                <p class="ellipsis three-lines"><?php echo get_the_excerpt($post->ID); ?></p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                <?php endif;
+                wp_reset_query();
+            ?>
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
-                <div class="section-about bg-white pb-0">
+                <div class="section-about bg-white">
                     <div class="title">
                         <div class="container">
-                            <h3><?php echo $title_text_field_2_page; ?></h3>
+                            <h2><?php echo $title_text_field_2_page; ?></h2>
                         </div>
                     </div>
 
@@ -159,6 +180,7 @@
             <?php endif; ?>
         </div>
     </section>
+
 <?php
     get_footer();
 ?>

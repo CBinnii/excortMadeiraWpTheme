@@ -135,27 +135,17 @@
                                         <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
                                             <div class="image-container">
                                                 <div class="image">
-                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                    <?php if ( has_post_thumbnail( $post->ID ) ) : ?>
+                                                        <img src="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id( $post->ID ), 'full' ) ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.png" alt="No image available">
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <h2><?php echo get_the_title($post->ID); ?></h2>
                                             <p>
                                                 <?php if (!empty($location_more)) : ?>
                                                     <?php echo $location_more; ?>
-                                                <?php else : ?>
-                                                    <?php echo '-'; ?>
-                                                <?php endif; ?>
-                                            </p>
-                                            <p class="small"><strong>Age: </strong> 
-                                                <?php if (!empty($age_more)) : ?>
-                                                    <?php echo $age_more; ?>
-                                                <?php else : ?>
-                                                    <?php echo '-'; ?>
-                                                <?php endif; ?>
-                                                , 
-                                                
-                                                <?php if (!empty($nationality_more)) : ?>
-                                                    <?php echo $nationality_more; ?>
                                                 <?php else : ?>
                                                     <?php echo '-'; ?>
                                                 <?php endif; ?>

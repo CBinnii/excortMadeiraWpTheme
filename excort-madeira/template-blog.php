@@ -3,6 +3,11 @@
 
 <?php 
 	get_header();
+
+    $title_text_field_1_page = get_field('title_text_field_1_page');
+    $text_field_1_page = get_field('text_field_1_page');
+    $title_text_field_2_page = get_field('title_text_field_2_page');
+    $text_field_2_page = get_field('text_field_2_page');
 ?>
 
     <section class="main">
@@ -72,25 +77,41 @@
                 </div>
             <?php endif; ?>
 
-            <div class="section-pricing">
-                <div class="title pt-0">
-                    <div class="container">
-                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                            <h2>Pagamento e tarifa</h2>
-                        <?php else : ?>
-                            <h2>Payment and rate</h2>
-                        <?php endif; ?>
-                    </div>
-                </div>
+            <?php
+                $args = array(
+                    'post_type' => 'post',
+                    'status' => 'publish',
+                    'lang' => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
+                    'showposts' => -1,
+                );
 
-                <div class="container">
-                    <div class="row">
-                        <div class="content">
-                            <?php echo apply_filters('the_content', $post->post_content); ?>
+                $more = new WP_Query( $args );
+
+			    if (!empty($more->posts)): ?>
+                    <div class="section-blog page-blog">
+                        <div class="container">
+                            <div class="row">
+                                <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
+                                    <div class="col-md-4">
+                                        <a href="<?php echo $post->post_name; ?>" class="post-box mb-30">
+                                            <div class="image">
+                                                <?php if (has_post_thumbnail( $post->ID ) ) { ?>
+                                                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } else { ?>
+                                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/no-image.jpeg" alt="<?php echo get_the_title($post->ID); ?>">
+                                                <?php } ?>
+                                            </div>
+                                            <h2 class="ellipsis three-lines"><?php echo get_the_title($post->ID); ?></h2>
+                                            <p class="ellipsis two-lines"><?php echo get_the_excerpt($post->ID); ?></p>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                <?php endif;
+                wp_reset_query();
+            ?>
             
             <?php if( !empty($title_text_field_2_page) || !empty($text_field_2_page) ): ?>
                 <div class="section-about bg-white pb-0">

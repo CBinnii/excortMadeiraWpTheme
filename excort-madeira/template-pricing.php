@@ -2,6 +2,8 @@
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
 <?php 
+    /* Template Name: Pricing  Page */
+    
 	get_header();
 ?>
 

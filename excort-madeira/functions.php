@@ -16,23 +16,35 @@ function remove_menus(){
 add_action( 'admin_menu', 'remove_menus' );
 
 // 1) Permalink do profile: /{location}/{slug-do-profile}
+// 1) Permalink do profile: /{lang}/{location-traduzida}/{slug-do-profile}
 function custom_profile_permalink($post_link, $post) {
-    if ($post->post_type !== 'profile') {
-        return $post_link;
-    }
+    if ($post->post_type !== 'profile') return $post_link;
 
+    $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
     $terms = get_the_terms($post->ID, 'location');
 
-    if (!is_wp_error($terms) && !empty($terms)) {
-        $location = $terms[0]->slug;
+    $location_slug = 'sem-local';
 
-        // respeita estrutura de links (com/sem barra no fim)
-        $path = '/' . $location . '/' . $post->post_name;
-        return user_trailingslashit(home_url($path));
+    if (!is_wp_error($terms) && !empty($terms)) {
+        $t = $terms[0];
+        if (function_exists('pll_get_term') && $lang) {
+            $translated_id = pll_get_term($t->term_id, $lang);
+            if ($translated_id) {
+                $translated = get_term($translated_id, 'location');
+                if ($translated && !is_wp_error($translated)) {
+                    $location_slug = $translated->slug;
+                }
+            } else {
+                $location_slug = $t->slug;
+            }
+        } else {
+            $location_slug = $t->slug;
+        }
     }
 
-    // fallback se não tiver location
-    $path = '/sem-local/' . $post->post_name;
+    $prefix = $lang ? '/' . $lang : '';
+    $path   = $prefix . '/' . $location_slug . '/' . $post->post_name;
+
     return user_trailingslashit(home_url($path));
 }
 add_filter('post_type_link', 'custom_profile_permalink', 10, 2);
@@ -99,18 +111,6 @@ add_action('delete_location',  'tgnd_flush_on_location_change');
 
 // (Opcional) Flush ao ativar tema
 add_action('after_switch_theme', function () { flush_rewrite_rules(); });
-
-// Alterar o texto "Join Us" para "Be a Member"
-function custom_swpm_join_us_text($text) {
-    if (strpos($text, 'Join Us') !== false) {
-        return str_replace('Join Us', 'Be a Member', $text);
-    }
-    if (strpos($text, 'Junte-se a nós') !== false) {
-        return str_replace('Junte-se a nós', 'Seja membro', $text);
-    }
-    return $text;
-}
-add_filter('swpm_registration_button_text', 'custom_swpm_join_us_text');
 
 // Função para buscar as localizações (apenas do idioma atual) + imagem destacada
 function buscar_localizacoes() {
@@ -204,3 +204,32 @@ function buscar_perfis_por_localizacao() {
 }
 add_action('wp_ajax_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');
 add_action('wp_ajax_nopriv_buscar_perfis_por_localizacao', 'buscar_perfis_por_localizacao');
+
+// Traduções dinâmicas de textos do plugin por idioma (sem mexer em arquivos .po)
+add_filter('gettext', function ($translated, $text, $domain) {
+    // Ajuste o text domain do seu plugin de membership, por ex.: 'simple-membership'
+    if ($domain !== 'simple-membership') return $translated;
+
+    $is_pt = function_exists('pll_current_language') && pll_current_language('slug') === 'pt';
+
+    // Mapas mínimos de exemplo — adicione os que você precisa
+    $map_pt = [
+        'Register' => 'Cadastrar',
+        'Login' => 'Entrar',
+        'Username' => 'Usuário',
+        'Password' => 'Senha',
+		'Username or Email' => 'Usuário ou Email',
+        'Confirm Password' => 'Confirmar senha',
+        'Email' => 'E-mail',
+        'Remember Me' => 'Lembrar-me',
+        'Forgot Password?' => 'Esqueceu a senha?',
+        'Be a member' => 'Seja membro',
+		'Log In' => 'Entrar',
+        'There was a problem with your submission.' => 'Houve um problema com o seu envio.',
+    ];
+
+    if ($is_pt && isset($map_pt[$text])) {
+        return $map_pt[$text];
+    }
+    return $translated;
+}, 10, 3);

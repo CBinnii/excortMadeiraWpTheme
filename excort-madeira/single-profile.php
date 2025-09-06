@@ -509,6 +509,28 @@
                                             <div class="accordion-content">
                                                 <div class="row">
                                                     <?php echo $maps; ?>
+
+                                                    <div class="col-12 mt-16 d-flex justify-content-between">
+                                                        <?php 
+                                                            $direction_link = get_field('direction_link'); 
+                                                            $street_view_link = get_field('street_view_link'); 
+                                                        ?>
+                                                        
+                                                        <?php if ($direction_link) : ?>
+                                                            <a href="<?php echo $direction_link; ?>" class="button bold medium">
+                                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                    Direções 
+                                                                <?php else : ?>
+                                                                    Directions 
+                                                                <?php endif; ?>
+                                                            </a>
+                                                        <?php endif;?>
+                                                        <?php if ($street_view_link) : ?>
+                                                            <a href="<?php echo $street_view_link; ?>" target="_blank" class="ml-4 button bold medium">
+                                                                Street View
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -547,7 +569,11 @@
                     <div class="related">
                         <div class="title">
                             <div class="container">
-                                <h2>You may also like</h2>
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <h2>Você também pode gostar</h2>
+                                <?php else : ?>
+                                    <h2>You may also like</h2>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -605,7 +631,14 @@
                                                         <?php echo '-'; ?>
                                                     <?php endif; ?>
                                                 </p>
-                                                <p class="small"><strong>Age: </strong> 
+                                                <p class="small">
+                                                    <strong>
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            <h2>Idade</h2>
+                                                        <?php else : ?>
+                                                            <h2>Age</h2>
+                                                        <?php endif; ?>: 
+                                                    </strong> 
                                                     <?php if (!empty($age_more)) : ?>
                                                         <?php echo $age_more; ?>
                                                     <?php else : ?>
@@ -630,7 +663,11 @@
 
                             <div class="d-flex justify-content-center mt-30">
                                 <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
-                                    See all escorts
+                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                        Ver todas as acompanhantes
+                                    <?php else : ?>
+                                        See all escorts
+                                    <?php endif; ?>
                                 </a>
                             </div>
                         </div>

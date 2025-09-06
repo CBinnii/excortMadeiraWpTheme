@@ -10,7 +10,13 @@
                                 <div class="overlay white"></div>
                                 <div class="container">
                                     <div class="banner-text">
-                                        <h1>Search page</h1>
+                                        <h1>
+                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                Página de pesquisa
+                                            <?php else : ?>
+                                                Search page
+                                            <?php endif; ?>
+                                        </h1>
                                     </div>
                                 </div>
                             </div>
@@ -64,15 +70,29 @@
 
                         <div class="d-flex justify-content-center mt-30">
                             <a href="blog" class="button bold white">
-                                Read more
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    Ler mais
+                                <?php else : ?>
+                                    Read more
+                                <?php endif; ?>
                             </a>
                         </div>
                     <?php else : ?>
-                        <p class="txt-heading block lg">No posts found for <strong>"<?php echo get_search_query(); ?>"</strong></p>
+                        <p class="txt-heading block lg">
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Nenhum post encontrato para <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php else : ?>
+                                No posts found for <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php endif; ?>
+                        </p>
 
                         <div class="d-flex justify-content-center mt-30">
                             <a href="<?php echo home_url(); ?>" class="button bold white">
-                                Go back to homepage
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    Voltar para casa
+                                <?php else : ?>
+                                    Go back to homepage
+                                <?php endif; ?>
                             </a>
                         </div>
                     <?php endif;?>
@@ -87,7 +107,13 @@
             <div class="section-escorts bg-light">
                 <div class="title">
                     <div class="container">
-                        <h3>Escorts</h3>
+                        <h3>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Acompanhantes
+                            <?php else : ?>
+                                Escorts
+                            <?php endif; ?>    
+                        </h3>
                     </div>
                 </div>
 
@@ -127,11 +153,21 @@
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p class="txt-heading block lg">No escorts found for <strong>"<?php echo get_search_query(); ?>"</strong></p>
+                        <p class="txt-heading block lg">
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Nenhuma acompanhante encontrada para <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php else : ?>
+                                No escorts found for <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php endif; ?>   
+                        </p>
 
                         <div class="d-flex justify-content-center mt-30">
                             <a href="<?php echo home_url(); ?>" class="button bold white">
-                                Go back to homepage
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    Voltar para casa
+                                <?php else : ?>
+                                    Go back to homepage
+                                <?php endif; ?>
                             </a>
                         </div>
                     <?php endif; ?>
@@ -146,7 +182,13 @@
             <div class="section-services bg-white">
                 <div class="title">
                     <div class="container">
-                        <h3>Services</h3>
+                        <h3>
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Serviços
+                            <?php else : ?>
+                                Services
+                            <?php endif; ?>
+                        </h3>
                     </div>
                 </div>
                 <div class="container">
@@ -171,11 +213,21 @@
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p class="txt-heading block lg">No service found for <strong>"<?php echo get_search_query(); ?>"</strong></p>
+                        <p class="txt-heading block lg">
+                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                Nenhum serviço encontrado para <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php else : ?>
+                                No service found for <strong>"<?php echo get_search_query(); ?>"</strong>
+                            <?php endif; ?>
+                        </p>
 
                         <div class="d-flex justify-content-center mt-30">
                             <a href="<?php echo home_url(); ?>" class="button bold white">
-                                Go back to homepage
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    Voltar para casa
+                                <?php else : ?>
+                                    Go back to homepage
+                                <?php endif; ?>
                             </a>
                         </div>
                     <?php endif; ?>

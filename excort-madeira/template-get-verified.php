@@ -17,6 +17,8 @@
     };
 </script>
 <?php 
+    /* Template Name: Get Verified Page */
+
 	get_header();
 
     $title_text_field_1_page = get_field('title_text_field_1_page');
