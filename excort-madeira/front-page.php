@@ -455,13 +455,40 @@
                                 <div class="fs-wrapper">
                                     <?php foreach( $image_section_this_is_the_girl_next_door as $photo ): ?>
                                         <div class="fs-entry-container">
-                                            <div class="fs-entry" style="background-image: url('<?php echo esc_url($photo['url']); ?>')">
-                                                <div class="fs-text-container" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-image="<?php echo esc_url($photo['url']); ?>" data-bs-title="<?php echo $photo['title'] ?>" data-bs-link="<?php echo $photo['alt'] ?>" data-bs-description="<?php echo $photo['description'] ?>" data-bs-location="<?php echo $photo['caption'] ?>">
-                                                    <div class="fs-service-icon">
-                                                        <i class="fs-icon fs-fa-instagram"></i>
+                                            <?php 
+                                                $extension = pathinfo($photo['url'], PATHINFO_EXTENSION);
+                                                $is_video = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']); // você pode adicionar outras extensões se quiser
+                                            ?>
+                                            <?php if ($is_video): ?>
+                                                <div class="fs-entry">
+                                                    <div class="video-container">
+                                                        <video 
+                                                            autoplay 
+                                                            loop
+                                                            muted 
+                                                            playsinline 
+                                                            preload="metadata" 
+                                                            style="width: 100%; height: auto; object-fit: cover;" 
+                                                        >
+                                                            <source src="<?php echo esc_url($photo['url']); ?>" type="video/<?php echo esc_attr($extension); ?>">
+                                                            Seu navegador não suporta vídeo.
+                                                        </video>
+                                                    </div>
+                                                    <div class="fs-text-container" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-image="<?php echo esc_url($photo['url']); ?>" data-bs-title="<?php echo $photo['title'] ?>" data-bs-link="<?php echo $photo['alt'] ?>" data-bs-description="<?php echo $photo['description'] ?>" data-bs-location="<?php echo $photo['caption'] ?>">
+                                                        <div class="fs-service-icon">
+                                                            <i class="fs-icon fs-fa-instagram"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php else: ?>
+                                                <div class="fs-entry" style="background-image: url('<?php echo esc_url($photo['url']); ?>')">
+                                                    <div class="fs-text-container" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-image="<?php echo esc_url($photo['url']); ?>" data-bs-title="<?php echo $photo['title'] ?>" data-bs-link="<?php echo $photo['alt'] ?>" data-bs-description="<?php echo $photo['description'] ?>" data-bs-location="<?php echo $photo['caption'] ?>">
+                                                        <div class="fs-service-icon">
+                                                            <i class="fs-icon fs-fa-instagram"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -531,7 +558,7 @@
                     <div>
                         <div class="row">
                             <div class="col-md-5">
-                                <img src="" alt="" id="image">
+                                <div class="media-slot mb-3"></div>
                             </div>
                             <div class="col-md-7">
                                 <h2 id="title"></h2>

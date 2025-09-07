@@ -260,10 +260,6 @@
             }
         }
 
-        @media screen and (max-width: 767px) {
-            margin-bottom: 24px;
-        }
-
         .image-container {
             position: relative;
             width: 100%;
@@ -538,6 +534,12 @@
         display: flex;
         position: relative;
         flex-direction: column;
+        
+        .title {
+            @media screen and (max-width: 460px) {
+                font-size: 24px !important;
+            }
+        }
 
         @media screen and (max-width: 991px) {
             height: 260px;
@@ -615,6 +617,10 @@
                 font-size: 14px;
             }
 
+            @media screen and (max-width: 460px) {
+                font-size: 12px;
+            }
+
             a {
                 color: var(--text-color);
                 font-weight: 500;
@@ -629,6 +635,12 @@
         position: relative;
         flex-direction: column;
         margin-bottom: 56px;
+        
+        .title {
+            @media screen and (max-width: 460px) {
+                font-size: 24px !important;
+            }
+        }
 
         @media screen and (max-width: 991px) {
             height: 260px;
@@ -704,6 +716,10 @@
 
             @media screen and (max-width: 767px) {
                 font-size: 14px;
+            }
+
+            @media screen and (max-width: 460px) {
+                font-size: 12px;
             }
 
             a {
@@ -719,6 +735,12 @@
         display: flex;
         position: relative;
         flex-direction: column;
+        
+        .title {
+            @media screen and (max-width: 460px) {
+                font-size: 24px !important;
+            }
+        }
 
         @media screen and (max-width: 991px) {
             height: 260px;
@@ -796,6 +818,10 @@
                 font-size: 14px;
             }
 
+            @media screen and (max-width: 460px) {
+                font-size: 12px;
+            }
+
             a {
                 color: var(--text-color);
                 font-weight: 500;
@@ -806,6 +832,12 @@
     .section-this-is-the-girl-next-door-escort {
         background: var(--color-white-pure);
         padding-bottom: 56px;
+        
+        .title {
+            @media screen and (max-width: 460px) {
+                font-size: 24px !important;
+            }
+        }
 
         h2 {
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
@@ -833,6 +865,10 @@
 
             @media screen and (max-width: 767px) {
                 font-size: 14px;
+            }
+
+            @media screen and (max-width: 460px) {
+                font-size: 12px;
             }
 
             a {

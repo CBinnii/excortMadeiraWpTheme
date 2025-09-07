@@ -23779,11 +23779,6 @@ a.button {
   overflow: hidden;
   text-decoration: none;
 }
-@media screen and (max-width: 767px) {
-  .section .escort-box {
-    margin-bottom: 24px;
-  }
-}
 .section .escort-box .image-container {
   position: relative;
   width: 100%;
@@ -24035,6 +24030,11 @@ a.button {
   position: relative;
   flex-direction: column;
 }
+@media screen and (max-width: 460px) {
+  .section .section-unlock-access .title {
+    font-size: 24px !important;
+  }
+}
 @media screen and (max-width: 991px) {
   .section .section-unlock-access {
     height: 260px;
@@ -24110,6 +24110,11 @@ a.button {
     font-size: 14px;
   }
 }
+@media screen and (max-width: 460px) {
+  .section .section-unlock-access p {
+    font-size: 12px;
+  }
+}
 .section .section-unlock-access p a {
   color: var(--text-color);
   font-weight: 500;
@@ -24121,6 +24126,11 @@ a.button {
   position: relative;
   flex-direction: column;
   margin-bottom: 56px;
+}
+@media screen and (max-width: 460px) {
+  .section .section-your-girl .title {
+    font-size: 24px !important;
+  }
 }
 @media screen and (max-width: 991px) {
   .section .section-your-girl {
@@ -24196,6 +24206,11 @@ a.button {
     font-size: 14px;
   }
 }
+@media screen and (max-width: 460px) {
+  .section .section-your-girl p {
+    font-size: 12px;
+  }
+}
 .section .section-your-girl p a {
   color: var(--text-color);
   font-weight: 500;
@@ -24206,6 +24221,11 @@ a.button {
   display: flex;
   position: relative;
   flex-direction: column;
+}
+@media screen and (max-width: 460px) {
+  .section .section-become-escort .title {
+    font-size: 24px !important;
+  }
 }
 @media screen and (max-width: 991px) {
   .section .section-become-escort {
@@ -24281,6 +24301,11 @@ a.button {
     font-size: 14px;
   }
 }
+@media screen and (max-width: 460px) {
+  .section .section-become-escort p {
+    font-size: 12px;
+  }
+}
 .section .section-become-escort p a {
   color: var(--text-color);
   font-weight: 500;
@@ -24288,6 +24313,11 @@ a.button {
 .section .section-this-is-the-girl-next-door-escort {
   background: var(--color-white-pure);
   padding-bottom: 56px;
+}
+@media screen and (max-width: 460px) {
+  .section .section-this-is-the-girl-next-door-escort .title {
+    font-size: 24px !important;
+  }
 }
 .section .section-this-is-the-girl-next-door-escort h2, .section .section-this-is-the-girl-next-door-escort .h2 {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
@@ -24315,6 +24345,11 @@ a.button {
 @media screen and (max-width: 767px) {
   .section .section-this-is-the-girl-next-door-escort p {
     font-size: 14px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .section .section-this-is-the-girl-next-door-escort p {
+    font-size: 12px;
   }
 }
 .section .section-this-is-the-girl-next-door-escort p a {
@@ -24645,11 +24680,6 @@ a.button {
   overflow: hidden;
   text-decoration: none;
   margin-bottom: 16px;
-}
-@media screen and (max-width: 767px) {
-  .section .section-escorts .escort-box {
-    align-items: flex-start;
-  }
 }
 .section .section-escorts .escort-box .image-container {
   position: relative;

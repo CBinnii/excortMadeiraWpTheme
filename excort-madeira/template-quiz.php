@@ -232,6 +232,7 @@ get_header();
                 type: 'GET',
                 data: {
                     action: 'get_locations',  // Ação para buscar localizações
+                    lang: lang  // Passa o idioma atual
                 },
                 success: function(response) {
                     if (response.success) {
@@ -269,7 +270,8 @@ get_header();
                 type: 'GET',
                 data: {
                     action: 'buscar_perfis_por_localizacao',  // Ação para buscar perfis por localização
-                    location: location
+                    location: location,
+                    lang: lang // Passa o idioma atual
                 },
                 success: function(response) {
                     if (response.success) {

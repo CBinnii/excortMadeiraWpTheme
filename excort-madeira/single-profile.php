@@ -205,13 +205,22 @@
                                         <div class="text-center mb-24">
                                             <h3><?php echo get_the_title(); ?></h3>
                                             <span class="txt-paragraph xl">
-                                                Age: 
+                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                    Idade: 
+                                                <?php else : ?>
+                                                    Age: 
+                                                <?php endif; ?>
                                                 <?php if (!empty($age)) : ?>
                                                     <?php echo $age; ?>
                                                 <?php else : ?>
                                                     <?php echo '-'; ?>
                                                 <?php endif; ?>
-                                                years
+                                                
+                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                    anos
+                                                <?php else : ?>
+                                                    years 
+                                                <?php endif; ?>
                                             </span>
                                         </div>
 
@@ -226,7 +235,11 @@
                                                 if ($is_user_logged_in) {
                                                     if ($phone) : ?>
                                                         <a href="tel:<?php echo esc_attr($clean_phone); ?>" class="button bold medium">
-                                                            Call
+                                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                Ligar
+                                                            <?php else : ?>
+                                                                Call
+                                                            <?php endif; ?>
                                                         </a>
                                                     <?php endif;
                                                     if ($whatsapp) : ?>
@@ -235,14 +248,24 @@
                                                         </a>
                                                     <?php endif;
                                                 } else { ?>
-                                                    <a href="<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
-                                                        Get Verified
-                                                    </a>
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        <a href="<?php echo esc_url(get_home_url() . '/verifique-se'); ?>" class="button bold medium">
+                                                            Verifique-se
+                                                        </a>
+                                                    <?php else : ?>
+                                                        <a href="<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
+                                                            Get Verified
+                                                        </a>
+                                                    <?php endif; ?>
                                                 <?php }
                                             } elseif ($only_members === 'no') {
                                                 if ($phone) : ?>
                                                     <a href="tel:<?php echo esc_attr($clean_phone); ?>" class="button bold medium">
-                                                        Call
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            Ligar
+                                                        <?php else : ?>
+                                                            Call
+                                                        <?php endif; ?>
                                                     </a>
                                                 <?php endif;
                                                 if ($whatsapp) : ?>
@@ -251,16 +274,28 @@
                                                     </a>
                                                 <?php endif;
                                             } else { ?>
-                                                <a href="tel:<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
-                                                    Get Verified
-                                                </a>
+                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                    <a href="<?php echo esc_url(get_home_url() . '/verifique-se'); ?>" class="button bold medium">
+                                                        Verifique-se
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="<?php echo esc_url(get_home_url() . '/get-verified'); ?>" class="button bold medium">
+                                                        Get Verified
+                                                    </a>
+                                                <?php endif; ?>
                                             <?php } ?>
                                         </div>
                                     </div>
 
                                     <div class="profile-bio">
                                         <button class="accordion-toggle mb-16 mob-mb-0">
-                                            <span class="txt-heading block md text-center">ABOUT</span>
+                                            <span class="txt-heading block md text-center">
+                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                    SOBRE
+                                                <?php else : ?>
+                                                    ABOUT
+                                                <?php endif; ?>
+                                            </span>
                                             <span class="arrow"></span>
                                         </button>
                                         
@@ -273,27 +308,33 @@
                                         <div class="profile-stat">
                                             <div class="stats">
                                                 <button class="accordion-toggle mb-16 mob-mb-0">
-                                                    <span class="txt-heading block md text-center">GENERAL</span>
+                                                    <span class="txt-heading block md text-center">
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            GERAL
+                                                        <?php else : ?>
+                                                            GENERAL
+                                                        <?php endif; ?>
+                                                    </span>
                                                     <span class="arrow"></span>
                                                 </button>
                                                 
                                                 <div class="accordion-content">
                                                     <div class="row">
                                                         <div class="table-style">
-                                                                <?php
-                                                                    while( have_rows('more_fields') ) : the_row();
-                                                                        $label = get_sub_field('label');
-                                                                        $value = get_sub_field('value');
-                                                                ?>
-                                                                    <div class="row m-0 table-row">
-                                                                        <div class="col-6 p-0">
-                                                                            <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
-                                                                        </div>
-                                                                        <div class="col-6 p-0">
-                                                                            <span class="txt-paragraph block lg"><?php echo $value ?></span>
-                                                                        </div>
+                                                            <?php
+                                                                while( have_rows('more_fields') ) : the_row();
+                                                                    $label = get_sub_field('label');
+                                                                    $value = get_sub_field('value');
+                                                            ?>
+                                                                <div class="row m-0 table-row">
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><strong><?php echo $label ?></strong></span>
                                                                     </div>
-                                                                <?php endwhile; ?>
+                                                                    <div class="col-6 p-0">
+                                                                        <span class="txt-paragraph block lg"><?php echo $value ?></span>
+                                                                    </div>
+                                                                </div>
+                                                            <?php endwhile; ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,7 +346,13 @@
                                         <div class="profile-stat">
                                             <div class="stats">
                                                 <button class="accordion-toggle mb-16 mob-mb-0">
-                                                    <span class="txt-heading block md text-center">LANGUAGE</span>
+                                                    <span class="txt-heading block md text-center">
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            IDIOMAS
+                                                        <?php else : ?>
+                                                            LANGUAGE
+                                                        <?php endif; ?>
+                                                    </span>
                                                     <span class="arrow"></span>
                                                 </button>
 
@@ -337,7 +384,13 @@
                                         <div class="profile-stat">
                                             <div class="stats">
                                                 <button class="accordion-toggle mb-16 mob-mb-0">
-                                                    <span class="txt-heading block md text-center">APPEARANCE</span>
+                                                    <span class="txt-heading block md text-center">
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            APARÊNCIA
+                                                        <?php else : ?>
+                                                            APPEARANCE
+                                                        <?php endif; ?>
+                                                    </span>
                                                     <span class="arrow"></span>
                                                 </button>
                                                 
@@ -369,7 +422,13 @@
                                         $rates = get_field('rate');?>
                                         <div class="profile-rate">
                                             <button class="accordion-toggle mb-16 mob-mb-0">
-                                                <span class="txt-heading block uppercase md text-center">Rates</span>
+                                                <span class="txt-heading block uppercase md text-center">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        Tarifas
+                                                    <?php else : ?>
+                                                        Rates
+                                                    <?php endif; ?>
+                                                </span>
                                                 <span class="arrow"></span>
                                             </button>
 
@@ -476,7 +535,13 @@
                                         if( $services ) : ?>
                                         <div class="profile-personal-services">
                                             <button class="accordion-toggle mb-16 mob-mb-0">
-                                                <span class="txt-heading block uppercase md">My services</span>
+                                                <span class="txt-heading block uppercase md">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        Meus serviços
+                                                    <?php else : ?>
+                                                        My services
+                                                    <?php endif; ?>
+                                                </span>
                                                 <span class="arrow"></span>
                                             </button>
 
@@ -502,7 +567,13 @@
                                         if( $maps ) : ?>
                                         <div class="profile-maps mb-30">
                                             <button class="accordion-toggle mb-16 mob-mb-0">
-                                                <span class="txt-heading block uppercase md">Incall Location</span>
+                                                <span class="txt-heading block uppercase md">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        Localização de Incall
+                                                    <?php else : ?>
+                                                        Incall Location 
+                                                    <?php endif; ?>
+                                                </span>
                                                 <span class="arrow"></span>
                                             </button>
 
@@ -623,31 +694,10 @@
                                                         <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
                                                     </div>
                                                 </div>
-                                                <h3><?php echo get_the_title($post->ID); ?></h3>
+                                                <h2><?php echo get_the_title($post->ID); ?></h2>
                                                 <p>
                                                     <?php if (!empty($location_more)) : ?>
                                                         <?php echo $location_more; ?>
-                                                    <?php else : ?>
-                                                        <?php echo '-'; ?>
-                                                    <?php endif; ?>
-                                                </p>
-                                                <p class="small">
-                                                    <strong>
-                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                            <h2>Idade</h2>
-                                                        <?php else : ?>
-                                                            <h2>Age</h2>
-                                                        <?php endif; ?>: 
-                                                    </strong> 
-                                                    <?php if (!empty($age_more)) : ?>
-                                                        <?php echo $age_more; ?>
-                                                    <?php else : ?>
-                                                        <?php echo '-'; ?>
-                                                    <?php endif; ?>
-                                                    , 
-                                                    
-                                                    <?php if (!empty($nationality_more)) : ?>
-                                                        <?php echo $nationality_more; ?>
                                                     <?php else : ?>
                                                         <?php echo '-'; ?>
                                                     <?php endif; ?>

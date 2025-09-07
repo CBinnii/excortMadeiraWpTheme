@@ -120,33 +120,70 @@ add_action('delete_location',  'tgnd_flush_on_location_change');
 // (Opcional) Flush ao ativar tema
 add_action('after_switch_theme', function () { flush_rewrite_rules(); });
 
+// Helper: decide o idioma vindo do request (ou cai em current/default)
+function tgnd_get_requested_lang() {
+    $req = isset($_REQUEST['lang']) ? sanitize_text_field($_REQUEST['lang']) : '';
+    if (function_exists('pll_languages_list')) {
+        $allowed = pll_languages_list(['fields' => 'slug']);
+        if ($req && in_array($req, $allowed, true)) return $req;
+        $cur = function_exists('pll_current_language') ? pll_current_language('slug') : '';
+        if ($cur && in_array($cur, $allowed, true)) return $cur;
+        $def = function_exists('pll_default_language') ? pll_default_language('slug') : '';
+        if ($def && in_array($def, $allowed, true)) return $def;
+    }
+    return $req ?: 'en';
+}
+
+// Helper: resolve o term_id da location PELO IDIOMA solicitado
+function tgnd_resolve_location_term_id_by_slug($slug, $lang) {
+    // tenta achar o termo já no idioma certo
+    $ids = get_terms([
+        'taxonomy'   => 'location',
+        'slug'       => $slug,
+        'lang'       => $lang,
+        'hide_empty' => false,
+        'fields'     => 'ids',
+    ]);
+    if (!is_wp_error($ids) && !empty($ids)) {
+        return (int) $ids[0];
+    }
+
+    // fallback: pega o termo por slug (sem idioma) e mapeia para o idioma via Polylang
+    $term = get_term_by('slug', $slug, 'location');
+    if ($term && !is_wp_error($term) && function_exists('pll_get_term') && $lang) {
+        $translated_id = pll_get_term($term->term_id, $lang);
+        if ($translated_id) return (int) $translated_id;
+    }
+
+    return 0;
+}
+
 // Função para buscar as localizações (apenas do idioma atual) + imagem destacada
 function buscar_localizacoes() {
-    $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
-    
+    $lang = tgnd_get_requested_lang();
+
     $terms = get_terms([
         'taxonomy'   => 'location',
         'orderby'    => 'term_id',
         'order'      => 'ASC',
         'hide_empty' => false,
-        // Polylang: filtra por idioma
-        'lang'       => $lang ? $lang : 'all',
+        'lang'       => $lang, // <<< usa o lang do request
     ]);
 
     if (!empty($terms) && !is_wp_error($terms)) {
         $locations = [];
 
         foreach ($terms as $term) {
-            $featured_image_id = get_term_meta($term->term_id, 'featured_image_location', true);
-            $featured_image_url = $featured_image_id
-                ? wp_get_attachment_url($featured_image_id)
-                : 'https://the-girl-next-door.com/wp-content/themes/excort-madeira/images/no-image.jpeg';
+            $featured_image_id  = get_term_meta($term->term_id, 'featured_image_location', true);
+            $featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id)
+                                                     : 'https://the-girl-next-door.com/wp-content/themes/excort-madeira/images/no-image.jpeg';
 
+            // Link correto por idioma (usa nosso filtro term_link)
             $locations[] = [
                 'name'           => $term->description ? $term->description : $term->name,
                 'slug'           => $term->slug,
                 'featured_image' => $featured_image_url,
-                'link'           => get_term_link($term), // já sai como /{lang}/{slug}
+                'link'           => get_term_link($term),
             ];
         }
 
@@ -160,7 +197,9 @@ function buscar_localizacoes() {
 add_action('wp_ajax_get_locations', 'buscar_localizacoes');
 add_action('wp_ajax_nopriv_get_locations', 'buscar_localizacoes');
 
-// Função para buscar perfis da localização (respeitando idioma atual)
+
+// ---- Perfis por localização (por idioma) ----
+// Função para buscar perfis da localização (respeitando idioma solicitado)
 function buscar_perfis_por_localizacao() {
     if (!isset($_GET['location'])) {
         wp_send_json_error('Parâmetro "location" é obrigatório.');
@@ -168,40 +207,44 @@ function buscar_perfis_por_localizacao() {
     }
 
     $location_slug = sanitize_text_field($_GET['location']);
-    $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
+    $lang          = tgnd_get_requested_lang();
 
-    // Query para perfis da localização no idioma atual
+    // Resolve o term_id da location no idioma correto
+    $term_id = tgnd_resolve_location_term_id_by_slug($location_slug, $lang);
+    if (!$term_id) {
+        wp_send_json_error('Localização não encontrada neste idioma.');
+        wp_die();
+    }
+
     $args = [
-        'post_type'      => 'profile',
-        'post_status'    => 'publish',
-        'posts_per_page' => 10,
-        'orderby'        => 'rand',
-        // Polylang: restringe posts ao idioma da tela
-        'lang'           => $lang ?: 'all',
-        'tax_query'      => [
-            [
-                'taxonomy' => 'location',
-                'field'    => 'slug',
-                'terms'    => $location_slug,
-            ],
-        ],
+        'post_type'           => 'profile',
+        'post_status'         => 'publish',
+        'posts_per_page'      => 10,
+        'orderby'             => 'rand',
+        'lang'                => $lang,               // Polylang: idioma do post
+        'no_found_rows'       => true,
+        'ignore_sticky_posts' => true,
+        'tax_query'           => [[
+            'taxonomy'         => 'location',
+            'field'            => 'term_id',         // << usa term_id, não slug
+            'terms'            => [$term_id],
+            'include_children' => false,
+        ]],
     ];
 
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
         $response = [];
-
         while ($query->have_posts()) {
             $query->the_post();
             $response[] = [
                 'id'    => get_the_ID(),
                 'name'  => get_the_title(),
                 'image' => get_the_post_thumbnail_url(),
-                'link'  => get_permalink(), // já vem como /{lang}/{location}/{profile}
+                'link'  => get_permalink(), // já sai com /pt/ quando $lang = 'pt'
             ];
         }
-
         wp_reset_postdata();
         wp_send_json_success($response);
     } else {
