@@ -168,31 +168,10 @@
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-                                            <h3><?php echo get_the_title($post->ID); ?></h3>
+                                            <h2><?php echo get_the_title($post->ID); ?></h2>
                                             <p>
                                                 <?php if (!empty($location_more)) : ?>
                                                     <?php echo $location_more; ?>
-                                                <?php else : ?>
-                                                    <?php echo '-'; ?>
-                                                <?php endif; ?>
-                                            </p>
-                                            <p class="small">
-                                                <strong>
-                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                        Idade
-                                                    <?php else : ?>
-                                                        Age
-                                                    <?php endif; ?>: 
-                                                </strong> 
-                                                <?php if (!empty($age_more)) : ?>
-                                                    <?php echo $age_more; ?>
-                                                <?php else : ?>
-                                                    <?php echo '-'; ?>
-                                                <?php endif; ?>
-                                                , 
-                                                
-                                                <?php if (!empty($nationality_more)) : ?>
-                                                    <?php echo $nationality_more; ?>
                                                 <?php else : ?>
                                                     <?php echo '-'; ?>
                                                 <?php endif; ?>

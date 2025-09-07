@@ -93,15 +93,23 @@ function add_custom_profile_rewrite_rules($rules) {
 add_filter('rewrite_rules_array', 'add_custom_profile_rewrite_rules', 20);
 
 // 3) Gera o link de 'location' sem a base, respeitando /{lang}/
+// Link de 'location' sem base. Usa a base do Polylang:
+//  - idioma padrão: "/" (sem prefixo)
+//  - outros idiomas: "/pt/", etc.
 add_filter('term_link', function ($url, $term, $taxonomy) {
     if ($taxonomy !== 'location') return $url;
 
-    $lang = function_exists('pll_get_term_language') ? pll_get_term_language($term->term_id, 'slug') : '';
-    $lang_prefix = $lang ? '/' . $lang : '';
+    $term_lang = function_exists('pll_get_term_language') ? pll_get_term_language($term->term_id, 'slug') : '';
 
-    // Apenas /{lang}/{slug-do-termo}
-    return home_url(user_trailingslashit($lang_prefix . '/' . $term->slug));
-}, 10, 3);
+    // Base por idioma (respeita "Hide default language code")
+    if (function_exists('pll_home_url') && $term_lang) {
+        $base = rtrim(pll_home_url($term_lang), '/');
+    } else {
+        $base = rtrim(home_url('/'), '/');
+    }
+
+    return trailingslashit($base . '/' . $term->slug);
+}, 99, 3);
 
 // 4) Flush automático quando termos mudarem (evita “perder” regras após plugin mexer)
 function tgnd_flush_on_location_change() { flush_rewrite_rules(); }
@@ -115,7 +123,7 @@ add_action('after_switch_theme', function () { flush_rewrite_rules(); });
 // Função para buscar as localizações (apenas do idioma atual) + imagem destacada
 function buscar_localizacoes() {
     $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
-
+    
     $terms = get_terms([
         'taxonomy'   => 'location',
         'orderby'    => 'term_id',
@@ -233,3 +241,101 @@ add_filter('gettext', function ($translated, $text, $domain) {
     }
     return $translated;
 }, 10, 3);
+
+// Regras de rewrite:
+// - Idiomas com prefixo: /{lang}/{location} e /{lang}/{location}/{profile}
+// - Idioma padrão (sem prefixo): /{location} e /{location}/{profile}
+// Regras de rewrite específicas por SLUG de 'location' em cada idioma.
+// Evita capturar /pt/{pagina} e /pt/{post}, deixando-os para o core do WP/Polylang.
+add_filter('rewrite_rules_array', function ($rules) {
+    $new = [];
+
+    // Idiomas ativos e idioma padrão
+    $langs        = function_exists('pll_languages_list') ? pll_languages_list(['fields' => 'slug']) : ['pt','en'];
+    $default_lang = function_exists('pll_default_language') ? pll_default_language('slug') : ( $langs[0] ?? 'en' );
+    $tax          = 'location';
+
+    // Para cada idioma, criamos regras SÓ para os termos existentes
+    foreach ($langs as $lang) {
+        // pega todos os termos 'location' do idioma corrente
+        $terms = get_terms([
+            'taxonomy'   => $tax,
+            'hide_empty' => false,
+            'lang'       => $lang,
+            'fields'     => 'all',
+        ]);
+        if (is_wp_error($terms) || empty($terms)) continue;
+
+        // prefixo vazio para idioma padrão; /{lang}/ para os demais
+        $prefix = ($lang === $default_lang) ? '' : ($lang . '/');
+
+        foreach ($terms as $term) {
+            $slug = $term->slug;
+
+            // SINGLE do CPT 'profile': /{prefix}{location}/{profile}
+            $new["{$prefix}{$slug}/([^/]+)/?$"]
+                = "index.php?post_type=profile&name=\$matches[1]&lang={$lang}";
+
+            // Arquivo da taxonomia: /{prefix}{location}
+            $new["{$prefix}{$slug}/?$"]
+                = "index.php?taxonomy={$tax}&term={$slug}&lang={$lang}";
+
+            // Paginação do arquivo: /{prefix}{location}/page/2
+            $new["{$prefix}{$slug}/page/([0-9]{1,})/?$"]
+                = "index.php?taxonomy={$tax}&term={$slug}&lang={$lang}&paged=\$matches[1]";
+        }
+
+        // Fallback 'sem-local' para este idioma
+        if ($lang === $default_lang) {
+            $new["sem-local/([^/]+)/?$"]
+                = "index.php?post_type=profile&name=\$matches[1]&lang={$lang}";
+        } else {
+            $new["{$prefix}sem-local/([^/]+)/?$"]
+                = "index.php?post_type=profile&name=\$matches[1]&lang={$lang}";
+        }
+    }
+
+    // PREPEND: nossas regras antes para garantir match em locations/profiles,
+    // sem interferir nas páginas/posts pois não há pattern genérico.
+    return $new + $rules;
+}, 5);
+
+
+// Permalink do profile: /{lang?}/{location-traduzida}/{profile}
+//  - Sem {lang} quando o profile for do idioma padrão (ex.: EN)
+//  - Com /pt/ quando o profile for PT
+add_filter('post_type_link', function ($post_link, $post) {
+    if ($post->post_type !== 'profile') return $post_link;
+
+    // Idioma do post e idioma padrão
+    $post_lang    = function_exists('pll_get_post_language') ? pll_get_post_language($post->ID, 'slug') : '';
+    $default_lang = function_exists('pll_default_language')   ? pll_default_language('slug')              : $post_lang;
+
+    // Descobre a location do próprio post e traduz o slug para o idioma do post
+    $terms = get_the_terms($post->ID, 'location');
+    $location_slug = 'sem-local';
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        $t = $terms[0];
+
+        if (function_exists('pll_get_term') && $post_lang) {
+            $tid = pll_get_term($t->term_id, $post_lang); // id da location na MESMA língua do post
+            if ($tid) {
+                $translated = get_term($tid, 'location');
+                if ($translated && !is_wp_error($translated)) {
+                    $location_slug = $translated->slug;
+                }
+            } else {
+                $location_slug = $t->slug; // fallback
+            }
+        } else {
+            $location_slug = $t->slug;
+        }
+    }
+
+    // Prefixo vazio se o post for do idioma padrão; senão, /{lang}
+    $prefix = ($post_lang && $post_lang !== $default_lang) ? '/' . $post_lang : '';
+    $path   = $prefix . '/' . $location_slug . '/' . $post->post_name;
+
+    return user_trailingslashit(home_url($path));
+}, 10, 2);

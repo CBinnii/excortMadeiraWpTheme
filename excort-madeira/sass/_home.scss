@@ -318,6 +318,7 @@
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 28px;
             text-transform: uppercase;
+            text-align: center;
 
             @media screen and (max-width: 991px) {
                 font-size: 20px;
@@ -328,6 +329,7 @@
             font-family: 'Rufina', Verdana, Geneva, Tahoma, sans-serif;
             font-size: 18px;
             line-height: 1.4;
+            text-align: center;
 
             &.small {
                 font-size: 16px;

@@ -23837,6 +23837,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 28px;
   text-transform: uppercase;
+  text-align: center;
 }
 @media screen and (max-width: 991px) {
   .section .escort-box h2, .section .escort-box .h2 {
@@ -23847,6 +23848,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
   line-height: 1.4;
+  text-align: center;
 }
 .section .escort-box p.small {
   font-size: 16px;
@@ -24682,6 +24684,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 28px;
   text-transform: uppercase;
+  text-align: center;
 }
 @media screen and (max-width: 991px) {
   .section .section-escorts .escort-box h2, .section .section-escorts .escort-box .h2 {
@@ -24692,6 +24695,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
   line-height: 1.4;
+  text-align: center;
 }
 .section .section-escorts .escort-box p.small {
   font-size: 16px;
@@ -25120,6 +25124,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 32px;
   text-transform: uppercase;
+  text-align: center;
 }
 @media screen and (max-width: 991px) {
   .section .section-profile .escort-box h2, .section .section-profile .escort-box .h2 {
@@ -25130,6 +25135,7 @@ a.button {
   font-family: "Rufina", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
   line-height: 1.4;
+  text-align: center;
 }
 .section .section-profile .escort-box p.small {
   font-size: 16px;

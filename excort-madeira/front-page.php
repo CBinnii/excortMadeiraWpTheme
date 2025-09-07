@@ -209,13 +209,15 @@
                                 </div>
                                 
                                 <div class="d-flex justify-content-center mt-30">
-                                    <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
-                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                        <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
                                             Ver perfis
-                                        <?php else : ?>
+                                        </a>
+                                    <?php else : ?>
+                                        <a href="<?php echo get_home_url(); ?>/acompanhantes" class="button bold white color-white">
                                             View profiles
-                                        <?php endif; ?>
-                                    </a>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -537,7 +539,13 @@
                                 <p id="description"></p>
 
                                 <div class="d-flex justify-content-center">
-                                    <a href="#" class="button bold medium text-center"> See more </a>
+                                    <a href="#" class="button bold medium text-center">
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            Ver mais
+                                        <?php else : ?>
+                                            See more
+                                        <?php endif; ?>
+                                    </a>
                                 </div>
                             </div>
                         </div>
