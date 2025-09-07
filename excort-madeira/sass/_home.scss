@@ -163,13 +163,29 @@
                         width: 45%;
                     }
 
-                    img {
+                    @media screen and (max-width: 460px) {
+                        height: 300px !important;
+                        width: 152px;
+                    }
+
+                    .image {
                         @media screen and (max-width: 1100px) {
                             aspect-ratio: 0.67 / 1;
                         }
 
                         @media screen and (max-width: 767px) {
                             aspect-ratio: 2 / 3;                
+                        }
+
+                        @media screen and (max-width: 460px) {
+                            width: 152px;
+                        }
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
                         }
                     }
                 }

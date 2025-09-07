@@ -547,7 +547,7 @@
 
                                             <div class="accordion-content">
                                                 <div class="tags">
-                                                    <div class="row">
+                                                    <div class="row w-100">
                                                         <?php foreach( $services as $service ): ?>
                                                             <div class="col-6 tag">
                                                                 <a href="<?php echo get_permalink($service->ID); ?>">

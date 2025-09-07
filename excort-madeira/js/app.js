@@ -180,6 +180,20 @@ var swiperTopExcorts = new Swiper(".slider-top-escorts", {
             spaceBetween: 2,
         },
     },
+    preloadImages: false,
+    lazy: { loadPrevNext: true, loadOnTransitionStart: true },
+});
+
+const el = document.querySelector('.slider-top-escorts');
+if (el && !el.classList.contains('swiper-initialized')) {
+    new Swiper(el, { /* opções */ });
+}
+
+window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+        document.querySelectorAll('.slider-top-escorts.swiper-initialized')
+            .forEach(el => el.swiper && el.swiper.update());
+    }
 });
 
 var swiperTopExcorts = new Swiper(".slider-profile", {
