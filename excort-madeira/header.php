@@ -56,49 +56,73 @@
                                     <div class="col-sm-7 logo-header">
                                         <span class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></span>
                                     </div>
-                                    <?php
-                                        $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
-                                        if ($lang === 'en') {
-                                            $menu_1_name = 'Menu Mobile';
-                                        } elseif ($lang === 'pt') {
-                                            $menu_1_name = 'Menu Mobile PT';
-                                        }
+                                    <div>
+                                        <?php
+                                            $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
+                                            if ($lang === 'en') {
+                                                $menu_1_name = 'Menu Mobile';
+                                            } elseif ($lang === 'pt') {
+                                                $menu_1_name = 'Menu Mobile PT';
+                                            }
 
-                                        $menu_hamburguer = get_term_by('name', $menu_1_name, 'nav_menu');
+                                            $menu_hamburguer = get_term_by('name', $menu_1_name, 'nav_menu');
 
-                                        if ($menu_hamburguer) {
-                                            wp_nav_menu(array(
-                                                'menu'        => $menu_hamburguer->term_id, // Usar 'menu' em vez de 'menu_id'
-                                                'container'   => false,
-                                                'menu_class'  => 'navbar-nav me-auto mb-2 mb-lg-0',
-                                                'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                                'depth'       => 2,
-                                            ));
-                                        } else {
-                                            echo '<p>Menu Hamburguer não encontrado.</p>';
-                                        }
-                                    ?>
+                                            if ($menu_hamburguer) {
+                                                wp_nav_menu(array(
+                                                    'menu'        => $menu_hamburguer->term_id, // Usar 'menu' em vez de 'menu_id'
+                                                    'container'   => false,
+                                                    'menu_class'  => 'navbar-nav me-auto mb-2 mb-lg-0',
+                                                    'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                                    'depth'       => 2,
+                                                ));
+                                            } else {
+                                                echo '<p>Menu Hamburguer não encontrado.</p>';
+                                            }
+                                        ?>
+
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mt-24 button bold outline medium">
+                                                Anunciar
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mt-24 button bold outline medium">
+                                                Advertise
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                                 <div class="collapse navbar-collapse mobile" id="navbar-collapse">
                                     <div class="col-sm-7 logo-header">
                                         <span class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></span>
                                     </div>
-                                    
-                                    <?php
-                                        $menu_mobile = get_term_by('name', $menu_1_name, 'nav_menu');
 
-                                        if ($menu_mobile) {
-                                            wp_nav_menu(array(
-                                                'menu'        => $menu_mobile->term_id, // Usar 'menu' em vez de 'menu_id'
-                                                'container'   => false,
-                                                'menu_class'  => 'navbar-nav me-auto mb-2 mb-lg-0',
-                                                'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                                'depth'       => 2,
-                                            ));
-                                        } else {
-                                            echo '<p>Menu mobile não encontrado.</p>';
-                                        }
-                                    ?>
+                                    <div>
+                                        <?php
+                                            $menu_mobile = get_term_by('name', $menu_1_name, 'nav_menu');
+
+                                            if ($menu_mobile) {
+                                                wp_nav_menu(array(
+                                                    'menu'        => $menu_mobile->term_id, // Usar 'menu' em vez de 'menu_id'
+                                                    'container'   => false,
+                                                    'menu_class'  => 'navbar-nav me-auto mb-2 mb-lg-0',
+                                                    'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                                    'depth'       => 2,
+                                                ));
+                                            } else {
+                                                echo '<p>Menu mobile não encontrado.</p>';
+                                            }
+                                        ?>
+
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mt-24 button bold outline medium">
+                                                Anunciar
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mt-24 button bold outline medium">
+                                                Advertise
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
                                     
                                     <div class="row w-100">
                                         <div class="col-5">
