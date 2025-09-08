@@ -39,7 +39,19 @@ get_header();
                         <h2>Where are you looking for Your Girl Next Door?</h2>
                     <?php endif; ?>
 
-                    <div id="location-list" class="row"></div> <!-- Aqui serão exibidas as localizações -->
+                    <div id="location-list" class="row">
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="acompanhantes-lisboa" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-lisbon-portugal.png'); background-size: cover; background-position: center center;">Lisboa</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="acompanhantes-porto" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-porto-portugal.png'); background-size: cover; background-position: center center;">Porto</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="acompanhantes-madeira" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-madeira-portugal.png'); background-size: cover; background-position: center center;">Madeira</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="acompanhantes-algarve" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-algarve-portugal.png'); background-size: cover; background-position: center center;">Algarve</div>
+                        <?php else : ?>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="lisbon-escort" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-lisbon-portugal.png'); background-size: cover; background-position: center center;">Lisbon</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="porto-escort" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-porto-portugal.png'); background-size: cover; background-position: center center;">Porto</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="madeira-escort" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-madeira-portugal.png'); background-size: cover; background-position: center center;">Madeira</div>
+                            <div class="col-12 col-md-5 location button bold medium pointer" data-location="algarve-escort" style="background-image: url('https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-algarve-portugal.png'); background-size: cover; background-position: center center;">Algarve</div>
+                        <?php endif; ?>
+                    </div> <!-- Aqui serão exibidas as localizações -->
                 </div>
             </div>
 
@@ -222,44 +234,12 @@ get_header();
         $('#begin-quiz-btn').on('click', function() {
             $('.quiz-intro').hide();  // Esconde a tela inicial
             $('.location-selection').show();  // Exibe a tela de localização
-            carregarLocalizacoes();  // Carrega as localizações
         });
-
-        // Função para carregar as localizações via AJAX
-        function carregarLocalizacoes() {
-            $.ajax({
-                url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                type: 'GET',
-                data: {
-                    action: 'get_locations',  // Ação para buscar localizações
-                    lang: lang  // Passa o idioma atual
-                },
-                success: function(response) {
-                    if (response.success) {
-                        // Cria a lista de localizações
-                        var locations = response.data;
-                        console.log(locations);
-                        var locationList = $('#location-list');
-                        locationList.empty();
-                        locations.forEach(function(location) {
-                            var locationItem = $('<div class="col-12 col-md-5 location button bold medium pointer">')
-                                .text(location.name)
-                                .attr('data-location', location.slug)
-                                .css('background-image', 'url(' + location.featured_image + ')') // Define o background com a imagem
-                                .css('background-size', 'cover') // Ajusta o tamanho da imagem
-                                .css('background-position', 'center'); // Centraliza a imagem
-                            locationList.append(locationItem);
-                        });
-
-                        // Evento de clique nas localizações
-                        $('.location').on('click', function() {
-                            var selectedLocation = $(this).data('location');
-                            carregarPerfisPorLocalizacao(selectedLocation);  // Carrega perfis
-                        });
-                    }
-                }
-            });
-        }
+        
+        $('.location').on('click', function() {
+            var selectedLocation = $(this).data('location');
+            carregarPerfisPorLocalizacao(selectedLocation);  // Carrega perfis
+        });
 
         // Função para carregar os perfis com base na localização
         function carregarPerfisPorLocalizacao(location) {

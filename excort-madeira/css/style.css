@@ -23704,7 +23704,6 @@ a.button {
 }
 @media screen and (max-width: 460px) {
   .section .section-topexcorts .slider-top-escorts .swiper-wrapper .swiper-slide {
-    height: 300px !important;
     width: 152px;
   }
 }
