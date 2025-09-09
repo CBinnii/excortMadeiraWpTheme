@@ -57,6 +57,16 @@
                                         <span class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></span>
                                     </div>
                                     <div>
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                                Anunciar
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                                Advertise
+                                            </a>
+                                        <?php endif; ?>
+
                                         <?php
                                             $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
                                             if ($lang === 'en') {
@@ -79,16 +89,6 @@
                                                 echo '<p>Menu Hamburguer não encontrado.</p>';
                                             }
                                         ?>
-
-                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mt-24 button bold outline medium">
-                                                Anunciar
-                                            </a>
-                                        <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mt-24 button bold outline medium">
-                                                Advertise
-                                            </a>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="collapse navbar-collapse mobile" id="navbar-collapse">
@@ -97,6 +97,16 @@
                                     </div>
 
                                     <div>
+                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                                Anunciar
+                                            </a>
+                                        <?php else : ?>
+                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                                Advertise
+                                            </a>
+                                        <?php endif; ?>
+
                                         <?php
                                             $menu_mobile = get_term_by('name', $menu_1_name, 'nav_menu');
 
@@ -112,16 +122,6 @@
                                                 echo '<p>Menu mobile não encontrado.</p>';
                                             }
                                         ?>
-
-                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/anunciar" class="d-flex f-size-18 mt-24 button bold outline medium">
-                                                Anunciar
-                                            </a>
-                                        <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/work-as-a-independent-escort" class="d-flex f-size-18 mt-24 button bold outline medium">
-                                                Advertise
-                                            </a>
-                                        <?php endif; ?>
                                     </div>
                                     
                                     <div class="row w-100">

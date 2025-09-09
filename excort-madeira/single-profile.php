@@ -581,14 +581,14 @@
                                                 <div class="row">
                                                     <?php echo $maps; ?>
 
-                                                    <div class="col-12 mt-16 d-flex justify-content-between">
+                                                    <div class="col-12 mt-24 gap-2 d-flex justify-content-between">
                                                         <?php 
                                                             $direction_link = get_field('direction_link'); 
                                                             $street_view_link = get_field('street_view_link'); 
                                                         ?>
                                                         
                                                         <?php if ($direction_link) : ?>
-                                                            <a href="<?php echo $direction_link; ?>" class="button bold medium">
+                                                            <a href="<?php echo $direction_link; ?>" class="button bold medium w-100">
                                                                 <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                                                                     Direções 
                                                                 <?php else : ?>
@@ -597,7 +597,7 @@
                                                             </a>
                                                         <?php endif;?>
                                                         <?php if ($street_view_link) : ?>
-                                                            <a href="<?php echo $street_view_link; ?>" target="_blank" class="ml-4 button bold medium">
+                                                            <a href="<?php echo $street_view_link; ?>" target="_blank" class="button bold medium w-100">
                                                                 Street View
                                                             </a>
                                                         <?php endif; ?>
