@@ -468,7 +468,7 @@
                                                             muted 
                                                             playsinline 
                                                             preload="metadata" 
-                                                            style="width: fit-content; height: 100%; object-fit: cover;" 
+                                                            style="height: 100%; object-fit: cover;" 
                                                         >
                                                             <source src="<?php echo esc_url($photo['url']); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                             Seu navegador não suporta vídeo.
