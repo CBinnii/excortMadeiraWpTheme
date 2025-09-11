@@ -24,17 +24,17 @@
             $value = get_sub_field('value');
             
             // Verifica se o valor de $label é o que você está buscando (exemplo "Age")
-            if (strtolower($label) === 'age') {
+            if (strtolower($label) === 'age' || strtolower($label) === 'idade') {
                 // Aqui você tem o $label e o $value quando o label é "Age"
                 $age = $value;
             }
             // Verifica se o valor de $label é o que você está buscando (exemplo "location")
-            if (strtolower($label) === 'location') {
+            if (strtolower($label) === 'location' || strtolower($label) === 'localização' || strtolower($label) === 'localizacao') {
                 // Aqui você tem o $label e o $value quando o label é "location"
                 $location = $value;
             }
             // Verifica se o valor de $label é o que você está buscando (exemplo "nationality")
-            if (strtolower($label) === 'nationality")') {
+            if (strtolower($label) === 'nationality' || strtolower($label) === 'nacionalidade') {
                 // Aqui você tem o $label e o $value quando o label é "nationality")
                 $nationality = $value;
             }
@@ -204,24 +204,6 @@
                                     <div class="profile-title mb-24">
                                         <div class="text-center mb-24">
                                             <h3><?php echo get_the_title(); ?></h3>
-                                            <span class="txt-paragraph xl">
-                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                    Idade: 
-                                                <?php else : ?>
-                                                    Age: 
-                                                <?php endif; ?>
-                                                <?php if (!empty($age)) : ?>
-                                                    <?php echo $age; ?>
-                                                <?php else : ?>
-                                                    <?php echo '-'; ?>
-                                                <?php endif; ?>
-                                                
-                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                    anos
-                                                <?php else : ?>
-                                                    years 
-                                                <?php endif; ?>
-                                            </span>
                                         </div>
 
                                         <div class="profile-book">

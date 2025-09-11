@@ -130,17 +130,17 @@
                                                 $value_more = $field['value'];
                                                 
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
-                                                if (strtolower($label_more) == 'age') {
+                                                if (strtolower($label_more) == 'age' || strtolower($label_more) == 'idade') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "Age"
                                                     $age_more = $value_more;
                                                 }
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
-                                                if (strtolower($label_more) == 'location') {
+                                                if (strtolower($label_more) == 'location' || strtolower($label_more) == 'localização' || strtolower($label_more) == 'localizacao') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "location"
                                                     $location_more = $value_more;
                                                 }
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
-                                                if (strtolower($label_more) == 'nationality') {
+                                                if (strtolower($label_more) == 'nationality' || strtolower($label_more) == 'nacionalidade') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
                                                     $nationality_more = $value_more;
                                                 }
@@ -170,13 +170,15 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
-                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <a href="<?php echo pll_home_url('pt'); ?>acompanhantes" class="button bold white">
                                         Ver acompanhantes
-                                    <?php else : ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php echo pll_home_url('en'); ?>escorts" class="button bold white">
                                         View all escorts
-                                    <?php endif; ?>
-                                </a>
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -210,11 +212,11 @@
                                 
                                 <div class="d-flex justify-content-center mt-30">
                                     <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                        <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white color-white">
+                                        <a href="<?php echo pll_home_url('pt'); ?>acompanhantes" class="button bold white color-white">
                                             Ver perfis
                                         </a>
                                     <?php else : ?>
-                                        <a href="<?php echo get_home_url(); ?>/acompanhantes" class="button bold white color-white">
+                                        <a href="<?php echo pll_home_url('en'); ?>escorts" class="button bold white color-white">
                                             View profiles
                                         </a>
                                     <?php endif; ?>

@@ -10,6 +10,13 @@
     $text_field_1_page = get_field('text_field_1_page');
     $title_text_field_2_page = get_field('title_text_field_2_page');
     $text_field_2_page = get_field('text_field_2_page');
+    
+    // 1) Ler o parâmetro da URL como slug seguro
+    $selectedLocations = '';
+    if (isset($_GET['location']) && $_GET['location'] !== '') {
+        // WP recomenda desserializar superglobais antes de sanitizar
+        $selectedLocations = sanitize_title( wp_unslash( $_GET['location'] ) ); // vira 'algarve'
+    }
 ?>
     <section class="main">
         <div class="section">
@@ -78,23 +85,78 @@
                 </div>
             <?php endif; ?>
 
+            <div class="location-filter">
+                <div class="container p-0">
+                    <div class="filter-box">
+                        <form id="locationFilterForm" method="GET" action="">
+                            <label for="locationFilter" class="form-label">
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    Filtrar por Localização
+                                <?php else : ?>
+                                    Filter by Location 
+                                <?php endif; ?>
+                            </label>
+                            <?php
+                                // Idioma atual
+                                $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
+
+                                // Busca os termos da taxonomia 'location' no idioma atual
+                                $terms = get_terms([
+                                    'taxonomy'   => 'location',
+                                    'hide_empty' => false,         // coloque true se quiser mostrar só locations com perfis
+                                    'orderby'    => 'name',
+                                    'order'      => 'ASC',
+                                    'lang'       => $lang ?: 'all' // Polylang: traz a tradução certa
+                                ]);
+                            ?>
+                            
+                            <select id="locationFilter" class="form-select" name="location" onchange="document.getElementById('locationFilterForm').submit();">
+                                <option value="">
+                                    <?php echo ($lang === 'pt') ? 'Selecione a cidade' : 'Select location'; ?>
+                                </option>
+
+                                <?php if (!is_wp_error($terms) && !empty($terms)): ?>
+                                    <?php foreach ($terms as $term): ?>
+                                    <option value="<?php echo esc_attr($term->slug); ?>"
+                                            <?php selected($selectedLocation, $term->slug); ?>>
+                                        <?php echo esc_html($term->description); ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <?php
+                // 2) Montar o WP_Query
                 $args = [
                     'post_type'      => 'profile',
                     'post_status'    => 'publish',
                     'posts_per_page' => -1,
-                    'lang'           => pll_current_language('slug'), // 'pt' ou 'en' conforme a tela
+                    'lang'           => function_exists('pll_current_language') ? pll_current_language('slug') : 'all',
                     'meta_query'     => [
-                        ['key' => 'photos',       'compare' => 'EXISTS'],
-                        ['key' => 'more_fields',  'compare' => 'EXISTS'],
-                        ['key' => 'only_member',  'compare' => 'EXISTS'],
+                        ['key' => 'photos',      'compare' => 'EXISTS'],
+                        ['key' => 'more_fields', 'compare' => 'EXISTS'],
+                        ['key' => 'only_member', 'compare' => 'EXISTS'],
                     ],
                 ];
 
+                // 3) Adicionar o filtro de taxonomia se veio location
+                // Só filtra por taxonomia se houver ao menos um termo
+                if (!empty($selectedLocations)) {
+                    $args['tax_query'] = [[
+                        'taxonomy' => 'location',
+                        'field'    => 'slug',
+                        'terms'    => $selectedLocations,
+                    ]];
+                }
+
                 $more = new WP_Query($args);
 
-			    if (!empty($more->posts)): ?>
-                    <div class="section-escorts">
+			    if (!empty($more->posts)) : ?>
+                    <div class="section-escorts mob-pt-0">
                         <div class="container">
                             <div class="row row-adjust-escorts">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>'*/; 
@@ -116,17 +178,17 @@
                                             $value_more = $field['value'];
                                             
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
-                                            if (strtolower($label_more) == 'age') {
+                                            if (strtolower($label_more) == 'age' || strtolower($label_more) == 'idade') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "Age"
                                                 $age_more = $value_more;
                                             }
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
-                                            if (strtolower($label_more) == 'location') {
+                                            if (strtolower($label_more) == 'location' || strtolower($label_more) == 'localização' || strtolower($label_more) == 'localizacao') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "location"
                                                 $location_more = $value_more;
                                             }
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
-                                            if (strtolower($label_more) == 'nationality') {
+                                            if (strtolower($label_more) == 'nationality' || strtolower($label_more) == 'nacionalidade') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
                                                 $nationality_more = $value_more;
                                             }
@@ -158,7 +220,29 @@
                             </div>
                         </div>
                     </div>
-                <?php endif;
+                <?php else :
+                    if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                        <div class="section-escorts">
+                            <div class="container">
+                                <div class="row row-adjust-escorts">
+                                    <div class="no-results">
+                                        <p>Desculpe, nenhum perfil encontrado para a localização selecionada.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="section-escorts">
+                            <div class="container">
+                                <div class="row row-adjust-escorts">
+                                    <div class="no-results">
+                                        <p>Sorry, no profiles found for the selected location.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif;
+                endif;
                 wp_reset_query();
             ?>
             
@@ -228,3 +312,17 @@
 <?php
 	get_footer();
 ?>
+
+<script>
+    // Mantém a seleção do filtro após o envio do formulário
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedLocation = urlParams.get('location');
+        if (selectedLocation) {
+            const locationFilter = document.getElementById('locationFilter');
+            if (locationFilter) {
+                locationFilter.value = selectedLocation;
+            }
+        }
+    });
+</script>

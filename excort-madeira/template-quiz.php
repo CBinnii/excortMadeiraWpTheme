@@ -303,7 +303,6 @@ get_header();
                     } else {
                         $('#profile-text').text('Who do you prefer?'); // Reseta
                     }
-                    carregarLocalizacoes();  // Carrega as localizações
                     $('.location-selection').show(); // Exibe a tela de localização novamente
                 });
                 

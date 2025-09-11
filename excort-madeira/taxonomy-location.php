@@ -133,17 +133,17 @@
                                             $value_more = $field['value'];
                                             
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
-                                            if (strtolower($label_more) == 'age') {
+                                            if (strtolower($label_more) == 'age' || strtolower($label_more) == 'idade') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "Age"
                                                 $age_more = $value_more;
                                             }
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
-                                            if (strtolower($label_more) == 'location') {
+                                            if (strtolower($label_more) == 'location' || strtolower($label_more) == 'localização' || strtolower($label_more) == 'localizacao') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "location"
                                                 $location_more = $value_more;
                                             }
                                             // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
-                                            if (strtolower($label_more) == 'nationality') {
+                                            if (strtolower($label_more) == 'nationality' || strtolower($label_more) == 'nacionalidade') {
                                                 // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
                                                 $nationality_more = $value_more;
                                             }
