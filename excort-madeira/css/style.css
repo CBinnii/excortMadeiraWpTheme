@@ -26084,6 +26084,16 @@ a.button {
   cursor: pointer;
 }
 
+.wp-block-image {
+  margin-bottom: 24px;
+}
+.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 body {
   font-family: "Rufina", serif, Verdana, sans-serif;
 }

@@ -6,6 +6,17 @@
 <meta name="description" content="<?php echo the_field('meta_description', 'location_' . get_queried_object()->term_id); ?>">
 <meta name="keywords" content="<?php echo the_field('meta_key', 'location_' . get_queried_object()->term_id); ?>">
 
+<meta property="og:title" content="<?php echo get_the_title(); ?>" />
+<meta property="og:description" content="<?php echo the_field('meta_description', 'location_' . get_queried_object()->term_id); ?>" />
+<meta property="og:image" content="<?php echo get_field('featured_image_location', 'location_' . get_queried_object()->term_id);?>" />
+<meta property="og:url" content="<?php echo get_permalink( get_queried_object_id() ); ?>" />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo $term->name; ?>" />
+<meta name="twitter:description" content="<?php echo the_field('meta_description', 'location_' . get_queried_object()->term_id); ?>" />
+<meta name="twitter:image" content="<?php echo get_field('featured_image_location', 'location_' . get_queried_object()->term_id);?>" />
+
 <?php 
 	get_header();
 

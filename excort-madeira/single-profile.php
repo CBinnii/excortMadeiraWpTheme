@@ -1,6 +1,64 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
+<meta property="og:title" content="<?php echo get_the_title(); ?>" />
+<meta property="og:description" content="<?php echo wp_strip_all_tags( get_field('bio') ); ?>" />
+<meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
+<meta property="og:url" content="<?php echo get_permalink( get_queried_object_id() ); ?>" />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+<meta name="twitter:description" content="<?php echo get_field('meta_description'); ?>" />
+<meta name="twitter:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
+
+
+<?php
+    // Pegue e saneie os campos
+    $meta_desc = esc_attr( wp_strip_all_tags( get_field('meta_description') ?: '' ) );
+    $about     = esc_attr( wp_strip_all_tags( get_field('bio') ?: '' ) );
+    $title     = esc_attr( get_the_title() ?: get_bloginfo('name') );
+    $url       = esc_url( get_permalink( get_queried_object_id() ) );
+
+    // Escolha da imagem OG: destaque do post > site icon > fallback fixo
+    $img_id    = get_post_thumbnail_id();
+    $img_url   = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
+    if ( $img_url === '' ) {
+        $img_url = 'https://the-girl-next-door.com/wp-content/uploads/2025/09/anuncie-com-classe-720-x-720-px.jpg';
+    }
+    // Opcional: forçar JPG (WhatsApp gosta mais) e adicionar cache-buster:
+    $img_url   = add_query_arg('v', time(), $img_url);
+
+    // Tentar pegar dimensões reais
+    $w = $h = '';
+    if ($img_id) {
+    $meta = wp_get_attachment_metadata($img_id);
+    if (!empty($meta['width']) && !empty($meta['height'])) {
+        $w = (int)$meta['width'];
+        $h = (int)$meta['height'];
+    }
+    }
+?>
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="The Girl Next Door">
+<meta property="og:title" content="<?php echo $title; ?>">
+<meta property="og:description" content="<?php echo $about ?: $meta_desc; ?>">
+<meta property="og:url" content="<?php echo $url; ?>">
+<meta property="og:type" content="article">
+<meta property="og:image" content="<?php echo esc_url($img_url); ?>">
+<meta property="og:image:secure_url" content="<?php echo esc_url($img_url); ?>">
+<?php if ($w && $h): ?>
+    <meta property="og:image:width" content="<?php echo $w; ?>">
+    <meta property="og:image:height" content="<?php echo $h; ?>">
+<?php endif; ?>
+
+<!-- Twitter (opcional) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?php echo $title; ?>">
+<meta name="twitter:description" content="<?php echo $about ?: $meta_desc; ?>">
+<meta name="twitter:image" content="<?php echo esc_url($img_url); ?>">
+
 <?php 
 	get_header();
     
@@ -651,17 +709,17 @@
                                                 $value_more = $field['value'];
                                                 
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "Age")
-                                                if (strtolower($label_more) == 'age') {
+                                                if (strtolower($label_more) == 'age' || strtolower($label_more) == 'idade') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "Age"
                                                     $age_more = $value_more;
                                                 }
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "location")
-                                                if (strtolower($label_more) == 'location') {
+                                                if (strtolower($label_more) == 'location' || strtolower($label_more) == 'localização' || strtolower($label_more) == 'localizacao') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "location"
                                                     $location_more = $value_more;
                                                 }
                                                 // Verifica se o valor de $label_more é o que você está buscando (exemplo "nationality")
-                                                if (strtolower($label_more) == 'nationality') {
+                                                if (strtolower($label_more) == 'nationality' || strtolower($label_more) == 'nacionalidade') {
                                                     // Aqui você tem o $label_more e o $value_more quando o label é "nationality")
                                                     $nationality_more = $value_more;
                                                 }
@@ -694,13 +752,15 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-30">
-                                <a href="<?php echo get_home_url(); ?>/escorts" class="button bold white">
-                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                    <a href="<?php echo pll_home_url('pt'); ?>acompanhantes" class="button bold white">
                                         Ver todas as acompanhantes
-                                    <?php else : ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php echo get_home_url(); ?>escorts" class="button bold white">
                                         See all escorts
-                                    <?php endif; ?>
-                                </a>
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

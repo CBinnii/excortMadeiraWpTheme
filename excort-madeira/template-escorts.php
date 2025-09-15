@@ -1,6 +1,17 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
+<meta property="og:title" content="<?php echo get_the_title(); ?>" />
+<meta property="og:description" content="<?php echo get_the_excerpt($post->ID); ?>" />
+<meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
+<meta property="og:url" content="<?php echo get_permalink( get_queried_object_id() ); ?>" />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+<meta name="twitter:description" content="<?php echo get_the_excerpt($post->ID); ?>" />
+<meta name="twitter:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
+
 <?php 
     /* Template Name: Escorts Page */
 

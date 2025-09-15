@@ -26,6 +26,17 @@
 @import "./_text.scss";
 @import "./_quiz.scss";
 
+.wp-block-image {
+    margin-bottom: 24px;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
 body {
     font-family: "Rufina", serif, Verdana, sans-serif;
 }

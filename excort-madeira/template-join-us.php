@@ -1,21 +1,16 @@
 <meta name="description" content="<?php echo the_field('meta_description'); ?>">
 <meta name="title" content="<?php echo the_field('meta_title'); ?>">
 
-<!-- Adicionando o script do Google reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-<script>
-    // Função de callback chamada quando o reCAPTCHA é carregado
-    // Você pode usar essa função para inicializar o reCAPTCHA ou executar outras ações
-    // Exemplo: exibir um alerta quando o reCAPTCHA estiver pronto
-    // Você pode remover ou modificar essa função conforme necessário
-    // Se você não precisar dela, pode removê-la
-    var onloadCallback = function() {
-        // Aqui você pode inicializar o reCAPTCHA, se necessário
-        grecaptcha.render('html_element', {
-            'sitekey' : '6Lf8zgQrAAAAADm4g0KXA_y0G0-9cx4-SwL-5-ES'
-        });
-    };
-</script>
+<meta property="og:title" content="<?php echo get_the_title(); ?>" />
+<meta property="og:description" content="<?php echo get_the_excerpt($post->ID); ?>" />
+<meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
+<meta property="og:url" content="<?php echo get_permalink( get_queried_object_id() ); ?>" />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+<meta name="twitter:description" content="<?php echo get_the_excerpt($post->ID); ?>" />
+<meta name="twitter:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" />
 
 <?php 
     /**
@@ -205,46 +200,3 @@
 <?php
 	get_footer();
 ?>
-
-<script>
-    $(document).ready(function () {
-        $("#castingForm").submit(function (event) {
-            event.preventDefault(); // Evita o reload da página
-            
-            var formData = $(this).serialize(); // Serializa os dados do formulário
-
-            // Alterna a visibilidade dos botões
-            document.getElementById('submit').style.display = 'none';
-            document.getElementById('submited').style.display = 'block';
-            
-            $.ajax({
-                type: "POST",
-                url: "<?php echo get_template_directory_uri(); ?>/vendor/casting.php",
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    console.log("AJAX Response:", response);
-
-                    if (response.status === "success") {
-                        $("#formMessage").html('<p style="color: green;">' + response.message + '</p>');
-                        $("#castingForm")[0].reset(); // Clear the form
-                    } else {
-                        $("#formMessage").html('<p style="color: red;">' + response.message + '</p>');
-                    }
-
-                    document.getElementById('submit').style.display = 'block';
-                    document.getElementById('submited').style.display = 'none';
-                },
-                error: function (xhr, status, error) {
-                    console.log("AJAX Error:", error);
-                    console.log("Full response:", xhr.responseText);
-
-                    $("#formMessage").html('<p style="color: red;">An error occurred while sending the form.</p>');
-
-                    document.getElementById('submit').style.display = 'block';
-                    document.getElementById('submited').style.display = 'none';
-                }
-            });
-        });
-    });
-</script>

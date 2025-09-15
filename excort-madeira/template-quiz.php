@@ -1,3 +1,6 @@
+<meta name="description" content="<?php echo the_field('meta_description'); ?>">
+<meta name="title" content="<?php echo the_field('meta_title'); ?>">
+
 <?php
 /* Template Name: Quiz Your Girl */
 
