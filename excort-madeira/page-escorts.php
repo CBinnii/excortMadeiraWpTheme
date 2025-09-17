@@ -39,7 +39,7 @@
                                     $image = wp_get_attachment_image_src($image_id, array(1400, 933)); // Obtém a URL da imagem com o tamanho específico
                                 ?>
                                 <div class="banner-image" style="background-image: url('<?php echo $image[0];?>');">
-                                    <div class="overlay white"></div>
+                                    <div class="overlay"></div>
                                     <div class="container">
                                         <div class="banner-text">
                                             <h1><?php echo get_the_title(); ?></h1>
@@ -62,7 +62,7 @@
                             ?>
                             <div class="swiper-slide">
                                 <img src="<?php echo $image[0]; ?>" alt="Banner Image">
-                                <div class="overlay white"></div>
+                                <div class="overlay"></div>
                                 <div class="container">
                                     <div class="banner-text">
                                         <h1><?php echo get_the_title(); ?></h1>

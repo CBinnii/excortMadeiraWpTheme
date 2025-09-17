@@ -26049,6 +26049,7 @@ a.button {
 @media screen and (max-width: 768px) {
   .profile-quiz .profile-quiz-content .profile-quiz-container.match {
     max-width: 250px;
+    max-height: 375px;
     height: auto;
   }
 }

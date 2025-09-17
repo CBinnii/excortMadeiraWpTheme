@@ -9,6 +9,15 @@
         <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png">
         <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <style>
+            html, body {
+				margin-top: 0px !important;
+                -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+                -webkit-touch-callout:none;
+            }
+            img { -webkit-user-drag:none; user-drag:none; }
+        </style>
+        <?php wp_head(); ?>
     </head>
 
     <body>

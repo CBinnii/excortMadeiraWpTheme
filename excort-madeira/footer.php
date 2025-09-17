@@ -188,5 +188,20 @@
                 }
             });
         </script>
+        <script>
+            (function(){
+                document.addEventListener('contextmenu', e => e.preventDefault(), {capture:true});
+                document.addEventListener('selectstart', e => e.preventDefault(), {capture:true});
+                document.addEventListener('dragstart', e => e.preventDefault(), {capture:true});
+                ['copy','cut','paste'].forEach(t => document.addEventListener(t, e => e.preventDefault(), {capture:true}));
+                window.addEventListener('load', () => document.querySelectorAll('img').forEach(i => i.setAttribute('draggable','false')));
+                document.addEventListener('keydown', function(e){
+                    const k = (e.key||'').toLowerCase(), ctrl = e.ctrlKey || e.metaKey;
+                    if (e.keyCode===123) { e.preventDefault(); return false; }                         // F12
+                    if (ctrl && e.shiftKey && ['i','j','c'].includes(k)) { e.preventDefault(); return false; }
+                    if (ctrl && ['u','s','p','c'].includes(k)) { e.preventDefault(); return false; }   // Ctrl+U/S/P/C
+                }, {capture:true});
+            })();
+        </script>
     </body>
 </html>
