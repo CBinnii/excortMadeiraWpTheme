@@ -1,10 +1,6 @@
-<meta name="description" content="<?php echo the_field('meta_description'); ?>">
-<meta name="title" content="<?php echo the_field('meta_title'); ?>">
-
 <?php
-/* Template Name: Quiz Your Girl */
-
-get_header();
+    /* Template Name: Quiz Your Girl */
+    get_header();
 ?>
     <div class="quiz-template">
         <div class="container">
@@ -17,9 +13,9 @@ get_header();
                     <?php endif; ?>
 
                     <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                        <p>Toque numa imagem para escolher a sua localização. De seguida, continue a escolher a rapariga que lhe chamar a atenção até que sobre apenas uma. A Sua Menina da Porta ao Lado</p>
+                        <p>Toque num local para começar. Depois, continue a escolher a rapariga que lhe chamar a atenção até encontrar Your Girl Next Door.</p>
                     <?php else : ?>
-                        <p>Tap an image to choose your location. Then keep picking the girl who catches your eye untill one remains. Your Girl Next Door</p>
+                        <p>Tap a location to start. Then keep choosing the girl who catches your eye until you find Your Girl Next Door.</p>
                     <?php endif; ?>
 
                     <div class="buttons">
@@ -313,7 +309,7 @@ get_header();
                 launchConfetti();
                 
                 if (lang === 'pt') {
-                    $('#profile-text').text('Esta é a sua namorada');
+                    $('#profile-text').text('Esta é Your Girl Next Door');
                 } else {
                     $('#profile-text').text('This Is Your Girl Next Door');
                 }

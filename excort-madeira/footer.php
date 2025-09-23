@@ -163,16 +163,8 @@
         </footer>
 
 		<?php wp_footer(); ?>
-        <!-- JQuery JS -->
-        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.min.js"></script>
-        <!-- Lightbox JS -->
-        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/fslightbox.js"></script>
-        <!-- Swiper JS -->
-        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.bundle.min.js"></script>
-        <!-- App JS -->
-        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/app.js"></script>
+        <!-- APP JS -->
+        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/app.min.js"></script>
 
         <script>
             var lang = "<?php echo function_exists('pll_current_language') ? pll_current_language() : 'en'; ?>";
