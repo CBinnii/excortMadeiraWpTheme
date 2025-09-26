@@ -13,7 +13,7 @@
                 <div class="section-about bg-white pb-0">
                     <div class="title">
                         <div class="container">
-                            <h2><?php echo $title_text_field_1_page; ?></h2>
+                            <h1><?php echo $title_text_field_1_page; ?></h1>
                         </div>
                     </div>
 

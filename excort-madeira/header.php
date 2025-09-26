@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<?php $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt'; ?>
+<?php if ($lang === 'en') { ?>
+    <html lang="en">
+<?php } else if ($lang === 'pt') {?>
+    <html lang="pt-PT">
+<?php } else {?>
     <html lang="nl">
+<?php } ?>
 
     <head>
         <meta charset="UTF-8">
@@ -10,6 +17,11 @@
         <?php wp_head(); ?>
         <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!-- Hreflang tags -->
+        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="x-default" />
+        <link rel="alternate" href="https://the-girl-next-door.com/pt/" hreflang="pt-PT" />
+        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="en" />
+        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="self" />
         <style>
             html, body {
 				margin-top: 0px !important;

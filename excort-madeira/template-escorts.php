@@ -86,13 +86,6 @@
                 <div class="container p-0">
                     <div class="filter-box">
                         <form id="locationFilterForm" method="GET" action="">
-                            <label for="locationFilter" class="form-label">
-                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                    Filtrar por Localização
-                                <?php else : ?>
-                                    Filter by Location 
-                                <?php endif; ?>
-                            </label>
                             <?php
                                 // Idioma atual
                                 $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';

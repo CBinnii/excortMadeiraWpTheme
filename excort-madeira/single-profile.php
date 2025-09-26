@@ -64,7 +64,7 @@
                                                                         muted 
                                                                         playsinline 
                                                                         preload="metadata" 
-                                                                        style="width: 100%; height: auto; object-fit: cover;" 
+                                                                        style="width: 100% !important;height: 100% !important;object-fit: cover;display: block;" 
                                                                     >
                                                                             <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                                             Seu navegador não suporta vídeo.
@@ -104,7 +104,7 @@
                                                                         muted 
                                                                         playsinline 
                                                                         preload="metadata" 
-                                                                        style="width: 100%; height: auto; object-fit: cover;" 
+                                                                        style="width: 100% !important;height: 100% !important;object-fit: cover;display: block;" 
                                                                     >
                                                                             <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                                             Seu navegador não suporta vídeo.
@@ -147,7 +147,7 @@
                                                             muted 
                                                             playsinline 
                                                             preload="metadata" 
-                                                            style="width: 100%; height: auto; object-fit: cover;" 
+                                                            style="width: 100% !important;height: 100% !important;object-fit: cover;display: block; max-height: 600px;" 
                                                         >
                                                             <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                             Seu navegador não suporta vídeo.
@@ -175,7 +175,7 @@
                                                             muted 
                                                             playsinline 
                                                             preload="metadata" 
-                                                            style="width: 100%; height: auto; object-fit: cover;" 
+                                                            style="width: 100% !important;height: 100% !important;object-fit: cover;display: block; max-height: 600px;" 
                                                         >
                                                             <source src="<?php echo esc_url($photo); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                             Seu navegador não suporta vídeo.
@@ -200,7 +200,7 @@
                                 <div class="profile-info-box">
                                     <div class="profile-title mb-24">
                                         <div class="text-center mb-24">
-                                            <h3><?php echo get_the_title(); ?></h3>
+                                            <h1><?php echo get_the_title(); ?></h1>
                                         </div>
 
                                         <div class="profile-book">

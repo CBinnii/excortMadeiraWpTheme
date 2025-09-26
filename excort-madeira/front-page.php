@@ -24,7 +24,7 @@
                                                 muted 
                                                 playsinline 
                                                 preload="metadata" 
-                                                style="width: 100%; height: auto; object-fit: cover;" 
+                                                style="width: 100% !important;height: 100% !important;object-fit: cover;display: block;" 
                                             >
                                                 <source src="<?php echo esc_url($image); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                 Seu navegador não suporta vídeo.
@@ -36,7 +36,7 @@
                                                 muted 
                                                 playsinline 
                                                 preload="metadata" 
-                                                style="width: 100%; height: auto; object-fit: cover;" 
+                                                style="width: 100% !important;height: 100% !important;object-fit: cover;display: block;" 
                                             >
                                                 <source src="<?php echo esc_url($image); ?>" type="video/<?php echo esc_attr($extension); ?>">
                                                 Seu navegador não suporta vídeo.
@@ -242,7 +242,7 @@
 
                         <div class="context">
                             <div class="title title-section mob-mb-8">
-                                <h1 class="color-white"><?php echo $title_your_girl; ?></h1>
+                                <h2 class="color-white"><?php echo $title_your_girl; ?></h2>
                                 <?php if ($subtitle_your_girl) : ?>
                                     <div class="section-label color-white"><?php echo $subtitle_your_girl; ?></div>
                                 <?php endif; ?>
@@ -282,7 +282,7 @@
                     
                         <div class="context">
                             <div class="title title-section mob-mb-8">
-                                <h1 class="color-white"><?php echo $title_section; ?></h1>
+                                <h2 class="color-white"><?php echo $title_section; ?></h2>
                                 <?php if ($subtitle_section) : ?>
                                     <div class="section-label color-white"><?php echo $subtitle_section; ?></div>
                                 <?php endif; ?>
@@ -322,7 +322,7 @@
 
                         <div class="context">
                             <div class="title title-section mob-mb-8">
-                                <h1 class="color-white"><?php echo $title_become_section; ?></h1>
+                                <h2 class="color-white"><?php echo $title_become_section; ?></h2>
                                 <?php if ($subtitle_become_section) : ?>
                                     <div class="section-label color-white"><?php echo $subtitle_become_section; ?></div>
                                 <?php endif; ?>
@@ -431,7 +431,7 @@
                 <div class="section-this-is-the-girl-next-door-escort bg-light">
                     <div class="title">
                         <div class="container">
-                            <h1><?php echo $title_section_this_is_the_girl_next_door; ?></h1>
+                            <h2><?php echo $title_section_this_is_the_girl_next_door; ?></h2>
                             <?php if ($subtitle_section_this_is_the_girl_next_door) : ?>
                                 <div class="section-label"><?php echo $subtitle_section_this_is_the_girl_next_door; ?></div>
                             <?php endif; ?>

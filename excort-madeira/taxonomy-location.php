@@ -27,7 +27,7 @@
                                     <div class="overlay white"></div>
                                     <div class="container">
                                         <div class="banner-text">
-                                            <h1><?php echo $term->name; ?></h1>
+                                            <div class="banner-title"><?php echo $term->name; ?></div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                 <div class="overlay white"></div>
                                 <div class="container">
                                     <div class="banner-text">
-                                        <h1><?php echo $term->name; ?></h1>
+                                        <div class="banner-title"><?php echo $term->name; ?></div>
                                     </div>
                                 </div>
                             </div>

@@ -37,7 +37,7 @@
             <div class="section-single-page">
                 <div class="title pt-0">
                     <div class="container">
-                        <h2><?php echo get_the_title(); ?></h2>
+                        <h1><?php echo get_the_title(); ?></h1>
                     </div>
                 </div>
 
