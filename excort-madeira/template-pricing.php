@@ -19,7 +19,7 @@
                                     <div class="overlay white"></div>
                                     <div class="container">
                                         <div class="banner-text">
-                                            <h1><?php echo get_the_title(); ?></h1>
+                                            <h1 id="page-title"><?php echo get_the_title(); ?></h1>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 <div class="overlay white"></div>
                                 <div class="container">
                                     <div class="banner-text">
-                                        <h1><?php echo get_the_title(); ?></h1>
+                                        <div class="banner-title"><?php echo get_the_title(); ?></div>
                                     </div>
                                 </div>
                             </div>

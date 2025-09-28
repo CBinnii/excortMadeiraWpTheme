@@ -173,8 +173,19 @@
                 if (link) {
                     if (lang === 'pt') {
                         link.textContent = 'Seja membro'; // Texto em português
+                        link.href = '<?php echo pll_home_url('pt'); ?>seja-membro/registrar';
                     } else {
                         link.textContent = 'Be a member'; // Texto em inglês
+                    }
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const link = document.getElementById('forgot_pass');
+                if (link) {
+                    if (lang === 'pt') {
+                        console.log(link);
+                        link.href = '<?php echo pll_home_url('pt'); ?>login/resetar-senha';
                     }
                 }
             });

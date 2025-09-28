@@ -152,7 +152,7 @@
                                                     Login
                                                 </a>
                                             <?php else : ?>
-                                                <a href="<?php echo pll_home_url('en'); ?>/login" class="button bold outline medium text-center">
+                                                <a href="<?php echo pll_home_url('en'); ?>login" class="button bold outline medium text-center">
                                                     Login
                                                 </a>
                                             <?php endif; ?>
@@ -208,7 +208,7 @@
                                                 Login
                                             </a>
                                         <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/login" class="button bold outline medium">
+                                            <a href="<?php echo pll_home_url('en'); ?>login" class="button bold outline medium">
                                                 Login
                                             </a>
                                         <?php endif; ?>
