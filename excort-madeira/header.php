@@ -12,16 +12,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>The Girl Next Door - <?php echo get_the_title(); ?></title>
         <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png">
         <?php wp_head(); ?>
         <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <!-- Hreflang tags -->
-        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="x-default" />
-        <link rel="alternate" href="https://the-girl-next-door.com/pt/" hreflang="pt-PT" />
-        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="en" />
-        <link rel="alternate" href="https://the-girl-next-door.com/" hreflang="self" />
         <style>
             html, body {
 				margin-top: 0px !important;
@@ -79,11 +73,11 @@
                                     </div>
                                     <div>
                                         <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/como-ser-acompanhante-de-luxo/" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                            <a href="https://wa.me/351915974302?text=Ol%C3%A1%2C%20gostaria%20de%20criar%20um%20perfil.%20Como%20devo%20proceder%3F" class="d-flex f-size-18 mb-24 button bold outline medium">
                                                 Anunciar
                                             </a>
                                         <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/how-to-become-a-high-class-escort/" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                            <a href="https://wa.me/351915974302?text=Hello%2C%20I%20would%20like%20to%20create%20a%20profile.%20How%20should%20I%20proceed%3F" class="d-flex f-size-18 mb-24 button bold outline medium">
                                                 Advertise
                                             </a>
                                         <?php endif; ?>
@@ -119,11 +113,11 @@
 
                                     <div>
                                         <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/como-ser-acompanhante-de-luxo/" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                            <a href="https://wa.me/351915974302?text=Ol%C3%A1%2C%20gostaria%20de%20criar%20um%20perfil.%20Como%20devo%20proceder%3F" class="d-flex f-size-18 mb-24 button bold outline medium">
                                                 Anunciar
                                             </a>
                                         <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/how-to-become-a-high-class-escort/" class="d-flex f-size-18 mb-24 button bold outline medium">
+                                            <a href="https://wa.me/351915974302?text=Hello%2C%20I%20would%20like%20to%20create%20a%20profile.%20How%20should%20I%20proceed%3F" class="d-flex f-size-18 mb-24 button bold outline medium">
                                                 Advertise
                                             </a>
                                         <?php endif; ?>

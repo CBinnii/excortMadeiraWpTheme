@@ -330,6 +330,10 @@
                     height: 250px;
                     margin-bottom: 8px;
                 }
+
+                @media screen and (max-width: 560px) {
+                    height: auto;
+                }
             }
         }
 

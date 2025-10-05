@@ -2,7 +2,7 @@
     $term = get_queried_object();
 ?>
 
-<title>The Girl Next Door - <?php echo $term->name; ?> Escorts</title>
+<title>The Girl Next Door - <?php echo $term->name; ?></title>
 
 <?php 
 	get_header();

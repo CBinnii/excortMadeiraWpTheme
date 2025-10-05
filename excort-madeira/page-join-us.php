@@ -1,3 +1,4 @@
+<title>The Girl Next Door - <?php echo get_the_title(); ?></title>
 <?php 
 	get_header();
 

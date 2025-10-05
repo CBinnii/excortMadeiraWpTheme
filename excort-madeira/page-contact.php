@@ -1,3 +1,4 @@
+<title>The Girl Next Door - <?php echo get_the_title(); ?></title>
 <!-- Adicionando o script do Google reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script>
@@ -37,7 +38,7 @@
                                     <div class="overlay white"></div>
                                     <div class="container">
                                         <div class="banner-text">
-                                        <h1 id="page-title"><?php echo get_the_title(); ?></h1>
+                                            <div class="banner-title"><?php echo get_the_title(); ?></div>
                                         </div>
                                     </div>
                                 </div>
@@ -89,8 +90,13 @@
                 </div>
             <?php endif; ?>
 
-            <div class="section-contact">
-                <div class="container"> 
+            <div class="section-contact"> 
+                <div class="title">
+                    <div class="container">
+                        <h1><?php echo get_the_title(); ?></h1>
+                    </div>
+                </div>
+                <div class="container">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row contact">

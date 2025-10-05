@@ -1,3 +1,11 @@
+<title>
+    The Girl Next Door - 
+    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+        Página de pesquisa
+    <?php else : ?>
+        Search page
+    <?php endif; ?>
+</title>
 <?php get_header(); ?>
 
     <section class="main">

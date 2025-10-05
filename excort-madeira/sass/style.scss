@@ -26,6 +26,13 @@
 @import "./_text.scss";
 @import "./_quiz.scss";
 
+.modal-body {
+    @media screen and (max-width: 560px) {
+        overflow: auto !important;
+        height: 86vh !important;
+    }
+}
+
 .wp-block-image {
     margin-bottom: 24px;
 
