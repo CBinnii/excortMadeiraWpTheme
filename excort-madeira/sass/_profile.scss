@@ -227,6 +227,17 @@
             p {
                 line-height: 1.4;
             }
+
+            a {
+                color: var(--button-color);
+                line-height: 1.4;
+                transition: 0.3s;
+                text-decoration: underline;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
+            }
         }
 
         .tags {
