@@ -320,10 +320,6 @@ body {
         &:nth-child(even) {
             background-color: #ffffff;
         }
-        
-        &:last-of-type {
-            // border-bottom: 1px solid #dee2e6;
-        }
     }
 }
 
@@ -334,6 +330,7 @@ body {
 .swiper-slide {
     height: auto !important;
     -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 
     img {
         display: block;
