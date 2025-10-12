@@ -148,7 +148,7 @@
 
                                         <div class="swiper-slide">
                                             <a href="<?php echo get_permalink($post->ID); ?>" class="escort-box">
-                                                <div class="image-container">
+                                                <div class="image-container home">
                                                     <div class="image">
                                                         <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
                                                     </div>
