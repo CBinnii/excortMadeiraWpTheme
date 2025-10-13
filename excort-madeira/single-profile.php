@@ -44,7 +44,7 @@
             <div class="section-profile mob-pt-0">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-8 mob-p-0">
+                        <div class="col-lg-8 mob-p-0">
                             <div class="desktop">
                                 <div class="row profile-photos">
                                     <?php if ($only_members == 'yes' ) : ?>
@@ -196,7 +196,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-lg-4">
                             <div class="profile-info">
                                 <div class="profile-info-box">
                                     <div class="profile-title mb-24">
