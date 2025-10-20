@@ -128,9 +128,7 @@
                     'posts_per_page' => -1,
                     'lang'           => function_exists('pll_current_language') ? pll_current_language('slug') : 'all',
                     'meta_query'     => [
-                        ['key' => 'photos',      'compare' => 'EXISTS'],
                         ['key' => 'more_fields', 'compare' => 'EXISTS'],
-                        ['key' => 'only_member', 'compare' => 'EXISTS'],
                     ],
                 ];
 

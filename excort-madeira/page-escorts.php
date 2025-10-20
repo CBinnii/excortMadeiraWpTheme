@@ -126,9 +126,7 @@
                     'posts_per_page' => -1,
                     'lang'           => function_exists('pll_current_language') ? pll_current_language('slug') : 'all',
                     'meta_query'     => [
-                        ['key' => 'photos',      'compare' => 'EXISTS'],
                         ['key' => 'more_fields', 'compare' => 'EXISTS'],
-                        ['key' => 'only_member', 'compare' => 'EXISTS'],
                     ],
                 ];
 
@@ -143,7 +141,7 @@
                 }
 
                 $more = new WP_Query($args);
-
+				
 			    if (!empty($more->posts)) : ?>
                     <div class="section-escorts mob-pt-0">
                         <div class="container">

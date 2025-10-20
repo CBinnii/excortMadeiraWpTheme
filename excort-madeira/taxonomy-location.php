@@ -92,15 +92,7 @@
                     ),
                     'meta_query' => array(
                         array(
-                            'key' => 'photos',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
                             'key' => 'more_fields',
-                            'compare' => 'EXISTS',
-                        ),
-                        array(
-                            'key' => 'only_member',
                             'compare' => 'EXISTS',
                         ),
                     ),
