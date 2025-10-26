@@ -1,4 +1,3 @@
-<title>The Girl Next Door - <?php echo get_the_title(); ?></title>
 <!-- Adicionando o script do Google reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script>

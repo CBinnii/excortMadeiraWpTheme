@@ -7,24 +7,45 @@
 <?php } else {?>
     <html lang="nl">
 <?php } ?>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png">
+  <title>
+    <?php
+      if (is_tax('location') || is_search()) {
+        // Recebe o texto customizado dos filtros definidos nos templates
+        echo esc_html( wp_get_document_title() );
+      } else {
+        // Base padrão em todas as outras telas
+        echo 'The Girl Next Door - ' . esc_html( get_the_title() );
+      }
+    ?>
+  </title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png">
-        <?php wp_head(); ?>
-        <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <style>
-            html, body {
-				margin-top: 0px !important;
-                -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
-                -webkit-touch-callout:none;
-            }
-            img { -webkit-user-drag:none; user-drag:none; }
-        </style>
-    </head>
+  <!-- 🚀 Preload Rufina fonts (load instantly before CSS) -->
+  <link rel="preload" href="/wp-content/uploads/fonts/rufina/rufina-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/wp-content/uploads/fonts/rufina/rufina-v17-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- 🧠 WordPress core & plugin hooks -->
+  <?php wp_head(); ?>
+
+  <!-- 🎨 Main stylesheet -->
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css">
+
+  <!-- 💅 Inline reset & minor tweaks -->
+  <style>
+    html, body {
+      margin-top: 0 !important;
+      font-family: 'Rufina', serif !important; /* ensure Rufina applies globally */
+    }
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+  </style>
+</head>
 
     <body>
         <header id="header" class="header">

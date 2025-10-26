@@ -1,12 +1,23 @@
-<title>
-    The Girl Next Door - 
-    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-        Página de pesquisa
-    <?php else : ?>
-        Search page
-    <?php endif; ?>
-</title>
-<?php get_header(); ?>
+<?php
+    add_filter('pre_get_document_title', function ($title) {
+        if (is_search()) {
+            $is_pt = function_exists('pll_current_language') && pll_current_language('slug') === 'pt';
+            return 'The Girl Next Door - ' . ($is_pt ? 'Página de pesquisa' : 'Search page');
+        }
+        return $title;
+    }, 20);
+
+    // Se usar Yoast SEO, opcionalmente também:
+    add_filter('wpseo_title', function ($title) {
+        if (is_search()) {
+            $is_pt = function_exists('pll_current_language') && pll_current_language('slug') === 'pt';
+            return 'The Girl Next Door - ' . ($is_pt ? 'Página de pesquisa' : 'Search page');
+        }
+        return $title;
+    }, 20);
+
+    get_header(); 
+?>
 
     <section class="main">
         <div class="section">

@@ -1,4 +1,3 @@
-<title>The Girl Next Door - <?php echo get_the_title(); ?></title>
 <?php 
     /**
      * Template Name: Advertise Page
@@ -132,19 +131,45 @@
                             <div class="row m-0">
                                 <div class="accordion" id="accordionFAQ">
                                     <?php
-                                        while( have_rows('faq') ) : the_row();
-                                            $question = get_sub_field('question');
-                                            $answer = get_sub_field('answer');
-                                    ?>
+                                    // Vamos acumular aqui as perguntas/respostas para o JSON-LD:
+                                    $faq_entities = [];
+
+                                    // Reinicia o loop para garantir leitura correta
+                                    while ( have_rows('faq') ) : the_row();
+                                        $question = get_sub_field('question');
+                                        $answer   = get_sub_field('answer');
+
+                                        // (Opcional) Versão "limpa" para o JSON-LD (remove tags e normaliza espaços)
+                                        $q_text = trim( wp_strip_all_tags( $question ) );
+                                        $a_text = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $answer ) ) );
+
+                                        // Evita entradas vazias
+                                        if ( $q_text !== '' && $a_text !== '' ) {
+                                            $faq_entities[] = [
+                                                "@type" => "Question",
+                                                "name"  => $q_text,
+                                                "acceptedAnswer" => [
+                                                    "@type" => "Answer",
+                                                    "text"  => $a_text, // Pode ser com tags simples se preferir: use $answer
+                                                ],
+                                            ];
+                                        }
+                                        ?>
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading<?php echo get_row_index(); ?>">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo get_row_index(); ?>" aria-expanded="true" aria-controls="collapse<?php echo get_row_index(); ?>">
-                                                    <?php echo $question ?>
+                                            <h2 class="accordion-header" id="heading<?php echo esc_attr( get_row_index() ); ?>">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse<?php echo esc_attr( get_row_index() ); ?>"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse<?php echo esc_attr( get_row_index() ); ?>">
+                                                    <?php echo wp_kses_post( $question ); ?>
                                                 </button>
                                             </h2>
-                                            <div id="collapse<?php echo get_row_index(); ?>" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                                            <div id="collapse<?php echo esc_attr( get_row_index() ); ?>"
+                                                class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFAQ">
                                                 <div class="accordion-body">
-                                                    <?php echo $answer ?>
+                                                    <?php echo wp_kses_post( $answer ); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,6 +179,25 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+                // Só imprime o JSON-LD se houver pelo menos um item válido
+                if ( ! empty( $faq_entities ) ) {
+                    $schema = [
+                        "@context"   => "https://schema.org",
+                        "@type"      => "FAQPage",
+                        "mainEntity" => $faq_entities,
+                    ];
+
+                    // Dica: use JSON_UNESCAPED_UNICODE para manter acentos
+                    $json = wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+                    ?>
+                    <script type="application/ld+json">
+                        <?php echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    </script>
+                    <?php
+                }
+                ?>
             <?php endif; ?>
         </div>
     </section>
