@@ -166,7 +166,6 @@
                                         </div>
                                         <h3><?php echo get_the_title($post->ID); ?></h3>
                                         <p><?php echo $location ?></p>
-                                        <p class="small"><strong>Age: </strong> <?php echo $age; ?>, <?php echo $nationality ?></p>
                                     </a>
                                 </div>
                             <?php endforeach; ?>
