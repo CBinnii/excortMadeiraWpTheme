@@ -233,11 +233,48 @@ $has_banner     = ! empty($featured_image) && ! empty($featured_image['url']);
         <?php endif; ?>
 
         <!-- FAQ Section -->
-        <?php if ( have_rows('faq') ) : ?>
+        <?php
+            // Helper para limpar texto para JSON-LD (sem HTML, links, emails, shortcodes)
+            function faq_plain_text( $text, $max_len = 1000 ) {
+                if ( empty( $text ) ) return '';
+
+                // Remove shortcodes tipo [galeria], etc.
+                $text = strip_shortcodes( $text );
+
+                // Decodifica entidades HTML (ex.: &amp; -> &), para não sobrar lixo após strip
+                $text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+                // Remove tags (inclui <script> e <style>)
+                $text = wp_strip_all_tags( $text, true );
+
+                // Remove URLs (http, https, www) e e-mails
+                $text = preg_replace(
+                    array(
+                        '#\bhttps?://[^\s<>()"]+#i',
+                        '#\bwww\.[^\s<>()"]+#i',
+                        '/[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}/i',
+                    ),
+                    '',
+                    $text
+                );
+
+                // Normaliza quebras/espacos
+                $text = preg_replace('/\s+/u', ' ', trim($text));
+
+                // (Opcional) Limita tamanho para evitar payload gigante
+                if ( function_exists('mb_substr') && mb_strlen($text, 'UTF-8') > $max_len ) {
+                    $text = mb_substr($text, 0, $max_len, 'UTF-8') . '…';
+                }
+
+                return $text;
+            }
+        ?>
+
+        <?php if( have_rows('faq', 'location_' . get_queried_object()->term_id) ): ?>
             <div class="section-faq">
                 <div class="faq-title">
                     <div class="container">
-                        <?php if ( function_exists('pll_current_language') && pll_current_language('slug') === 'pt' ) : ?>
+                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                             <h2>Dúvidas? Nós temos as respostas.</h2>
                         <?php else : ?>
                             <h2>Questions? We have answers.</h2>
@@ -250,24 +287,25 @@ $has_banner     = ! empty($featured_image) && ! empty($featured_image['url']);
                         <div class="row m-0">
                             <div class="accordion" id="accordionFAQ">
                                 <?php
-                                // Acumula perguntas/respostas para o JSON-LD:
                                 $faq_entities = [];
 
-                                while ( have_rows('faq') ) : the_row();
+                                // Loop do ACF
+                                while ( have_rows('faq', 'location_' . get_queried_object()->term_id) ) : the_row();
                                     $question = get_sub_field('question');
                                     $answer   = get_sub_field('answer');
 
-                                    // Versão "limpa" para JSON-LD
-                                    $q_text = trim( wp_strip_all_tags( (string) $question ) );
-                                    $a_text = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $answer ) ) );
+                                    // Texto limpo para o JSON-LD
+                                    $q_text = faq_plain_text( $question );
+                                    $a_text = faq_plain_text( $answer );
 
+                                    // Monta entidade apenas se ambos existem
                                     if ( $q_text !== '' && $a_text !== '' ) {
                                         $faq_entities[] = [
-                                            '@type' => 'Question',
-                                            'name'  => $q_text,
-                                            'acceptedAnswer' => [
-                                                '@type' => 'Answer',
-                                                'text'  => $a_text,
+                                            "@type" => "Question",
+                                            "name"  => $q_text,
+                                            "acceptedAnswer" => [
+                                                "@type" => "Answer",
+                                                "text"  => $a_text,
                                             ],
                                         ];
                                     }
@@ -283,8 +321,8 @@ $has_banner     = ! empty($featured_image) && ! empty($featured_image['url']);
                                             </button>
                                         </h2>
                                         <div id="collapse<?php echo esc_attr( get_row_index() ); ?>"
-                                            class="accordion-collapse collapse"
-                                            data-bs-parent="#accordionFAQ">
+                                                class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFAQ">
                                             <div class="accordion-body">
                                                 <?php echo wp_kses_post( $answer ); ?>
                                             </div>
@@ -295,22 +333,24 @@ $has_banner     = ! empty($featured_image) && ! empty($featured_image['url']);
                         </div>
                     </div>
                 </div>
-
-                <?php if ( ! empty( $faq_entities ) ) :
-                    $schema = [
-                        '@context'   => 'https://schema.org',
-                        '@type'      => 'FAQPage',
-                        'mainEntity' => $faq_entities,
-                    ];
-                    $json = wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
-                    ?>
-                    <script type="application/ld+json">
-                        <?php echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    </script>
-                <?php endif; ?>
             </div>
-        <?php endif; ?>
 
+            <?php
+            if ( ! empty( $faq_entities ) ) {
+                $schema = [
+                    "@context"   => "https://schema.org",
+                    "@type"      => "FAQPage",
+                    "mainEntity" => $faq_entities,
+                ];
+                $json = wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+                ?>
+                <script type="application/ld+json">
+                    <?php echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </script>
+                <?php
+            }
+            ?>
+        <?php endif; ?>
     </div>
 </section>
 

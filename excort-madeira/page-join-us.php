@@ -89,7 +89,45 @@
                 </div>
             <?php endif; ?>
             
-            <!-- FAQ Section -->
+            
+			<!-- FAQ Section -->
+			<?php
+				// Helper para limpar texto para JSON-LD (sem HTML, links, emails, shortcodes)
+				function faq_plain_text( $text, $max_len = 1000 ) {
+					if ( empty( $text ) ) return '';
+
+					// Remove shortcodes tipo [galeria], etc.
+					$text = strip_shortcodes( $text );
+
+					// Decodifica entidades HTML (ex.: &amp; -> &), para não sobrar lixo após strip
+					$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+					// Remove tags (inclui <script> e <style>)
+					$text = wp_strip_all_tags( $text, true );
+
+					// Remove URLs (http, https, www) e e-mails
+					$text = preg_replace(
+						array(
+							'#\bhttps?://[^\s<>()"]+#i',
+							'#\bwww\.[^\s<>()"]+#i',
+							'/[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}/i',
+						),
+						'',
+						$text
+					);
+
+					// Normaliza quebras/espacos
+					$text = preg_replace('/\s+/u', ' ', trim($text));
+
+					// (Opcional) Limita tamanho para evitar payload gigante
+					if ( function_exists('mb_substr') && mb_strlen($text, 'UTF-8') > $max_len ) {
+						$text = mb_substr($text, 0, $max_len, 'UTF-8') . '…';
+					}
+
+					return $text;
+				}
+            ?>
+
             <?php if( have_rows('faq') ): ?>
                 <div class="section-faq">
                     <div class="faq-title">
@@ -107,26 +145,25 @@
                             <div class="row m-0">
                                 <div class="accordion" id="accordionFAQ">
                                     <?php
-                                    // Vamos acumular aqui as perguntas/respostas para o JSON-LD:
                                     $faq_entities = [];
 
-                                    // Reinicia o loop para garantir leitura correta
+                                    // Loop do ACF
                                     while ( have_rows('faq') ) : the_row();
                                         $question = get_sub_field('question');
                                         $answer   = get_sub_field('answer');
 
-                                        // (Opcional) Versão "limpa" para o JSON-LD (remove tags e normaliza espaços)
-                                        $q_text = trim( wp_strip_all_tags( $question ) );
-                                        $a_text = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $answer ) ) );
+                                        // Texto limpo para o JSON-LD
+                                        $q_text = faq_plain_text( $question );
+                                        $a_text = faq_plain_text( $answer );
 
-                                        // Evita entradas vazias
+                                        // Monta entidade apenas se ambos existem
                                         if ( $q_text !== '' && $a_text !== '' ) {
                                             $faq_entities[] = [
                                                 "@type" => "Question",
                                                 "name"  => $q_text,
                                                 "acceptedAnswer" => [
                                                     "@type" => "Answer",
-                                                    "text"  => $a_text, // Pode ser com tags simples se preferir: use $answer
+                                                    "text"  => $a_text,
                                                 ],
                                             ];
                                         }
@@ -142,8 +179,8 @@
                                                 </button>
                                             </h2>
                                             <div id="collapse<?php echo esc_attr( get_row_index() ); ?>"
-                                                class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFAQ">
+                                                    class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordionFAQ">
                                                 <div class="accordion-body">
                                                     <?php echo wp_kses_post( $answer ); ?>
                                                 </div>
@@ -157,15 +194,12 @@
                 </div>
 
                 <?php
-                // Só imprime o JSON-LD se houver pelo menos um item válido
                 if ( ! empty( $faq_entities ) ) {
                     $schema = [
                         "@context"   => "https://schema.org",
                         "@type"      => "FAQPage",
                         "mainEntity" => $faq_entities,
                     ];
-
-                    // Dica: use JSON_UNESCAPED_UNICODE para manter acentos
                     $json = wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
                     ?>
                     <script type="application/ld+json">
