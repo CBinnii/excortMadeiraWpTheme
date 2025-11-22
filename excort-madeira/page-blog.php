@@ -90,7 +90,7 @@
                             <div class="row">
                                 <?php foreach ( $more->posts as $post ): /*echo '<pre>'; var_dump($post); echo '</pre>';*/ ?>
                                     <div class="col-md-4">
-                                        <a href="<?php echo $post->post_name; ?>" class="post-box mb-30">
+                                        <a href="<?php echo get_home_url(); ?>/blog/<?php echo $post->post_name; ?>" class="post-box mb-30">
                                             <div class="image">
                                                 <?php if (has_post_thumbnail( $post->ID ) ) { ?>
                                                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id(), 'full');?>" alt="<?php echo get_the_title($post->ID); ?>">
