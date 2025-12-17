@@ -234,10 +234,10 @@
 
         a {
             font-size: 16px;
-            color: var(--text-color);
             line-height: 1.4;
             transition: 0.3s;
-            text-decoration: none;
+            text-decoration: underline;
+            color: var(--button-color);
 
             &:hover {
                 color: var(--link-hover-color);

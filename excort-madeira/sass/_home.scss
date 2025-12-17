@@ -99,6 +99,18 @@
             }
         }
 
+        a {
+            font-size: 16px;
+            color: var(--button-color);
+            line-height: 1.4;
+            transition: 0.3s;
+            font-weight: 700;
+
+            &:hover {
+                color: var(--link-hover-color);
+            }
+        }
+
         .points {
             display: flex;
             flex-direction: column;
@@ -260,10 +272,22 @@
             @media screen and (max-width: 767px) {
                 font-size: 14px;
             }
+        }
 
-            a {
-                color: var(--text-color);
-                font-weight: 500;
+        a {
+            font-size: 16px;
+            color: var(--button-color);
+            text-decoration: underline;
+            line-height: 1.4;
+            transition: 0.3s;
+            font-weight: 700;
+
+            &:hover {
+                color: var(--link-hover-color);
+            }
+
+            @media screen and (max-width: 767px) {
+                font-size: 14px;
             }
         }
 
@@ -387,6 +411,18 @@
 
             @media screen and (max-width: 991px) {
                 font-size: 14px;
+            }
+        }
+
+        a {
+            font-size: 16px;
+            color: var(--button-color);
+            line-height: 1.4;
+            transition: 0.3s;
+            font-weight: 700;
+
+            &:hover {
+                color: var(--link-hover-color);
             }
         }
     }
@@ -519,6 +555,23 @@
                     font-size: 16px;
                 }
             }
+
+            a {
+                font-size: 16px;
+                color: var(--button-color);
+                line-height: 1.4;
+                transition: 0.3s;
+                text-decoration: underline;
+                font-weight: 700;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
+
+                @media screen and (max-width: 767px) {
+                    font-size: 14px;
+                }
+            }
         }
 
         p {
@@ -538,10 +591,16 @@
             @media screen and (max-width: 767px) {
                 font-size: 14px;
             }
-
+            
             a {
-                color: var(--text-color);
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
                 font-weight: 500;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
     }
@@ -673,7 +732,17 @@
 
             a {
                 color: var(--text-color);
+            }
+
+            a {
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
                 font-weight: 500;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
     }
@@ -773,8 +842,14 @@
             }
 
             a {
-                color: var(--text-color);
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
                 font-weight: 500;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
     }
@@ -873,8 +948,14 @@
             }
 
             a {
-                color: var(--text-color);
                 font-weight: 500;
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
     }
@@ -922,8 +1003,14 @@
             }
 
             a {
-                color: var(--text-color);
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
                 font-weight: 500;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
 
@@ -983,8 +1070,15 @@
             }
 
             a {
-                color: var(--text-color);
                 font-weight: 500;
+                color: var(--button-color);
+                transition: 0.3s;
+                text-decoration: underline;
+                font-weight: 700;
+
+                &:hover {
+                    color: var(--link-hover-color);
+                }
             }
         }
 
@@ -1178,6 +1272,19 @@
                     font-size: 16px;
                     margin-bottom: 24px;
                     line-height: 1.4;
+                }
+            }
+
+            a {
+                font-size: 16px;
+                color: var(--button-color);
+                line-height: 1.4;
+                transition: 0.3s;
+                text-decoration: underline;
+                font-weight: 700;
+
+                &:hover {
+                    color: var(--link-hover-color);
                 }
             }
         }
