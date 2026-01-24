@@ -161,19 +161,8 @@
                                     </div>
                                     
                                     <div class="row w-100">
-                                        <div class="col-5">
-                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                <a href="<?php echo pll_home_url('pt'); ?>/login" class="button bold outline medium text-center">
-                                                    Login
-                                                </a>
-                                            <?php else : ?>
-                                                <a href="<?php echo pll_home_url('en'); ?>login" class="button bold outline medium text-center">
-                                                    Login
-                                                </a>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="header-site-search visible-mobile" style="margin-left: 20px; margin-top: 30px;">
+                                        <div class="col-12">
+                                            <div class="header-site-search visible-mobile">
                                                 <span class="header-site-search-icon visible-mobile"></span>
                                                 <form method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
                                                     <input class="header-site-search-input visible-mobile" type="text" name="s" id="keyword" placeholder="<?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>Pesquisar<?php else : ?>Search<?php endif; ?>..." value="<?php echo get_search_query(); ?>">
@@ -186,18 +175,6 @@
                                                     </button>
                                                 </form>
                                             </div>
-                                        </div>
-                                        <div class="col-5">
-                                            
-                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                                <a href="<?php echo pll_home_url('pt'); ?>/verifique-se" class="button bold outline medium text-center pl-0 pr-0">
-                                                    Verifique-se
-                                                </a>
-                                            <?php else : ?>
-                                                <a href="<?php echo pll_home_url('en'); ?>/get-verified" class="button bold outline medium text-center pl-0 pr-0">
-                                                    Get Verified
-                                                </a>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -219,23 +196,12 @@
                                         </div>
 
                                         <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/login" class="button bold outline medium">
-                                                Login
+                                            <a href="https://wa.me/351915974302?text=Ol%C3%A1,%20gostaria%20de%20criar%20um%20perfil.%20Como%20devo%20proceder?" class="button bold outline medium p-0">
+                                                Anunciar
                                             </a>
                                         <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>login" class="button bold outline medium">
-                                                Login
-                                            </a>
-                                        <?php endif; ?>
-
-
-                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
-                                            <a href="<?php echo pll_home_url('pt'); ?>/verifique-se" class="button bold outline medium p-0">
-                                                Verifique-se
-                                            </a>
-                                        <?php else : ?>
-                                            <a href="<?php echo pll_home_url('en'); ?>/get-verified" class="button bold outline medium p-0">
-                                                Get Verified
+                                            <a href="https://wa.me/351915974302?text=Hello,%20I%20would%20like%20to%20create%20a%20profile.%20How%20should%20I%20proceed?" class="button bold outline medium p-0">
+                                                Advertise
                                             </a>
                                         <?php endif; ?>
                                     </span>
