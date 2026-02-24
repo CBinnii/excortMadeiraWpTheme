@@ -56,29 +56,135 @@
                             <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></a>
 
                             <div class="desktop d-flex align-items-center" id="navbar-menu-desktop-pattern">
-                                <?php
-                                    $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
-
-                                    if ($lang === 'en') {
-                                        $menu_2_name = 'Menu';
-                                    } elseif ($lang === 'pt') {
-                                        $menu_2_name = 'Menu PT';
-                                    }
-                                    
-                                    $menu_padrao = get_term_by('name', $menu_2_name, 'nav_menu');
-
-                                    if ($menu_padrao) {
-                                        wp_nav_menu(array(
-                                            'menu'        => $menu_padrao->term_id, // Usar 'menu' em vez de 'menu_id'
-                                            'container'   => false,
-                                            'menu_class'  => 'navbar-nav navbar-nav-desktop me-auto mb-2 mb-lg-0',
-                                            'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                            'depth'       => 2,
-                                        ));
-                                    } else {
-                                        echo '<p>Menu padrão não encontrado.</p>';
-                                    }
-                                ?>
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="container-fluid">
+                                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                                <li class="nav-item">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('acompanhantes','escorts'))) ? 'active' : ''; ?>"" aria-current="page" href="<?php echo get_home_url(); ?>/acompanhantes">Acompanhantes</a>
+                                                    <?php else : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('acompanhantes','escorts'))) ? 'active' : ''; ?>"" aria-current="page" href="<?php echo get_home_url(); ?>/escorts">Escorts</a>
+                                                    <?php endif; ?>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('servicos','services'))) ? 'active' : ''; ?> " aria-current="page" href="<?php echo get_home_url(); ?>/servicos">Serviços</a>
+                                                    <?php else : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('servicos','services'))) ? 'active' : ''; ?> " aria-current="page" href="<?php echo get_home_url(); ?>/services">Services</a>
+                                                    <?php endif; ?>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                            Cidades
+                                                        <?php else : ?>
+                                                            Locations
+                                                        <?php endif; ?>
+                                                    </a>
+                                                    <div class="dropdown-menu px-3 rounded-3 border-0 shadow">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/acompanhantes-lisboa">
+                                                                <?php else : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/lisbon-escorts">
+                                                                <?php endif; ?>
+                                                                    <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                                                                        <div class="icon rounded-3 fs-1">
+                                                                            <img src="https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-lisbon-portugal.png" alt="Lisboa Image">
+                                                                        </div>
+                                                                        <div class="text ps-3">
+                                                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                                <h5>Lisboa</h5>
+                                                                            <?php else : ?>
+                                                                                <h5>Lisbon</h5>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/acompanhantes-porto">
+                                                                <?php else : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/porto-escorts">
+                                                                <?php endif; ?>
+                                                                    <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                                                                        <div class="icon rounded-3 fs-1">
+                                                                            <img src="https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-porto-portugal.png" alt="Porto Image">
+                                                                        </div>
+                                                                        <div class="text ps-3">
+                                                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                                <h5>Porto</h5>
+                                                                            <?php else : ?>
+                                                                                <h5>Porto</h5>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/acompanhantes-madeira">
+                                                                <?php else : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/madeira-escorts">
+                                                                <?php endif; ?>
+                                                                    <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                                                                        <div class="icon rounded-3 fs-1">
+                                                                            <img src="https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-madeira-portugal.png" alt="Madeira Image">
+                                                                        </div>
+                                                                        <div class="text ps-3">
+                                                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                                <h5>Madeira</h5>
+                                                                            <?php else : ?>
+                                                                                <h5>Madeira</h5>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/acompanhantes-algarve">
+                                                                <?php else : ?>
+                                                                    <a href="<?php echo get_home_url(); ?>/algarve-escorts">
+                                                                <?php endif; ?>
+                                                                    <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                                                                        <div class="icon rounded-3 fs-1">
+                                                                            <img src="https://the-girl-next-door.com/wp-content/uploads/2025/08/escorts-algarve-portugal.png" alt="Algarve Image">
+                                                                        </div>
+                                                                        <div class="text ps-3">
+                                                                            <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                                                <h5>Algarve</h5>
+                                                                            <?php else : ?>
+                                                                                <h5>Algarve</h5>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('namorada','your-girl-next-door'))) ? 'active' : ''; ?>" href="<?php echo get_home_url(); ?>/namorada" style="width: 80px;">Match</a>
+                                                    <?php else : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('namorada','your-girl-next-door'))) ? 'active' : ''; ?>" href="<?php echo get_home_url(); ?>/your-girl-next-door" style="width: 130px;">Your Girl</a>
+                                                    <?php endif; ?>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('contato','contact'))) ? 'active' : ''; ?>" href="<?php echo get_home_url(); ?>/contato">Contato</a>
+                                                    <?php else : ?>
+                                                        <a class="nav-link <?php echo (is_page(array('contato','contact'))) ? 'active' : ''; ?>" href="<?php echo get_home_url(); ?>/contact">Contact</a>
+                                                    <?php endif; ?>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
                             </div>
                         </div>
 
