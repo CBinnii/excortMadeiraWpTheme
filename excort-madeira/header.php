@@ -56,7 +56,7 @@
                             <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="Logo"></a>
 
                             <div class="desktop d-flex align-items-center" id="navbar-menu-desktop-pattern">
-                                <nav class="navbar navbar-expand-lg">
+                                <nav class="navbar navbar-expand-lg desktop">
                                     <div class="container-fluid">
                                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
