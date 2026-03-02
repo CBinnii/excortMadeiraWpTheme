@@ -88,7 +88,7 @@
                                                                 <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                                                                     <a href="<?php echo get_home_url(); ?>/acompanhantes-lisboa">
                                                                 <?php else : ?>
-                                                                    <a href="<?php echo get_home_url(); ?>/lisbon-escorts">
+                                                                    <a href="<?php echo get_home_url(); ?>/lisbon-escort">
                                                                 <?php endif; ?>
                                                                     <div class="d-flex align-items-center py-3 px-1 rounded-3">
                                                                         <div class="icon rounded-3 fs-1">
@@ -108,7 +108,7 @@
                                                                 <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                                                                     <a href="<?php echo get_home_url(); ?>/acompanhantes-porto">
                                                                 <?php else : ?>
-                                                                    <a href="<?php echo get_home_url(); ?>/porto-escorts">
+                                                                    <a href="<?php echo get_home_url(); ?>/porto-escort">
                                                                 <?php endif; ?>
                                                                     <div class="d-flex align-items-center py-3 px-1 rounded-3">
                                                                         <div class="icon rounded-3 fs-1">
@@ -128,7 +128,7 @@
                                                                 <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                                                                     <a href="<?php echo get_home_url(); ?>/acompanhantes-madeira">
                                                                 <?php else : ?>
-                                                                    <a href="<?php echo get_home_url(); ?>/madeira-escorts">
+                                                                    <a href="<?php echo get_home_url(); ?>/madeira-escort">
                                                                 <?php endif; ?>
                                                                     <div class="d-flex align-items-center py-3 px-1 rounded-3">
                                                                         <div class="icon rounded-3 fs-1">
@@ -148,7 +148,7 @@
                                                                 <?php if (function_exists('pll_current_language') && pll_current_language() === 'pt') : ?>
                                                                     <a href="<?php echo get_home_url(); ?>/acompanhantes-algarve">
                                                                 <?php else : ?>
-                                                                    <a href="<?php echo get_home_url(); ?>/algarve-escorts">
+                                                                    <a href="<?php echo get_home_url(); ?>/algarve-escort">
                                                                 <?php endif; ?>
                                                                     <div class="d-flex align-items-center py-3 px-1 rounded-3">
                                                                         <div class="icon rounded-3 fs-1">
